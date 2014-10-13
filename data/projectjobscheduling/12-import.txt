@@ -1,0 +1,768 @@
+2014-10-02 14:04:09,095 [AWT-EventQueue-0] DEBUG jobNumber 1 has executionModeNumber 1 and starts at 0.
+2014-10-02 14:04:09,095 [AWT-EventQueue-0] DEBUG jobNumber 2 has executionModeNumber 1 and starts at 692.
+2014-10-02 14:04:09,095 [AWT-EventQueue-0] DEBUG jobNumber 3 has executionModeNumber 2 and starts at 2352.
+2014-10-02 14:04:09,095 [AWT-EventQueue-0] DEBUG jobNumber 4 has executionModeNumber 1 and starts at 2535.
+2014-10-02 14:04:09,095 [AWT-EventQueue-0] DEBUG jobNumber 5 has executionModeNumber 2 and starts at 2453.
+2014-10-02 14:04:09,095 [AWT-EventQueue-0] DEBUG jobNumber 6 has executionModeNumber 2 and starts at 2483.
+2014-10-02 14:04:09,095 [AWT-EventQueue-0] DEBUG jobNumber 7 has executionModeNumber 2 and starts at 3197.
+2014-10-02 14:04:09,095 [AWT-EventQueue-0] DEBUG jobNumber 8 has executionModeNumber 1 and starts at 3181.
+2014-10-02 14:04:09,095 [AWT-EventQueue-0] DEBUG jobNumber 9 has executionModeNumber 1 and starts at 3206.
+2014-10-02 14:04:09,095 [AWT-EventQueue-0] DEBUG jobNumber 10 has executionModeNumber 1 and starts at 3732.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 11 has executionModeNumber 1 and starts at 3811.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 12 has executionModeNumber 1 and starts at 734.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 13 has executionModeNumber 1 and starts at 3034.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 14 has executionModeNumber 2 and starts at 2507.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 15 has executionModeNumber 2 and starts at 2775.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 16 has executionModeNumber 2 and starts at 2652.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 17 has executionModeNumber 2 and starts at 2935.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 18 has executionModeNumber 1 and starts at 2732.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 19 has executionModeNumber 2 and starts at 3052.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 20 has executionModeNumber 1 and starts at 2887.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 21 has executionModeNumber 2 and starts at 2870.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 22 has executionModeNumber 1 and starts at 2549.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 23 has executionModeNumber 1 and starts at 2577.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 24 has executionModeNumber 1 and starts at 3389.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 25 has executionModeNumber 1 and starts at 3242.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 26 has executionModeNumber 2 and starts at 3601.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 27 has executionModeNumber 2 and starts at 3724.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 28 has executionModeNumber 2 and starts at 3371.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 29 has executionModeNumber 2 and starts at 3254.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 30 has executionModeNumber 1 and starts at 3577.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 31 has executionModeNumber 2 and starts at 3516.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 32 has executionModeNumber 1 and starts at 5257.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 33 has executionModeNumber 1 and starts at 5167.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 34 has executionModeNumber 1 and starts at 5347.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 35 has executionModeNumber 1 and starts at 5378.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 36 has executionModeNumber 2 and starts at 5132.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 37 has executionModeNumber 2 and starts at 5162.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 38 has executionModeNumber 1 and starts at 3536.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 39 has executionModeNumber 1 and starts at 4106.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 40 has executionModeNumber 1 and starts at 4253.
+2014-10-02 14:04:09,096 [AWT-EventQueue-0] DEBUG jobNumber 41 has executionModeNumber 2 and starts at 4401.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 42 has executionModeNumber 2 and starts at 4278.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 43 has executionModeNumber 1 and starts at 4408.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 44 has executionModeNumber 2 and starts at 3932.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 45 has executionModeNumber 2 and starts at 4194.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 46 has executionModeNumber 2 and starts at 4077.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 47 has executionModeNumber 2 and starts at 3880.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 48 has executionModeNumber 1 and starts at 3951.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 49 has executionModeNumber 2 and starts at 3841.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 50 has executionModeNumber 1 and starts at 3853.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 51 has executionModeNumber 1 and starts at 4555.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 52 has executionModeNumber 1 and starts at 4661.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 53 has executionModeNumber 1 and starts at 5061.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 54 has executionModeNumber 2 and starts at 4864.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 55 has executionModeNumber 2 and starts at 4719.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 56 has executionModeNumber 2 and starts at 4518.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 57 has executionModeNumber 1 and starts at 4808.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 58 has executionModeNumber 1 and starts at 4955.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 59 has executionModeNumber 2 and starts at 4635.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 60 has executionModeNumber 2 and starts at 4987.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 61 has executionModeNumber 1 and starts at 2442.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 62 has executionModeNumber 1 and starts at 2168.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 63 has executionModeNumber 2 and starts at 1896.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 64 has executionModeNumber 1 and starts at 1893.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 65 has executionModeNumber 1 and starts at 2013.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 66 has executionModeNumber 2 and starts at 1684.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 67 has executionModeNumber 1 and starts at 1711.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 68 has executionModeNumber 2 and starts at 1801.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 69 has executionModeNumber 2 and starts at 2198.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 70 has executionModeNumber 1 and starts at 2201.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 71 has executionModeNumber 2 and starts at 1978.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 72 has executionModeNumber 2 and starts at 2075.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 73 has executionModeNumber 2 and starts at 569.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 74 has executionModeNumber 2 and starts at 1568.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 75 has executionModeNumber 2 and starts at 1611.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 76 has executionModeNumber 2 and starts at 1321.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 77 has executionModeNumber 2 and starts at 1197.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 78 has executionModeNumber 2 and starts at 1258.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 79 has executionModeNumber 2 and starts at 1383.
+2014-10-02 14:04:09,097 [AWT-EventQueue-0] DEBUG jobNumber 80 has executionModeNumber 2 and starts at 1345.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 81 has executionModeNumber 2 and starts at 1230.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 82 has executionModeNumber 2 and starts at 1453.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 83 has executionModeNumber 2 and starts at 1182.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 84 has executionModeNumber 2 and starts at 1224.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 85 has executionModeNumber 2 and starts at 1172.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 86 has executionModeNumber 2 and starts at 1288.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 87 has executionModeNumber 1 and starts at 1626.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 88 has executionModeNumber 1 and starts at 464.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 89 has executionModeNumber 1 and starts at 605.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 90 has executionModeNumber 1 and starts at 0.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 91 has executionModeNumber 1 and starts at 24.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 92 has executionModeNumber 1 and starts at 200.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 93 has executionModeNumber 1 and starts at 112.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 94 has executionModeNumber 1 and starts at 288.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 95 has executionModeNumber 1 and starts at 376.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 96 has executionModeNumber 1 and starts at 573.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 97 has executionModeNumber 2 and starts at 0.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 98 has executionModeNumber 2 and starts at 29.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 99 has executionModeNumber 1 and starts at 630.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 100 has executionModeNumber 1 and starts at 662.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 101 has executionModeNumber 1 and starts at 1079.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 102 has executionModeNumber 1 and starts at 1254.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 103 has executionModeNumber 1 and starts at 1157.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 104 has executionModeNumber 1 and starts at 1351.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 105 has executionModeNumber 1 and starts at 1579.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 106 has executionModeNumber 1 and starts at 1524.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 107 has executionModeNumber 1 and starts at 1532.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 108 has executionModeNumber 1 and starts at 2383.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 109 has executionModeNumber 1 and starts at 2411.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 110 has executionModeNumber 1 and starts at 2471.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 111 has executionModeNumber 2 and starts at 1473.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 112 has executionModeNumber 1 and starts at 2321.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 113 has executionModeNumber 1 and starts at 2351.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 114 has executionModeNumber 2 and starts at 2321.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 115 has executionModeNumber 2 and starts at 636.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 116 has executionModeNumber 1 and starts at 812.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 117 has executionModeNumber 2 and starts at 122.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 118 has executionModeNumber 1 and starts at 932.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 119 has executionModeNumber 2 and starts at 714.
+2014-10-02 14:04:09,098 [AWT-EventQueue-0] DEBUG jobNumber 120 has executionModeNumber 2 and starts at 932.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 121 has executionModeNumber 2 and starts at 1027.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 122 has executionModeNumber 2 and starts at 452.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 123 has executionModeNumber 2 and starts at 206.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 124 has executionModeNumber 2 and starts at 837.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 125 has executionModeNumber 2 and starts at 329.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 126 has executionModeNumber 1 and starts at 2569.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 127 has executionModeNumber 1 and starts at 2252.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 128 has executionModeNumber 1 and starts at 2302.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 129 has executionModeNumber 1 and starts at 2419.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 130 has executionModeNumber 1 and starts at 2035.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 131 has executionModeNumber 1 and starts at 2106.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 132 has executionModeNumber 1 and starts at 2194.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 133 has executionModeNumber 1 and starts at 2585.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 134 has executionModeNumber 1 and starts at 2660.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 135 has executionModeNumber 1 and starts at 2360.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 136 has executionModeNumber 1 and starts at 2494.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 137 has executionModeNumber 1 and starts at 927.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 138 has executionModeNumber 1 and starts at 1984.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 139 has executionModeNumber 1 and starts at 2003.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 140 has executionModeNumber 1 and starts at 1759.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 141 has executionModeNumber 1 and starts at 1695.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 142 has executionModeNumber 1 and starts at 1727.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 143 has executionModeNumber 1 and starts at 1790.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 144 has executionModeNumber 1 and starts at 1772.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 145 has executionModeNumber 1 and starts at 1714.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 146 has executionModeNumber 1 and starts at 1829.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 147 has executionModeNumber 1 and starts at 1688.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 148 has executionModeNumber 1 and starts at 1711.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 149 has executionModeNumber 1 and starts at 1683.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 150 has executionModeNumber 1 and starts at 1743.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 151 has executionModeNumber 1 and starts at 1940.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 152 has executionModeNumber 1 and starts at 573.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 153 has executionModeNumber 1 and starts at 630.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 154 has executionModeNumber 1 and starts at 24.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 155 has executionModeNumber 1 and starts at 112.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 156 has executionModeNumber 1 and starts at 288.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 157 has executionModeNumber 1 and starts at 200.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 158 has executionModeNumber 1 and starts at 376.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 159 has executionModeNumber 1 and starts at 464.
+2014-10-02 14:04:09,099 [AWT-EventQueue-0] DEBUG jobNumber 160 has executionModeNumber 1 and starts at 612.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 161 has executionModeNumber 1 and starts at 35.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 162 has executionModeNumber 1 and starts at 156.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 163 has executionModeNumber 1 and starts at 662.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 164 has executionModeNumber 1 and starts at 692.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 165 has executionModeNumber 1 and starts at 1482.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 166 has executionModeNumber 1 and starts at 1561.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 167 has executionModeNumber 1 and starts at 1517.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 168 has executionModeNumber 1 and starts at 1605.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 169 has executionModeNumber 1 and starts at 1863.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 170 has executionModeNumber 1 and starts at 1839.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 171 has executionModeNumber 1 and starts at 1843.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 172 has executionModeNumber 1 and starts at 2822.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 173 has executionModeNumber 1 and starts at 2836.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 174 has executionModeNumber 1 and starts at 2866.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 175 has executionModeNumber 1 and starts at 1883.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 176 has executionModeNumber 1 and starts at 2718.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 177 has executionModeNumber 1 and starts at 2749.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 178 has executionModeNumber 1 and starts at 2734.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 179 has executionModeNumber 1 and starts at 968.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 180 has executionModeNumber 1 and starts at 1149.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 181 has executionModeNumber 1 and starts at 508.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 182 has executionModeNumber 1 and starts at 1323.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 183 has executionModeNumber 1 and starts at 1016.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 184 has executionModeNumber 1 and starts at 1265.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 185 has executionModeNumber 1 and starts at 1394.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 186 has executionModeNumber 1 and starts at 856.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 187 has executionModeNumber 1 and starts at 706.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 188 has executionModeNumber 1 and starts at 1207.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 189 has executionModeNumber 1 and starts at 781.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 190 has executionModeNumber 1 and starts at 1091.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 191 has executionModeNumber 1 and starts at 2765.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 192 has executionModeNumber 1 and starts at 2927.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 193 has executionModeNumber 1 and starts at 2898.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 194 has executionModeNumber 1 and starts at 2914.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 195 has executionModeNumber 1 and starts at 3672.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 196 has executionModeNumber 1 and starts at 3658.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 197 has executionModeNumber 1 and starts at 3704.
+2014-10-02 14:04:09,100 [AWT-EventQueue-0] DEBUG jobNumber 198 has executionModeNumber 1 and starts at 4391.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 199 has executionModeNumber 1 and starts at 4434.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 200 has executionModeNumber 1 and starts at 1111.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 201 has executionModeNumber 1 and starts at 3587.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 202 has executionModeNumber 1 and starts at 2932.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 203 has executionModeNumber 1 and starts at 3259.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 204 has executionModeNumber 1 and starts at 3109.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 205 has executionModeNumber 1 and starts at 3428.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 206 has executionModeNumber 1 and starts at 3184.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 207 has executionModeNumber 1 and starts at 3499.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 208 has executionModeNumber 1 and starts at 3357.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 209 has executionModeNumber 1 and starts at 3317.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 210 has executionModeNumber 1 and starts at 3020.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 211 has executionModeNumber 1 and starts at 3034.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 212 has executionModeNumber 1 and starts at 3952.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 213 has executionModeNumber 1 and starts at 4316.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 214 has executionModeNumber 1 and starts at 3793.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 215 has executionModeNumber 1 and starts at 4095.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 216 has executionModeNumber 1 and starts at 4245.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 217 has executionModeNumber 1 and starts at 3864.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 218 has executionModeNumber 1 and starts at 3722.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 219 has executionModeNumber 1 and starts at 4170.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 220 has executionModeNumber 1 and starts at 4023.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 221 has executionModeNumber 1 and starts at 5923.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 222 has executionModeNumber 1 and starts at 5879.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 223 has executionModeNumber 1 and starts at 6005.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 224 has executionModeNumber 1 and starts at 6021.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 225 has executionModeNumber 1 and starts at 5967.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 226 has executionModeNumber 1 and starts at 5981.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 227 has executionModeNumber 1 and starts at 4075.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 228 has executionModeNumber 1 and starts at 4792.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 229 has executionModeNumber 1 and starts at 4990.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 230 has executionModeNumber 1 and starts at 5065.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 231 has executionModeNumber 1 and starts at 4915.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 232 has executionModeNumber 1 and starts at 5136.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 233 has executionModeNumber 1 and starts at 4558.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 234 has executionModeNumber 1 and starts at 4863.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 235 has executionModeNumber 1 and starts at 4721.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 236 has executionModeNumber 1 and starts at 4526.
+2014-10-02 14:04:09,101 [AWT-EventQueue-0] DEBUG jobNumber 237 has executionModeNumber 1 and starts at 4646.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 238 has executionModeNumber 1 and starts at 4454.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 239 has executionModeNumber 1 and starts at 4478.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 240 has executionModeNumber 1 and starts at 5278.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 241 has executionModeNumber 1 and starts at 5382.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 242 has executionModeNumber 1 and starts at 5827.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 243 has executionModeNumber 1 and starts at 5612.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 244 has executionModeNumber 1 and starts at 5453.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 245 has executionModeNumber 1 and starts at 5207.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 246 has executionModeNumber 1 and starts at 5541.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 247 has executionModeNumber 1 and starts at 5775.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 248 has executionModeNumber 1 and starts at 5330.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 249 has executionModeNumber 1 and starts at 5687.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 250 has executionModeNumber 1 and starts at 2851.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 251 has executionModeNumber 7 and starts at 1188.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 252 has executionModeNumber 10 and starts at 3798.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 253 has executionModeNumber 10 and starts at 3020.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 254 has executionModeNumber 1 and starts at 3317.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 255 has executionModeNumber 8 and starts at 3184.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 256 has executionModeNumber 10 and starts at 3562.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 257 has executionModeNumber 10 and starts at 3313.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 258 has executionModeNumber 8 and starts at 3587.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 259 has executionModeNumber 7 and starts at 3441.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 260 has executionModeNumber 2 and starts at 3357.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 261 has executionModeNumber 7 and starts at 3034.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 262 has executionModeNumber 7 and starts at 3109.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 263 has executionModeNumber 8 and starts at 4027.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 264 has executionModeNumber 1 and starts at 3864.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 265 has executionModeNumber 7 and starts at 4195.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 266 has executionModeNumber 1 and starts at 4316.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 267 has executionModeNumber 10 and starts at 4034.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 268 has executionModeNumber 7 and starts at 3793.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 269 has executionModeNumber 10 and starts at 4327.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 270 has executionModeNumber 2 and starts at 4075.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 271 has executionModeNumber 2 and starts at 5981.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 272 has executionModeNumber 3 and starts at 6005.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 273 has executionModeNumber 7 and starts at 4108.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 274 has executionModeNumber 10 and starts at 5026.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 275 has executionModeNumber 2 and starts at 5065.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 276 has executionModeNumber 10 and starts at 5262.
+2014-10-02 14:04:09,102 [AWT-EventQueue-0] DEBUG jobNumber 277 has executionModeNumber 7 and starts at 5053.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 278 has executionModeNumber 8 and starts at 5207.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 279 has executionModeNumber 10 and starts at 4733.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 280 has executionModeNumber 1 and starts at 4915.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 281 has executionModeNumber 8 and starts at 4792.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 282 has executionModeNumber 7 and starts at 4558.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 283 has executionModeNumber 7 and starts at 4721.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 284 has executionModeNumber 3 and starts at 4478.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 285 has executionModeNumber 10 and starts at 4576.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 286 has executionModeNumber 7 and starts at 5385.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 287 has executionModeNumber 3 and starts at 5453.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 288 has executionModeNumber 7 and starts at 5927.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 289 has executionModeNumber 8 and starts at 5687.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 290 has executionModeNumber 10 and starts at 5669.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 291 has executionModeNumber 1 and starts at 5278.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 292 has executionModeNumber 7 and starts at 5612.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 293 has executionModeNumber 1 and starts at 5827.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 294 has executionModeNumber 10 and starts at 5498.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 295 has executionModeNumber 10 and starts at 5962.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 296 has executionModeNumber 2 and starts at 2585.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 297 has executionModeNumber 10 and starts at 2382.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 298 has executionModeNumber 1 and starts at 2360.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 299 has executionModeNumber 8 and starts at 2540.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 300 has executionModeNumber 10 and starts at 2146.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 301 has executionModeNumber 7 and starts at 2194.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 302 has executionModeNumber 8 and starts at 2252.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 303 has executionModeNumber 10 and starts at 2745.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 304 has executionModeNumber 1 and starts at 2718.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 305 has executionModeNumber 10 and starts at 2548.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 306 has executionModeNumber 7 and starts at 2585.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 307 has executionModeNumber 1 and starts at 968.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 308 has executionModeNumber 8 and starts at 2003.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 309 has executionModeNumber 1 and starts at 2035.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 310 has executionModeNumber 7 and starts at 1772.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 311 has executionModeNumber 5 and starts at 1711.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 312 has executionModeNumber 10 and starts at 1751.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 313 has executionModeNumber 10 and starts at 1829.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 314 has executionModeNumber 3 and starts at 1790.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 315 has executionModeNumber 4 and starts at 1727.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 316 has executionModeNumber 4 and starts at 1839.
+2014-10-02 14:04:09,103 [AWT-EventQueue-0] DEBUG jobNumber 317 has executionModeNumber 3 and starts at 1695.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 318 has executionModeNumber 1 and starts at 1714.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 319 has executionModeNumber 1 and starts at 1688.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 320 has executionModeNumber 1 and starts at 1759.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 321 has executionModeNumber 7 and starts at 1984.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 322 has executionModeNumber 1 and starts at 35.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 323 has executionModeNumber 10 and starts at 156.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 324 has executionModeNumber 10 and starts at 332.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 325 has executionModeNumber 7 and starts at 244.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 326 has executionModeNumber 9 and starts at 420.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 327 has executionModeNumber 10 and starts at 508.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 328 has executionModeNumber 8 and starts at 626.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 329 has executionModeNumber 10 and starts at 48.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 330 has executionModeNumber 8 and starts at 197.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 331 has executionModeNumber 8 and starts at 686.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 332 has executionModeNumber 1 and starts at 706.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 333 has executionModeNumber 5 and starts at 1883.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 334 has executionModeNumber 5 and starts at 1843.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 335 has executionModeNumber 1 and starts at 1863.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 336 has executionModeNumber 10 and starts at 1957.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 337 has executionModeNumber 2 and starts at 2734.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 338 has executionModeNumber 4 and starts at 2765.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 339 has executionModeNumber 3 and starts at 2749.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 340 has executionModeNumber 8 and starts at 1016.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 341 has executionModeNumber 1 and starts at 1207.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 342 has executionModeNumber 7 and starts at 560.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 343 has executionModeNumber 10 and starts at 1515.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 344 has executionModeNumber 10 and starts at 1266.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 345 has executionModeNumber 7 and starts at 1356.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 346 has executionModeNumber 2 and starts at 1482.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 347 has executionModeNumber 10 and starts at 1030.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 348 has executionModeNumber 10 and starts at 781.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 349 has executionModeNumber 8 and starts at 1265.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 350 has executionModeNumber 7 and starts at 856.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 351 has executionModeNumber 2 and starts at 1111.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 352 has executionModeNumber 2 and starts at 2822.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 353 has executionModeNumber 8 and starts at 2914.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 354 has executionModeNumber 7 and starts at 2927.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 355 has executionModeNumber 2 and starts at 3704.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 356 has executionModeNumber 1 and starts at 3672.
+2014-10-02 14:04:09,104 [AWT-EventQueue-0] DEBUG jobNumber 357 has executionModeNumber 3 and starts at 3722.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 358 has executionModeNumber 8 and starts at 4434.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 359 has executionModeNumber 2 and starts at 4454.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 360 has executionModeNumber 1 and starts at 4027.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 361 has executionModeNumber 1 and starts at 3806.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 362 has executionModeNumber 1 and starts at 3766.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 363 has executionModeNumber 1 and starts at 3418.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 364 has executionModeNumber 1 and starts at 3441.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 365 has executionModeNumber 1 and starts at 4427.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 366 has executionModeNumber 1 and starts at 0.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 367 has executionModeNumber 1 and starts at 4268.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 368 has executionModeNumber 1 and starts at 4570.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 369 has executionModeNumber 1 and starts at 4720.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 370 has executionModeNumber 1 and starts at 4339.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 371 has executionModeNumber 1 and starts at 4186.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 372 has executionModeNumber 1 and starts at 4645.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 373 has executionModeNumber 1 and starts at 4518.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 374 has executionModeNumber 1 and starts at 6395.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 375 has executionModeNumber 1 and starts at 6409.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 376 has executionModeNumber 1 and starts at 4498.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 377 has executionModeNumber 1 and starts at 5262.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 378 has executionModeNumber 1 and starts at 5492.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 379 has executionModeNumber 1 and starts at 5567.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 380 has executionModeNumber 1 and starts at 5385.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 381 has executionModeNumber 1 and starts at 5638.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 382 has executionModeNumber 1 and starts at 5026.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 383 has executionModeNumber 1 and starts at 5333.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 384 has executionModeNumber 1 and starts at 5189.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 385 has executionModeNumber 1 and starts at 4926.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 386 has executionModeNumber 1 and starts at 5114.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 387 has executionModeNumber 1 and starts at 4854.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 388 has executionModeNumber 1 and starts at 4878.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 389 has executionModeNumber 1 and starts at 5780.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 390 has executionModeNumber 1 and starts at 5884.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 391 has executionModeNumber 1 and starts at 6343.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 392 has executionModeNumber 1 and starts at 6121.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 393 has executionModeNumber 1 and starts at 5962.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 394 has executionModeNumber 1 and starts at 5709.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 395 has executionModeNumber 1 and starts at 6050.
+2014-10-02 14:04:09,105 [AWT-EventQueue-0] DEBUG jobNumber 396 has executionModeNumber 1 and starts at 6196.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 397 has executionModeNumber 1 and starts at 5832.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 398 has executionModeNumber 1 and starts at 6255.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 399 has executionModeNumber 1 and starts at 3064.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 400 has executionModeNumber 1 and starts at 3139.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 401 has executionModeNumber 1 and starts at 2839.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 402 has executionModeNumber 1 and starts at 2989.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 403 has executionModeNumber 1 and starts at 1337.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 404 has executionModeNumber 1 and starts at 2252.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 405 has executionModeNumber 1 and starts at 2271.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 406 has executionModeNumber 1 and starts at 1911.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 407 has executionModeNumber 1 and starts at 1847.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 408 has executionModeNumber 1 and starts at 1879.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 409 has executionModeNumber 1 and starts at 2072.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 410 has executionModeNumber 1 and starts at 1924.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 411 has executionModeNumber 1 and starts at 1866.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 412 has executionModeNumber 1 and starts at 1942.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 413 has executionModeNumber 1 and starts at 1840.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 414 has executionModeNumber 1 and starts at 1863.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 415 has executionModeNumber 1 and starts at 1835.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 416 has executionModeNumber 1 and starts at 1895.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 417 has executionModeNumber 1 and starts at 2208.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 418 has executionModeNumber 1 and starts at 95.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 419 has executionModeNumber 1 and starts at 300.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 420 has executionModeNumber 1 and starts at 480.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 421 has executionModeNumber 1 and starts at 436.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 422 has executionModeNumber 1 and starts at 612.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 423 has executionModeNumber 1 and starts at 656.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 424 has executionModeNumber 1 and starts at 700.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 425 has executionModeNumber 1 and starts at 106.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 426 has executionModeNumber 1 and starts at 378.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 427 has executionModeNumber 1 and starts at 747.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 428 has executionModeNumber 1 and starts at 784.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 429 has executionModeNumber 1 and starts at 2131.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 430 has executionModeNumber 1 and starts at 1952.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 431 has executionModeNumber 1 and starts at 2111.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 432 has executionModeNumber 1 and starts at 2151.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 433 has executionModeNumber 1 and starts at 3197.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 434 has executionModeNumber 1 and starts at 3228.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 435 has executionModeNumber 1 and starts at 3213.
+2014-10-02 14:04:09,106 [AWT-EventQueue-0] DEBUG jobNumber 436 has executionModeNumber 1 and starts at 1378.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 437 has executionModeNumber 1 and starts at 1590.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 438 has executionModeNumber 1 and starts at 798.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 439 has executionModeNumber 1 and starts at 1764.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 440 has executionModeNumber 1 and starts at 1515.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 441 has executionModeNumber 1 and starts at 1706.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 442 has executionModeNumber 1 and starts at 1984.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 443 has executionModeNumber 1 and starts at 1266.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 444 has executionModeNumber 1 and starts at 1030.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 445 has executionModeNumber 1 and starts at 1648.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 446 has executionModeNumber 1 and starts at 1188.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 447 has executionModeNumber 1 and starts at 1464.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 448 has executionModeNumber 1 and starts at 3244.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 449 has executionModeNumber 1 and starts at 3301.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 450 has executionModeNumber 1 and starts at 3317.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 451 has executionModeNumber 1 and starts at 3962.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 452 has executionModeNumber 1 and starts at 3948.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 453 has executionModeNumber 1 and starts at 3994.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 454 has executionModeNumber 1 and starts at 4791.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 455 has executionModeNumber 1 and starts at 4834.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 456 has executionModeNumber 1 and starts at 1426.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 457 has executionModeNumber 1 and starts at 4115.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 458 has executionModeNumber 1 and starts at 3330.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 459 has executionModeNumber 1 and starts at 3708.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 460 has executionModeNumber 1 and starts at 3558.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 461 has executionModeNumber 1 and starts at 3877.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 462 has executionModeNumber 1 and starts at 3633.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 463 has executionModeNumber 1 and starts at 2898.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 464 has executionModeNumber 1 and starts at 2731.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 465 has executionModeNumber 1 and starts at 2781.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 466 has executionModeNumber 1 and starts at 2914.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 467 has executionModeNumber 1 and starts at 2382.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 468 has executionModeNumber 1 and starts at 2585.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 469 has executionModeNumber 1 and starts at 2673.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 470 has executionModeNumber 1 and starts at 824.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 471 has executionModeNumber 1 and starts at 344.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 472 has executionModeNumber 1 and starts at 1692.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 473 has executionModeNumber 1 and starts at 1911.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 474 has executionModeNumber 1 and starts at 1517.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 475 has executionModeNumber 1 and starts at 612.
+2014-10-02 14:04:09,107 [AWT-EventQueue-0] DEBUG jobNumber 476 has executionModeNumber 2 and starts at 2271.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 477 has executionModeNumber 2 and starts at 106.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 478 has executionModeNumber 1 and starts at 2744.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 479 has executionModeNumber 2 and starts at 2482.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 480 has executionModeNumber 1 and starts at 6481.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 481 has executionModeNumber 2 and starts at 419.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 482 has executionModeNumber 2 and starts at 119.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 483 has executionModeNumber 1 and starts at 6980.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 484 has executionModeNumber 1 and starts at 6220.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 485 has executionModeNumber 1 and starts at 6600.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 486 has executionModeNumber 1 and starts at 7740.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 487 has executionModeNumber 1 and starts at 3181.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 488 has executionModeNumber 1 and starts at 4021.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 489 has executionModeNumber 1 and starts at 4401.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 490 has executionModeNumber 1 and starts at 3561.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 491 has executionModeNumber 1 and starts at 1865.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 492 has executionModeNumber 1 and starts at 4781.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 493 has executionModeNumber 1 and starts at 5840.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 494 has executionModeNumber 1 and starts at 7360.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 495 has executionModeNumber 1 and starts at 5161.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 496 has executionModeNumber 1 and starts at 1105.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 497 has executionModeNumber 1 and starts at 1485.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 498 has executionModeNumber 1 and starts at 3941.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 499 has executionModeNumber 1 and starts at 7041.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 500 has executionModeNumber 1 and starts at 7153.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 501 has executionModeNumber 1 and starts at 4827.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 502 has executionModeNumber 3 and starts at 4599.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 503 has executionModeNumber 1 and starts at 6252.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 504 has executionModeNumber 1 and starts at 6727.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 505 has executionModeNumber 1 and starts at 5777.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 506 has executionModeNumber 3 and starts at 6974.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 507 has executionModeNumber 3 and starts at 7449.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 508 has executionModeNumber 1 and starts at 7202.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 509 has executionModeNumber 3 and starts at 6024.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 510 has executionModeNumber 3 and starts at 6499.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 511 has executionModeNumber 1 and starts at 5302.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 512 has executionModeNumber 1 and starts at 2453.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 513 has executionModeNumber 3 and starts at 5549.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 514 has executionModeNumber 3 and starts at 5074.
+2014-10-02 14:04:09,108 [AWT-EventQueue-0] DEBUG jobNumber 515 has executionModeNumber 1 and starts at 3395.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 516 has executionModeNumber 1 and starts at 1784.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 517 has executionModeNumber 1 and starts at 3270.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 518 has executionModeNumber 1 and starts at 6684.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 519 has executionModeNumber 1 and starts at 4384.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 520 has executionModeNumber 1 and starts at 3316.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 521 has executionModeNumber 2 and starts at 2245.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 522 has executionModeNumber 1 and starts at 2730.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 523 has executionModeNumber 1 and starts at 2562.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 524 has executionModeNumber 1 and starts at 2301.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 525 has executionModeNumber 1 and starts at 809.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 526 has executionModeNumber 1 and starts at 945.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 527 has executionModeNumber 1 and starts at 1072.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 528 has executionModeNumber 1 and starts at 2191.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 529 has executionModeNumber 1 and starts at 2111.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 530 has executionModeNumber 1 and starts at 4208.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 531 has executionModeNumber 1 and starts at 3962.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 532 has executionModeNumber 1 and starts at 2964.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 533 has executionModeNumber 1 and starts at 1895.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 534 has executionModeNumber 1 and starts at 3380.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 535 has executionModeNumber 1 and starts at 3512.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 536 has executionModeNumber 1 and starts at 3301.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 537 has executionModeNumber 1 and starts at 3373.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 538 has executionModeNumber 1 and starts at 3228.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 539 has executionModeNumber 1 and starts at 3213.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 540 has executionModeNumber 1 and starts at 4834.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 541 has executionModeNumber 1 and starts at 5096.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 542 has executionModeNumber 1 and starts at 2898.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 543 has executionModeNumber 3 and starts at 6017.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 544 has executionModeNumber 3 and starts at 850.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 545 has executionModeNumber 3 and starts at 6649.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 546 has executionModeNumber 1 and starts at 5884.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 547 has executionModeNumber 2 and starts at 6248.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 548 has executionModeNumber 3 and starts at 5385.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 549 has executionModeNumber 3 and starts at 4958.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 550 has executionModeNumber 1 and starts at 5923.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 551 has executionModeNumber 1 and starts at 6142.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 552 has executionModeNumber 1 and starts at 875.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 553 has executionModeNumber 1 and starts at 1902.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 554 has executionModeNumber 1 and starts at 3134.
+2014-10-02 14:04:09,109 [AWT-EventQueue-0] DEBUG jobNumber 555 has executionModeNumber 1 and starts at 2804.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 556 has executionModeNumber 1 and starts at 3464.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 557 has executionModeNumber 1 and starts at 1814.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 558 has executionModeNumber 1 and starts at 2474.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 559 has executionModeNumber 1 and starts at 2144.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 560 has executionModeNumber 1 and starts at 1484.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 561 has executionModeNumber 1 and starts at 3794.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 562 has executionModeNumber 1 and starts at 3224.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 563 has executionModeNumber 1 and starts at 3877.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 564 has executionModeNumber 3 and starts at 4124.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 565 has executionModeNumber 1 and starts at 4352.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 566 has executionModeNumber 1 and starts at 1337.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 567 has executionModeNumber 1 and starts at 1835.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 568 has executionModeNumber 1 and starts at 2928.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 569 has executionModeNumber 2 and starts at 6659.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 570 has executionModeNumber 2 and starts at 6050.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 571 has executionModeNumber 2 and starts at 5245.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 572 has executionModeNumber 1 and starts at 5370.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 573 has executionModeNumber 2 and starts at 1426.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 574 has executionModeNumber 2 and starts at 2072.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 575 has executionModeNumber 2 and starts at 3418.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 576 has executionModeNumber 2 and starts at 4636.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 577 has executionModeNumber 2 and starts at 4027.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 578 has executionModeNumber 1 and starts at 2711.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 579 has executionModeNumber 2 and starts at 2781.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 580 has executionModeNumber 1 and starts at 2229.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 581 has executionModeNumber 2 and starts at 1958.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 582 has executionModeNumber 1 and starts at 1840.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 583 has executionModeNumber 1 and starts at 1847.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 584 has executionModeNumber 1 and starts at 2131.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 585 has executionModeNumber 2 and starts at 2151.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 586 has executionModeNumber 1 and starts at 1956.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 587 has executionModeNumber 1 and starts at 2264.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 588 has executionModeNumber 1 and starts at 1304.
+2014-10-02 14:04:09,110 [AWT-EventQueue-0] DEBUG jobNumber 589 has executionModeNumber 1 and starts at 8120.
+2014-10-02 14:04:09,113 [AWT-EventQueue-0] INFO  Schedule q-12 has 1 projects, 589 jobs, 1745 execution modes, 26 resources and 1743 resource requirements.
+2014-10-02 14:04:09,113 [AWT-EventQueue-0] INFO  Imported: D:\Projects\optaplanner-mes\data\projectjobscheduling\import\q-12.txt
+
+
+
+
+
+
+
+
+2014-10-02 14:08:24,808 [SwingWorker-pool-2-thread-10] INFO  Solving started: time spent (3), best score (uninitialized/0/520/-8120), random (JDK with seed 0).
+2014-10-02 14:08:24,819 [SwingWorker-pool-2-thread-10] DEBUG     CH step (0), time spent (14), score (-20/520/-8120), selected move count (500), picked move ([Allocation-1] => 0).
+2014-10-02 14:08:24,873 [SwingWorker-pool-2-thread-10] DEBUG     CH step (1), time spent (67), score (-191/520/-8120), selected move count (500), picked move ([Allocation-2] => 411).
+2014-10-02 14:08:24,878 [SwingWorker-pool-2-thread-10] DEBUG     CH step (2), time spent (73), score (-246/520/-8120), selected move count (500), picked move ([Allocation-3] => 0).
+2014-10-02 14:08:24,894 [SwingWorker-pool-2-thread-10] DEBUG     CH step (3), time spent (89), score (-286/520/-8120), selected move count (500), picked move ([Allocation-4] => 434).
+2014-10-02 14:08:24,907 [SwingWorker-pool-2-thread-10] DEBUG     CH step (4), time spent (102), score (-348/520/-8120), selected move count (500), picked move ([Allocation-5] => 0).
+2014-10-02 14:08:24,934 [SwingWorker-pool-2-thread-10] DEBUG     CH step (5), time spent (129), score (-474/520/-8120), selected move count (500), picked move ([Allocation-6] => 289).
+2014-10-02 14:08:24,956 [SwingWorker-pool-2-thread-10] DEBUG     CH step (6), time spent (151), score (-555/520/-8120), selected move count (500), picked move ([Allocation-7] => 3).
+2014-10-02 14:08:24,972 [SwingWorker-pool-2-thread-10] DEBUG     CH step (7), time spent (167), score (-609/520/-8120), selected move count (500), picked move ([Allocation-8] => 182).
+2014-10-02 14:08:25,002 [SwingWorker-pool-2-thread-10] DEBUG     CH step (8), time spent (197), score (-798/520/-8120), selected move count (500), picked move ([Allocation-9] => 499).
+2014-10-02 14:08:25,020 [SwingWorker-pool-2-thread-10] DEBUG     CH step (9), time spent (215), score (-817/520/-8120), selected move count (500), picked move ([Allocation-10] => 0).
+2014-10-02 14:08:25,053 [SwingWorker-pool-2-thread-10] DEBUG     CH step (10), time spent (248), score (-970/520/-8120), selected move count (500), picked move ([Allocation-11] => 338).
+2014-10-02 14:08:25,112 [SwingWorker-pool-2-thread-10] DEBUG     CH step (11), time spent (307), score (-1519/520/-8120), selected move count (500), picked move ([Allocation-12] => 499).
+2014-10-02 14:08:25,169 [SwingWorker-pool-2-thread-10] DEBUG     CH step (12), time spent (364), score (-1665/520/-8120), selected move count (500), picked move ([Allocation-13] => 281).
+2014-10-02 14:08:25,211 [SwingWorker-pool-2-thread-10] DEBUG     CH step (13), time spent (406), score (-1714/520/-8120), selected move count (500), picked move ([Allocation-14] => 429).
+2014-10-02 14:08:25,260 [SwingWorker-pool-2-thread-10] DEBUG     CH step (14), time spent (455), score (-2204/520/-8120), selected move count (500), picked move ([Allocation-15] => 334).
+2014-10-02 14:08:25,307 [SwingWorker-pool-2-thread-10] DEBUG     CH step (15), time spent (502), score (-2503/520/-8120), selected move count (500), picked move ([Allocation-16] => 499).
+2014-10-02 14:08:25,353 [SwingWorker-pool-2-thread-10] DEBUG     CH step (16), time spent (548), score (-2955/520/-8120), selected move count (500), picked move ([Allocation-17] => 352).
+2014-10-02 14:08:25,419 [SwingWorker-pool-2-thread-10] DEBUG     CH step (17), time spent (614), score (-3538/520/-8120), selected move count (500), picked move ([Allocation-18] => 375).
+2014-10-02 14:08:25,478 [SwingWorker-pool-2-thread-10] DEBUG     CH step (18), time spent (673), score (-3660/520/-8120), selected move count (500), picked move ([Allocation-19] => 324).
+2014-10-02 14:08:25,506 [SwingWorker-pool-2-thread-10] DEBUG     CH step (19), time spent (701), score (-3772/520/-8120), selected move count (500), picked move ([Allocation-20] => 264).
+2014-10-02 14:08:25,512 [SwingWorker-pool-2-thread-10] DEBUG     CH step (20), time spent (707), score (-3829/520/-8120), selected move count (500), picked move ([Allocation-21] => 444).
+2014-10-02 14:08:25,571 [SwingWorker-pool-2-thread-10] DEBUG     CH step (21), time spent (766), score (-3857/520/-8120), selected move count (500), picked move ([Allocation-22] => 302).
+2014-10-02 14:08:25,625 [SwingWorker-pool-2-thread-10] DEBUG     CH step (22), time spent (820), score (-4320/520/-8120), selected move count (500), picked move ([Allocation-23] => 363).
+2014-10-02 14:08:25,681 [SwingWorker-pool-2-thread-10] DEBUG     CH step (23), time spent (876), score (-4513/520/-8120), selected move count (500), picked move ([Allocation-24] => 394).
+2014-10-02 14:08:25,728 [SwingWorker-pool-2-thread-10] DEBUG     CH step (24), time spent (923), score (-4703/520/-8120), selected move count (500), picked move ([Allocation-25] => 396).
+2014-10-02 14:08:25,783 [SwingWorker-pool-2-thread-10] DEBUG     CH step (25), time spent (978), score (-5075/520/-8120), selected move count (500), picked move ([Allocation-26] => 499).
+2014-10-02 14:08:25,835 [SwingWorker-pool-2-thread-10] DEBUG     CH step (26), time spent (1030), score (-5338/520/-8120), selected move count (500), picked move ([Allocation-27] => 326).
+2014-10-02 14:08:25,892 [SwingWorker-pool-2-thread-10] DEBUG     CH step (27), time spent (1087), score (-5373/520/-8120), selected move count (500), picked move ([Allocation-28] => 327).
+2014-10-02 14:08:25,938 [SwingWorker-pool-2-thread-10] DEBUG     CH step (28), time spent (1133), score (-5748/520/-8120), selected move count (500), picked move ([Allocation-29] => 499).
+2014-10-02 14:08:25,960 [SwingWorker-pool-2-thread-10] DEBUG     CH step (29), time spent (1155), score (-6011/520/-8120), selected move count (500), picked move ([Allocation-30] => 450).
+2014-10-02 14:08:25,978 [SwingWorker-pool-2-thread-10] DEBUG     CH step (30), time spent (1173), score (-6053/520/-8120), selected move count (500), picked move ([Allocation-31] => 0).
+2014-10-02 14:08:25,997 [SwingWorker-pool-2-thread-10] DEBUG     CH step (31), time spent (1192), score (-6096/520/-8120), selected move count (500), picked move ([Allocation-32] => 308).
+2014-10-02 14:08:26,007 [SwingWorker-pool-2-thread-10] DEBUG     CH step (32), time spent (1202), score (-6098/520/-8120), selected move count (500), picked move ([Allocation-33] => 499).
+2014-10-02 14:08:26,016 [SwingWorker-pool-2-thread-10] DEBUG     CH step (33), time spent (1211), score (-6149/520/-8120), selected move count (500), picked move ([Allocation-34] => 367).
+2014-10-02 14:08:26,034 [SwingWorker-pool-2-thread-10] DEBUG     CH step (34), time spent (1229), score (-6333/520/-8120), selected move count (500), picked move ([Allocation-35] => 0).
+2014-10-02 14:08:26,066 [SwingWorker-pool-2-thread-10] DEBUG     CH step (35), time spent (1261), score (-6603/520/-8120), selected move count (500), picked move ([Allocation-36] => 499).
+2014-10-02 14:08:26,075 [SwingWorker-pool-2-thread-10] DEBUG     CH step (36), time spent (1270), score (-6681/520/-8120), selected move count (500), picked move ([Allocation-37] => 499).
+2014-10-02 14:08:26,123 [SwingWorker-pool-2-thread-10] DEBUG     CH step (37), time spent (1318), score (-6985/520/-8120), selected move count (500), picked move ([Allocation-38] => 396).
+2014-10-02 14:08:26,178 [SwingWorker-pool-2-thread-10] DEBUG     CH step (38), time spent (1373), score (-7034/520/-8120), selected move count (500), picked move ([Allocation-39] => 3).
+2014-10-02 14:08:26,226 [SwingWorker-pool-2-thread-10] DEBUG     CH step (39), time spent (1421), score (-7184/520/-8120), selected move count (500), picked move ([Allocation-40] => 455).
+2014-10-02 14:08:26,274 [SwingWorker-pool-2-thread-10] DEBUG     CH step (40), time spent (1469), score (-7398/520/-8120), selected move count (500), picked move ([Allocation-41] => 499).
+2014-10-02 14:08:26,329 [SwingWorker-pool-2-thread-10] DEBUG     CH step (41), time spent (1524), score (-7732/520/-8120), selected move count (500), picked move ([Allocation-42] => 489).
+2014-10-02 14:08:26,394 [SwingWorker-pool-2-thread-10] DEBUG     CH step (42), time spent (1589), score (-7819/520/-8120), selected move count (500), picked move ([Allocation-43] => 442).
+2014-10-02 14:08:26,447 [SwingWorker-pool-2-thread-10] DEBUG     CH step (43), time spent (1642), score (-8027/520/-8120), selected move count (500), picked move ([Allocation-44] => 499).
+2014-10-02 14:08:26,499 [SwingWorker-pool-2-thread-10] DEBUG     CH step (44), time spent (1694), score (-8543/520/-8120), selected move count (500), picked move ([Allocation-45] => 409).
+2014-10-02 14:08:26,530 [SwingWorker-pool-2-thread-10] DEBUG     CH step (45), time spent (1725), score (-8466/520/-8120), selected move count (500), picked move ([Allocation-46] => 34).
+2014-10-02 14:08:26,579 [SwingWorker-pool-2-thread-10] DEBUG     CH step (46), time spent (1774), score (-8771/520/-8120), selected move count (500), picked move ([Allocation-47] => 415).
+2014-10-02 14:08:26,590 [SwingWorker-pool-2-thread-10] DEBUG     CH step (47), time spent (1785), score (-8885/520/-8120), selected move count (500), picked move ([Allocation-48] => 18).
+2014-10-02 14:08:26,611 [AWT-EventQueue-0] INFO  Terminating solver early.
+2014-10-02 14:08:26,611 [SwingWorker-pool-2-thread-10] DEBUG     CH step (48), time spent (1806), score (-8951/520/-8120), selected move count (252), picked move ([Allocation-49] => 47).
+2014-10-02 14:08:26,612 [SwingWorker-pool-2-thread-10] INFO  Construction Heuristic phase (0) ended: step total (49), time spent (1807), best score (-8951/520/-8120).
+2014-10-02 14:08:26,615 [SwingWorker-pool-2-thread-10] INFO  Solving ended: time spent (1810), best score (uninitialized/-8951/520/-8120), average calculate count per second (13400).
+
+
+
+2014-10-02 14:14:10,910 [SwingWorker-pool-2-thread-6] DEBUG     CH step (80), time spent (1420), score (-9420/1044/-7596), selected move count (500), picked move ([Allocation-586] => 0).
+2014-10-02 14:14:10,933 [SwingWorker-pool-2-thread-6] DEBUG     CH step (81), time spent (1443), score (-9420/1044/-7596), selected move count (500), picked move ([Allocation-587] => 0).
+2014-10-02 14:14:10,934 [SwingWorker-pool-2-thread-6] INFO  Construction Heuristic phase (0) ended: step total (82), time spent (1444), best score (-9420/1044/-7596).
+2014-10-02 14:14:10,939 [SwingWorker-pool-2-thread-6] DEBUG     LS step (0), time spent (1449), score (-9420/1044/-7596),     best score (-9420/1044/-7596), accepted/selected move count (4/25), picked move ([Allocation-515] => 36).
+2014-10-02 14:14:10,942 [SwingWorker-pool-2-thread-6] DEBUG     LS step (1), time spent (1452), score (-9416/1044/-7596), new best score (-9416/1044/-7596), accepted/selected move count (4/40), picked move ([Allocation-499] => 282).
+2014-10-02 14:14:10,944 [SwingWorker-pool-2-thread-6] DEBUG     LS step (2), time spent (1454), score (-9416/1044/-7596),     best score (-9416/1044/-7596), accepted/selected move count (4/35), picked move ([Allocation-561] => 333).
+
+
+
+
+
+
+
+DECLARE
+    c_time_scale CONSTANT NUMBER := 1440;
+    p_scheduling_id NUMBER := 17;
+    p_job_cnt       NUMBER;
+    v_mode_nr       NUMBER;
+    v_done_date     NUMBER;
+    v_job_start     NUMBER;
+    v_start_date    DATE;
+BEGIN
+    qmesp_bl_optaplanner.create_pjs_mm(p_scheduling_id => p_scheduling_id);
+    SELECT COUNT(*) INTO p_job_cnt FROM qmes_opta_solution;
+
+    FOR i IN 1 .. p_job_cnt
+    LOOP
+        dbms_output.put_line('job: ' || i);
+    
+        --execution mode    
+        IF i IN (1, p_job_cnt)
+        THEN
+            v_mode_nr := 1;
+        ELSE
+            BEGIN
+                SELECT j2r.mode_nr
+                INTO   v_mode_nr
+                FROM   qmes_opta_job2resource       j2r
+                      ,qmes_opta_mach2res           m2r
+                      ,qmes_opta_oper2job           o2j
+                      ,qmes_ejs_scheduling_position sp
+                WHERE  o2j.job_nr = j2r.job_nr
+                AND    m2r.resource_nr = j2r.resource_nr
+                AND    sp.machine_id = m2r.machine_id
+                AND    sp.operation_id = o2j.operation_id
+                AND    sp.scheduling_id = p_scheduling_id
+                AND    j2r.job_nr = i;
+            EXCEPTION
+                WHEN no_data_found THEN
+                    v_mode_nr := 1; --TODO: maszyna z obszaru roboczego
+                WHEN too_many_rows THEN
+                    qcmp_error.QRaise('QMES_EXC_AMBIGUOUS_MACHINE_MODE_ASSIGNMENT');
+            END;
+        END IF;
+        dbms_output.put_line('mode: ' || v_mode_nr);
+    
+        --predecessors done date
+        v_done_date := 0;
+        FOR rec_pred IN (SELECT j2s.job_nr
+                               ,Round(c_time_scale *
+                                      (sp.stop_date - ss.begin_date)) AS done_date
+                               ,ss.begin_date
+                               ,sp.operation_id
+                               ,sp.start_date
+                               ,sp.stop_date
+                         FROM   qmes_opta_job2successor      j2s
+                               ,qmes_opta_oper2job           o2j
+                               ,qmes_ejs_scheduling_position sp
+                               ,qmes_ejs_scheduling_session  ss
+                         WHERE  j2s.job_nr = o2j.job_nr
+                         AND    sp.operation_id = o2j.operation_id
+                         AND    sp.scheduling_id = ss.scheduling_id
+                         AND    ss.scheduling_id = p_scheduling_id
+                         AND    j2s.successor_nr = i)
+        LOOP
+            dbms_output.put_line('    predecessor: ' || rec_pred.job_nr);
+            dbms_output.put_line('    operation: ' ||
+                                 rec_pred.operation_id);
+            dbms_output.put_line('    done date: ' || rec_pred.done_date || ' (' ||
+                                 to_char(rec_pred.stop_date
+                                        ,'yyyy-mm-dd hh24:mi') || ')');
+        
+            v_done_date := Greatest(v_done_date, rec_pred.done_date);
+        END LOOP;
+        dbms_output.put_line('predecessors done date: ' || v_done_date);
+    
+        --delay
+        BEGIN
+            SELECT sp.start_date
+                  ,Round(c_time_scale * (sp.start_date - ss.begin_date)) AS job_start
+            INTO   v_start_date
+                  ,v_job_start
+            FROM   qmes_ejs_scheduling_session  ss
+                  ,qmes_ejs_scheduling_position sp
+                  ,qmes_opta_oper2job           o2j
+            WHERE  sp.scheduling_id = ss.scheduling_id
+            AND    ss.scheduling_id = p_scheduling_id
+            AND    sp.operation_id = o2j.operation_id
+            AND    o2j.job_nr = i;
+        EXCEPTION
+            WHEN no_data_found THEN
+                v_job_start  := -7;
+                v_start_date := NULL;
+            
+            WHEN too_many_rows THEN
+                qcmp_error.QRaise('QMES_EXC_AMBIGUOUS_OPERATION_JOB_ASSIGNMENT');
+        END;
+        dbms_output.put_line('start date: ' || v_job_start || ' (' ||
+                             to_char(v_start_date, 'yyyy-mm-dd hh24:mi') || ')');
+    
+        dbms_output.put_line('');
+    END LOOP;
+END;
