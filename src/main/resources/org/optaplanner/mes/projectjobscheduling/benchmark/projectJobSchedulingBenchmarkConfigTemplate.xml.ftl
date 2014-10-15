@@ -18,7 +18,7 @@
         <scoreDefinitionType>BENDABLE</scoreDefinitionType>
         <bendableHardLevelsSize>1</bendableHardLevelsSize>
         <bendableSoftLevelsSize>2</bendableSoftLevelsSize>
-        <incrementalScoreCalculatorClass>org.mes.examples.projectjobscheduling.solver.score.ProjectJobSchedulingIncrementalScoreCalculator</incrementalScoreCalculatorClass>
+        <incrementalScoreCalculatorClass>org.optaplanner.mes.projectjobscheduling.solver.score.ProjectJobSchedulingIncrementalScoreCalculator</incrementalScoreCalculatorClass>
       </scoreDirectorFactory>
       <termination>
         <secondsSpentLimit>290</secondsSpentLimit>

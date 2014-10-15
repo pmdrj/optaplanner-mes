@@ -27,7 +27,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 public class ExecutionMode extends AbstractPersistable {
 
     private Job job;
-    private int duration; // In days
+    private int duration; // In days	
 
 	private List<ResourceRequirement> resourceRequirementList;
 
@@ -53,6 +53,11 @@ public class ExecutionMode extends AbstractPersistable {
 
     public void setResourceRequirementList(List<ResourceRequirement> resourceRequirementList) {
         this.resourceRequirementList = resourceRequirementList;
+    }
+    
+    @Override
+    public String toString() {    	    	
+        return "" + this.resourceRequirementList.get(0).getResource().getMesMachineNr() + "";
     }
 
     // ************************************************************************

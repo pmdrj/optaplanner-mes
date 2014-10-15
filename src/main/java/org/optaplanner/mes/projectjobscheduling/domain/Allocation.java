@@ -121,6 +121,11 @@ public class Allocation extends AbstractPersistable {
     public void setPredecessorsDoneDate(Integer predecessorsDoneDate) {
         this.predecessorsDoneDate = predecessorsDoneDate;
     }
+    
+    @Override
+    public String toString() {    	
+        return "" + job.getMesOperationNr() + "";
+    }
 
     // ************************************************************************
     // Complex methods

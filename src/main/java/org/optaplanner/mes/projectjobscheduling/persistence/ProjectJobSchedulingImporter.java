@@ -183,6 +183,7 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 				readRequestDurations();
 				readResourceAvailabilities();
 				
+				readMesExtensionMarker();
 				try {
 					readMesJobAllocations();					
 				} catch (Exception e) {
@@ -203,7 +204,7 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 				detectPointlessSuccessor();
 				return null; // Hack so the code can reuse read methods from
 								// TxtInputBuilder
-			}
+			}			
 
 			private void readHeader() throws IOException {
 				readRegexConstantLine("\\*+");
@@ -390,6 +391,11 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 				}
 				readRegexConstantLine("\\*+");
 			}
+			
+			private void readMesExtensionMarker() {
+				// TODO Auto-generated method stub
+				
+			}
 
 			private void readMesJobAllocations() throws IOException {
 				readMesHeadingLine("JOBALLOCATIONS:");
@@ -483,11 +489,11 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 
 			private void readMesJob2MesOperation() throws IOException {
 				readMesHeadingLine("JOB2MESOPERATION:");
-				readMesHeadingLine("jobNumber            operationId");
+				readMesHeadingLine("jobNumber            operationId     operationNr");
 				readRegexConstantLine("\\-+");
 
 				for (int i = 1; i < jobListSize - 1; i++) {
-					String[] tokens = splitBySpacesOrTabs(readStringValue(), 2);
+					String[] tokens = splitBySpacesOrTabs(readStringValue(), 3);
 
 					int jobNumber = -1;
 					try {
@@ -502,7 +508,9 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 					} catch (NumberFormatException e) {
 						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens) + ") index 1 should be integer.");
 					}
-					logger.debug("jobNumber {} maps operationId {}.", jobNumber, operationId);
+					
+					String operationNr = tokens[2];
+					logger.debug("jobNumber {} maps operationId {} (operationNr {}).", jobNumber, operationId, operationNr);
 
 					Job job;
 					try {
@@ -512,18 +520,19 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 					}
 
 					job.setMesOperationId(operationId);
+					job.setMesOperationNr(operationNr);
 				}
 				readRegexConstantLine("\\*+");
 			}
 
 			private void readMesRes2MesMachine() throws IOException {
 				readMesHeadingLine("RESOURCE2MESMACHINE:");
-				readMesHeadingLine("resNumber              machineId");
+				readMesHeadingLine("resNumber              machineId     machineNr");
 				readRegexConstantLine("\\-+");
 
 				int resourceSize = globalResourceListSize + renewableLocalResourceSize + nonrenewableLocalResourceSize;
 				for (int i = 0; i < resourceSize; i++) {
-					String[] tokens = splitBySpacesOrTabs(readStringValue(), 2);
+					String[] tokens = splitBySpacesOrTabs(readStringValue(), 3);
 
 					int resNumber = -1;
 					try {
@@ -538,8 +547,10 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 					} catch (NumberFormatException e) {
 						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens) + ") index 1 should be integer.");
 					}
+					String machineNr = tokens[2];
 					schedule.getResourceList().get(i).setMesMachineId(machineId);
-					logger.debug("resNumber {} maps machineId {}.", resNumber, machineId);
+					schedule.getResourceList().get(i).setMesMachineNr(machineNr);
+					logger.debug("resNumber {} maps machineId {} (machineNr {}).", resNumber, machineId, machineNr);
 				}
 				readRegexConstantLine("\\*+");
 			}

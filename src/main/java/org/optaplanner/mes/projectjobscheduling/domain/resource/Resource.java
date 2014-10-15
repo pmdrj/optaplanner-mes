@@ -31,8 +31,17 @@ public abstract class Resource extends AbstractPersistable {
 
     private int capacity;
     private int mesMachineId;
+    private String mesMachineNr;
 
-    public int getMesMachineId() {
+    public String getMesMachineNr() {
+		return mesMachineNr;
+	}
+
+	public void setMesMachineNr(String mesMachineNr) {
+		this.mesMachineNr = mesMachineNr;
+	}
+
+	public int getMesMachineId() {
 		return mesMachineId;
 	}
 

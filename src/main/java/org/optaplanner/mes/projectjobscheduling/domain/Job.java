@@ -34,6 +34,15 @@ public class Job extends AbstractPersistable {
     private ExecutionMode initialExecutionMode;
     private int initialDelay;    
     private int mesOperationId;
+    private String mesOperationNr;
+
+	public String getMesOperationNr() {
+		return mesOperationNr;
+	}
+
+	public void setMesOperationNr(String mesOperationNr) {
+		this.mesOperationNr = mesOperationNr;
+	}
 
 	public Project getProject() {
         return project;

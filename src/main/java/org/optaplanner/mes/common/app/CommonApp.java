@@ -77,7 +77,7 @@ public abstract class CommonApp extends LoggingMain {
     public void init(Component centerForComponent, boolean exitOnClose) {
         solutionBusiness = createSolutionBusiness();
         solverAndPersistenceFrame = new SolverAndPersistenceFrame(
-                solutionBusiness, createSolutionPanel(), name + " OptaPlanner mes");
+                solutionBusiness, createSolutionPanel(), name + " OptaPlanner MES");
         solverAndPersistenceFrame.setDefaultCloseOperation(exitOnClose ? WindowConstants.EXIT_ON_CLOSE : WindowConstants.DISPOSE_ON_CLOSE);
         solverAndPersistenceFrame.init(centerForComponent);
         solverAndPersistenceFrame.setVisible(true);
