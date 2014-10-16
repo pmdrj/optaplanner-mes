@@ -5,14 +5,8 @@
 	<entityClass>org.optaplanner.mes.projectjobscheduling.domain.Allocation</entityClass>
 
 	<scoreDirectorFactory>
-		<scoreDefinitionType>BENDABLE</scoreDefinitionType>
-		<bendableHardLevelsSize>1</bendableHardLevelsSize>
-		<bendableSoftLevelsSize>2</bendableSoftLevelsSize>
-
-		<!-- <scoreDefinitionType>HARD_SOFT</scoreDefinitionType> -->
-		<!-- <initializingScoreTrend>ANY</initializingScoreTrend> -->
-
-		<!-- <incrementalScoreCalculatorClass>org.optaplanner.mes.projectjobscheduling.solver.score.ProjectJobSchedulingIncrementalScoreCalculator</incrementalScoreCalculatorClass> -->
+		<scoreDefinitionType>HARD_SOFT</scoreDefinitionType>
+		<initializingScoreTrend>ONLY_DOWN</initializingScoreTrend>
 		<scoreDrl>org/optaplanner/mes/projectjobscheduling/solver/projectJobSchedulingScoreRules.drl</scoreDrl>
 	</scoreDirectorFactory>
 	<termination>

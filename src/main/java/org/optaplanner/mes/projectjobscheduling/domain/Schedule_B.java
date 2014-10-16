@@ -1,7 +1,19 @@
-/**
- * @author tbista
+/*
+ * Copyright 2010 JBoss Inc
  *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
+
 package org.optaplanner.mes.projectjobscheduling.domain;
 
 import java.util.ArrayList;
@@ -11,11 +23,10 @@ import java.util.List;
 import org.optaplanner.core.api.domain.solution.PlanningEntityCollectionProperty;
 import org.optaplanner.core.api.domain.solution.PlanningSolution;
 import org.optaplanner.core.api.domain.solution.Solution;
-import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore;
-import org.optaplanner.core.impl.score.buildin.hardsoft.HardSoftScoreDefinition;
+import org.optaplanner.core.api.score.buildin.bendable.BendableScore;
 import org.optaplanner.mes.common.domain.AbstractPersistable;
 import org.optaplanner.mes.projectjobscheduling.domain.resource.Resource;
-import org.optaplanner.persistence.xstream.impl.score.XStreamScoreConverter;
+import org.optaplanner.persistence.xstream.impl.score.XStreamBendableScoreConverter;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamConverter;
@@ -23,7 +34,7 @@ import com.thoughtworks.xstream.annotations.XStreamConverter;
 @SuppressWarnings("serial")
 @PlanningSolution
 @XStreamAlias("PjsSchedule")
-public class Schedule extends AbstractPersistable implements Solution<HardSoftScore> {
+public class Schedule_B extends AbstractPersistable implements Solution<BendableScore> {
 
 	private List<Project> projectList;
 	private List<Job> jobList;
@@ -34,8 +45,8 @@ public class Schedule extends AbstractPersistable implements Solution<HardSoftSc
 	private int mesSchedulingId;
 	private int mesTimeScale;
 
-	@XStreamConverter(value = XStreamScoreConverter.class, types = { HardSoftScoreDefinition.class })
-	private HardSoftScore score;
+	@XStreamConverter(value = XStreamBendableScoreConverter.class, ints = { 1, 2 })
+	private BendableScore score;
 
 	public List<Project> getProjectList() {
 		return projectList;
@@ -86,11 +97,11 @@ public class Schedule extends AbstractPersistable implements Solution<HardSoftSc
 		this.allocationList = allocationList;
 	}
 
-	public HardSoftScore getScore() {
+	public BendableScore getScore() {
 		return score;
 	}
 
-	public void setScore(HardSoftScore score) {
+	public void setScore(BendableScore score) {
 		this.score = score;
 	}
 
@@ -125,4 +136,5 @@ public class Schedule extends AbstractPersistable implements Solution<HardSoftSc
 		// be done automatically
 		return facts;
 	}
+
 }

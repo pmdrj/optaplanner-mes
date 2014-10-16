@@ -23,7 +23,7 @@ import com.thoughtworks.xstream.annotations.XStreamConverter;
 @SuppressWarnings("serial")
 @PlanningSolution
 @XStreamAlias("PjsSchedule")
-public class Schedule extends AbstractPersistable implements Solution<HardSoftScore> {
+public class Schedule_HS extends AbstractPersistable implements Solution<HardSoftScore> {
 
 	private List<Project> projectList;
 	private List<Job> jobList;
@@ -125,4 +125,5 @@ public class Schedule extends AbstractPersistable implements Solution<HardSoftSc
 		// be done automatically
 		return facts;
 	}
+
 }

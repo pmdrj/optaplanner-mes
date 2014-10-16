@@ -1,6 +1,6 @@
 ************************************************************************
 file with basedata            :
-initial value random generator: 5531717124
+initial value random generator: 5646872143
 ************************************************************************
 projects                      : 1
 jobs (incl. supersource/sink ): 26
@@ -134,7 +134,7 @@ remove or spoil any allocation in JOBALLOCATIONS section (some content between -
 JOBALLOCATIONS:
 jobNumber    executionModeNumber    predecessorsDoneDate           delay
 ------------------------------------------------------------------------
-        1                      1                       0               0
+--        1                      1                       0               0
         2                      1                       0               0
         3                      2                       0               0
         4                      1                       0             180

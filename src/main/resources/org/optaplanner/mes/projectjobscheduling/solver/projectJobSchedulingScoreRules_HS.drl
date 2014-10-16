@@ -1,0 +1,76 @@
+package org.optaplanner.mes.projectjobscheduling.solver;
+    dialect "java"
+
+import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScoreHolder;
+
+import org.optaplanner.mes.projectjobscheduling.domain.Allocation;
+import org.optaplanner.mes.projectjobscheduling.domain.ExecutionMode;
+import org.optaplanner.mes.projectjobscheduling.domain.Job;
+import org.optaplanner.mes.projectjobscheduling.domain.JobType;
+import org.optaplanner.mes.projectjobscheduling.domain.Project;
+import org.optaplanner.mes.projectjobscheduling.domain.ResourceRequirement;
+import org.optaplanner.mes.projectjobscheduling.domain.resource.Resource;
+import org.optaplanner.mes.projectjobscheduling.solver.score.capacity.NonrenewableResourceCapacityTracker;
+import org.optaplanner.mes.projectjobscheduling.solver.score.capacity.RenewableResourceCapacityTracker;
+import org.optaplanner.mes.projectjobscheduling.solver.score.capacity.ResourceCapacityTracker;
+import org.optaplanner.mes.projectjobscheduling.solver.score.drools.RenewableResourceUsedDay;
+
+global HardSoftScoreHolder scoreHolder;
+
+// ############################################################################
+// Hard constraints
+// ############################################################################
+
+
+rule "renewableResourceUsedDay"
+        salience 1 // Do these rules first (optional, for performance)
+    when
+        ResourceRequirement(resourceRenewable == true, $executionMode : executionMode, $resource : resource)
+        Allocation(executionMode == $executionMode,
+                $startDate : startDate, $endDate : endDate)
+    then
+        for (int i = $startDate; i < $endDate; i++) {
+            insertLogical(new RenewableResourceUsedDay($resource, i));
+        }
+end
+
+rule "renewableResourceCapacity"
+    when
+        RenewableResourceUsedDay($resource : resource, $capacity : resourceCapacity, $usedDay : usedDay)
+        $used : Number(intValue > $capacity) from accumulate(
+            ResourceRequirement(resource == $resource,
+                    $executionMode : executionMode,
+                    $requirement : requirement)
+            and Allocation(executionMode == $executionMode, $usedDay >= startDate, $usedDay < endDate),
+            sum($requirement)
+        )
+    then
+        scoreHolder.addHardConstraintMatch(kcontext, $capacity - $used.intValue());
+end
+
+// ############################################################################
+// Soft constraints
+// ############################################################################
+
+      
+//suma czasów trwania operacji
+rule "sumDuration"
+    when
+         $sumDuration : Number() from accumulate(
+            Allocation(jobType == JobType.STANDARD, $endDate : endDate, $startDate : startDate),
+            sum($endDate - $startDate)
+        )
+    then
+        scoreHolder.addSoftConstraintMatch(kcontext, -$sumDuration.intValue());
+end
+
+//czas trwania projektu
+rule "totalMakespan"
+    when
+         $maxProjectEndDate : Number() from accumulate(
+            Allocation(jobType == JobType.SINK, $endDate : endDate),
+            max($endDate)
+        )
+    then
+        scoreHolder.addSoftConstraintMatch(kcontext, -$maxProjectEndDate.intValue());
+end
