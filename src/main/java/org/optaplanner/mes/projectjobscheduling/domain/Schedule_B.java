@@ -45,7 +45,7 @@ public class Schedule_B extends AbstractPersistable implements Solution<Bendable
 	private int mesSchedulingId;
 	private int mesTimeScale;
 
-	@XStreamConverter(value = XStreamBendableScoreConverter.class, ints = { 1, 2 })
+	@XStreamConverter(value = XStreamBendableScoreConverter.class, ints = { 1, 2, 3 })
 	private BendableScore score;
 
 	public List<Project> getProjectList() {

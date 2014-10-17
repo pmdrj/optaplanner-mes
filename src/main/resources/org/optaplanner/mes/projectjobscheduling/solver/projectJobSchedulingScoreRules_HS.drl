@@ -74,3 +74,14 @@ rule "totalMakespan"
     then
         scoreHolder.addSoftConstraintMatch(kcontext, -$maxProjectEndDate.intValue());
 end
+
+//suma opóźnień
+rule "sumDelay"
+    when
+         $sumDelay : Number() from accumulate(
+            Allocation(jobType == JobType.STANDARD, $delay : delay),
+            sum($delay)
+        )
+    then
+        scoreHolder.addSoftConstraintMatch(kcontext, -$sumDelay.intValue());
+end

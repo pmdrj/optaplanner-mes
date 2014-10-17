@@ -1,7 +1,7 @@
 package org.optaplanner.mes.projectjobscheduling.solver;
     dialect "java"
 
-import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScoreHolder;
+import org.optaplanner.core.api.score.buildin.bendable.BendableScoreHolder;
 
 import org.optaplanner.mes.projectjobscheduling.domain.Allocation;
 import org.optaplanner.mes.projectjobscheduling.domain.ExecutionMode;
@@ -15,7 +15,7 @@ import org.optaplanner.mes.projectjobscheduling.solver.score.capacity.RenewableR
 import org.optaplanner.mes.projectjobscheduling.solver.score.capacity.ResourceCapacityTracker;
 import org.optaplanner.mes.projectjobscheduling.solver.score.drools.RenewableResourceUsedDay;
 
-global HardSoftScoreHolder scoreHolder;
+global BendableScoreHolder scoreHolder;
 
 // ############################################################################
 // Hard constraints
@@ -45,24 +45,12 @@ rule "renewableResourceCapacity"
             sum($requirement)
         )
     then
-        scoreHolder.addHardConstraintMatch(kcontext, $capacity - $used.intValue());
+        scoreHolder.addHardConstraintMatch(kcontext, 0, $capacity - $used.intValue());        
 end
 
 // ############################################################################
 // Soft constraints
 // ############################################################################
-
-      
-//suma czasów trwania operacji
-rule "sumDuration"
-    when
-         $sumDuration : Number() from accumulate(
-            Allocation(jobType == JobType.STANDARD, $endDate : endDate, $startDate : startDate),
-            sum($endDate - $startDate)
-        )
-    then
-        scoreHolder.addSoftConstraintMatch(kcontext, -$sumDuration.intValue());
-end
 
 //czas trwania projektu
 rule "totalMakespan"
@@ -72,5 +60,27 @@ rule "totalMakespan"
             max($endDate)
         )
     then
-        scoreHolder.addSoftConstraintMatch(kcontext, -$maxProjectEndDate.intValue());
+        scoreHolder.addSoftConstraintMatch(kcontext, 0, -$maxProjectEndDate.intValue());        
+end
+
+//suma czasów trwania operacji
+rule "sumDuration"
+    when
+         $sumDuration : Number() from accumulate(
+            Allocation(jobType == JobType.STANDARD, $endDate : endDate, $startDate : startDate),
+            sum($endDate - $startDate)
+        )
+    then
+        scoreHolder.addSoftConstraintMatch(kcontext, 1, -$sumDuration.intValue());        
+end
+
+//suma opóźnień
+rule "sumDelay"
+    when
+         $sumDelay : Number() from accumulate(
+            Allocation(jobType == JobType.STANDARD && delay != null, $delay : delay),
+            sum($delay)
+        )
+    then
+        scoreHolder.addSoftConstraintMatch(kcontext, 2, -$sumDelay.intValue());
 end
