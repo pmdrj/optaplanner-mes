@@ -134,7 +134,7 @@ remove or spoil any allocation in JOBALLOCATIONS section (some content between -
 JOBALLOCATIONS:
 jobNumber    executionModeNumber    predecessorsDoneDate           delay
 ------------------------------------------------------------------------
---        1                      1                       0               0
+        1                      1                       0               0
         2                      1                       0               0
         3                      2                       0             160
         4                      1                       0             180

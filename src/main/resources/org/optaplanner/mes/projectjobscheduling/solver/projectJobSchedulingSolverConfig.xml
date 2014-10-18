@@ -7,7 +7,7 @@
 	<scoreDirectorFactory>
 		<scoreDefinitionType>BENDABLE</scoreDefinitionType>
 		<bendableHardLevelsSize>1</bendableHardLevelsSize>
-		<bendableSoftLevelsSize>3</bendableSoftLevelsSize>		
+		<bendableSoftLevelsSize>2</bendableSoftLevelsSize>		
 		<scoreDrl>org/optaplanner/mes/projectjobscheduling/solver/projectJobSchedulingScoreRules.drl</scoreDrl>
 	</scoreDirectorFactory>
 	<termination>

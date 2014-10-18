@@ -173,7 +173,7 @@ public class Allocation extends AbstractPersistable {
 
     @ValueRangeProvider(id = "delayRange")
     public CountableValueRange<Integer> getDelayRange() {
-        return ValueRangeFactory.createIntValueRange(0, 360, 10);
+        return ValueRangeFactory.createIntValueRange(0, 360, 1);
     }
 
 }

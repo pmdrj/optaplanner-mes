@@ -52,6 +52,17 @@ end
 // Soft constraints
 // ############################################################################
 
+//suma końców
+rule "sumEnd"
+    when
+         $sumEnd : Number() from accumulate(
+            Allocation(jobType == JobType.STANDARD, $endDate : endDate),
+            sum($endDate)
+        )
+    then
+        scoreHolder.addSoftConstraintMatch(kcontext, 0, -$sumEnd.intValue());
+end
+
 //czas trwania projektu
 rule "totalMakespan"
     when
@@ -60,27 +71,27 @@ rule "totalMakespan"
             max($endDate)
         )
     then
-        scoreHolder.addSoftConstraintMatch(kcontext, 0, -$maxProjectEndDate.intValue());        
+        scoreHolder.addSoftConstraintMatch(kcontext, 1, -$maxProjectEndDate.intValue());        
 end
 
 //suma czasów trwania operacji
-rule "sumDuration"
-    when
-         $sumDuration : Number() from accumulate(
-            Allocation(jobType == JobType.STANDARD, $endDate : endDate, $startDate : startDate),
-            sum($endDate - $startDate)
-        )
-    then
-        scoreHolder.addSoftConstraintMatch(kcontext, 1, -$sumDuration.intValue());        
-end
+//rule "sumDuration"
+//    when
+//         $sumDuration : Number() from accumulate(
+//            Allocation(jobType == JobType.STANDARD, $endDate : endDate, $startDate : startDate),
+//            sum($endDate - $startDate)
+//        )
+//    then
+//        scoreHolder.addSoftConstraintMatch(kcontext, 1, -$sumDuration.intValue());        
+//end
 
 //suma opóźnień
-rule "sumDelay"
-    when
-         $sumDelay : Number() from accumulate(
-            Allocation(jobType == JobType.STANDARD && delay != null, $delay : delay),
-            sum($delay)
-        )
-    then
-        scoreHolder.addSoftConstraintMatch(kcontext, 2, -$sumDelay.intValue());
-end
+//rule "sumDelay"
+//    when
+//         $sumDelay : Number() from accumulate(
+//            Allocation(jobType == JobType.STANDARD && delay != null, $delay : delay),
+//            sum($delay)
+//        )
+//    then
+//        scoreHolder.addSoftConstraintMatch(kcontext, 2, -$sumDelay.intValue());
+//end
