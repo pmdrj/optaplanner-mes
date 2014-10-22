@@ -3,12 +3,15 @@
 	<!--<environmentMode>FAST_ASSERT</environmentMode> -->
 	<solutionClass>org.optaplanner.mes.projectjobscheduling.domain.Schedule</solutionClass>
 	<entityClass>org.optaplanner.mes.projectjobscheduling.domain.Allocation</entityClass>
+	<randomType>MERSENNE_TWISTER</randomType>
+	<randomSeed>10</randomSeed>
 
 	<scoreDirectorFactory>
 		<scoreDefinitionType>BENDABLE</scoreDefinitionType>
 		<bendableHardLevelsSize>1</bendableHardLevelsSize>
-		<bendableSoftLevelsSize>2</bendableSoftLevelsSize>		
-		<scoreDrl>org/optaplanner/mes/projectjobscheduling/solver/projectJobSchedulingScoreRules.drl</scoreDrl>
+		<bendableSoftLevelsSize>2</bendableSoftLevelsSize>
+		<incrementalScoreCalculatorClass>org.optaplanner.mes.projectjobscheduling.solver.score.ProjectJobSchedulingIncrementalScoreCalculator</incrementalScoreCalculatorClass>
+		<!-- <scoreDrl>org/optaplanner/mes/projectjobscheduling/solver/projectJobSchedulingScoreRules.drl</scoreDrl> -->
 	</scoreDirectorFactory>
 	<termination>
 		<secondsSpentLimit>290000</secondsSpentLimit>
@@ -18,8 +21,16 @@
 		<constructionHeuristicType>FIRST_FIT</constructionHeuristicType>
 	</constructionHeuristic>
 	<localSearch>
+
+		<termination>
+			<stepCountLimit>3</stepCountLimit>
+		</termination>
+
 		<unionMoveSelector>
+			<!-- <selectedCountLimit>4</selectedCountLimit> -->
+			 <selectionOrder>RANDOM</selectionOrder>
 			<changeMoveSelector>
+
 				<valueSelector>
 					<variableName>executionMode</variableName>
 				</valueSelector>
@@ -31,8 +42,11 @@
 			</changeMoveSelector>
 		</unionMoveSelector>
 		<acceptor>
-			<entityTabuRatio>0.2</entityTabuRatio>
-			<lateAcceptanceSize>500</lateAcceptanceSize>
+			<acceptorType>HILL_CLIMBING</acceptorType>
+			<stepCountingHillClimbingSize>1</stepCountingHillClimbingSize>
+			<!-- <simulatedAnnealingStartingTemperature>2/100</simulatedAnnealingStartingTemperature> -->
+			<!-- <entityTabuRatio>0.2</entityTabuRatio> -->
+			<!-- <lateAcceptanceSize>500</lateAcceptanceSize> -->
 		</acceptor>
 		<forager>
 			<acceptedCountLimit>4</acceptedCountLimit>

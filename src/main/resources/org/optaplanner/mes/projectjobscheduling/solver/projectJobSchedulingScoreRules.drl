@@ -33,7 +33,7 @@ rule "renewableResourceUsedDay"
             insertLogical(new RenewableResourceUsedDay($resource, i));
         }
 end
-
+/*
 rule "renewableResourceCapacity"
     when
         RenewableResourceUsedDay($resource : resource, $capacity : resourceCapacity, $usedDay : usedDay)
@@ -47,12 +47,13 @@ rule "renewableResourceCapacity"
     then
         scoreHolder.addHardConstraintMatch(kcontext, 0, $capacity - $used.intValue());        
 end
-
+*/
 // ############################################################################
 // Soft constraints
 // ############################################################################
 
 //suma końców
+/*
 rule "sumEnd"
     when
          $sumEnd : Number() from accumulate(
@@ -62,8 +63,18 @@ rule "sumEnd"
     then
         scoreHolder.addSoftConstraintMatch(kcontext, 0, -$sumEnd.intValue());
 end
-
+*/
+/*
+rule "totalProjectDelay"
+    when
+        Allocation(jobType == JobType.SINK, endDate != null, $endDate : endDate,
+               $criticalPathEndDate : projectCriticalPathEndDate)
+    then
+        scoreHolder.addSoftConstraintMatch(kcontext, 0,  $criticalPathEndDate - $endDate);
+end        
+*/
 //czas trwania projektu
+/*
 rule "totalMakespan"
     when
          $maxProjectEndDate : Number() from accumulate(
@@ -73,6 +84,7 @@ rule "totalMakespan"
     then
         scoreHolder.addSoftConstraintMatch(kcontext, 1, -$maxProjectEndDate.intValue());        
 end
+*/
 
 //suma czasów trwania operacji
 //rule "sumDuration"

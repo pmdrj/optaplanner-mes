@@ -28,7 +28,7 @@ REQUESTS/DURATIONS:
 jobnr. mode duration       R 1   R 2   R 3   R 4   R 5   R 6   R 7   R 8   R 9   R 10   R 11   R 12   R 13   R 14   R 15   R 16   R 17   R 18   R 19   R 20   R 21   R 22   R 23   R 24   R 25   R 26
 ------------------------------------------------------------------------
     1     1        0         0     0     0     0     0     0     0     0     0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0
-    2     1       24         1     0     0     0     0     0     0     0     0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0
+    2     1       44         1     0     0     0     0     0     0     0     0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0
           2       24         0     1     0     0     0     0     0     0     0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0
     3     1       13         0     0     1     0     0     0     0     0     0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0
     4     1       75         0     0     0     1     0     0     0     0     0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0
@@ -61,7 +61,7 @@ remove or spoil any allocation in JOBALLOCATIONS section (some content between -
 JOBALLOCATIONS:
 jobNumber    executionModeNumber    predecessorsDoneDate           delay
 ------------------------------------------------------------------------
-        1                      1                       0               0
+-        1                      1                       0               0
         2                      2                       0               0
         3                      1                      24               0
         4                     10                      37               0

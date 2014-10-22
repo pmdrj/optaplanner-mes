@@ -123,8 +123,16 @@ public class Allocation extends AbstractPersistable {
     }
     
     @Override
-    public String toString() {    	
-        return "" + job.getMesOperationNr() + "";
+    public String toString() {    	 
+    	String atMesMachineNr = "";
+    	String atDelay = "";
+    	if (this.executionMode != null) {
+    		atMesMachineNr =  ", " + this.executionMode.getResourceRequirementList().get(0).getResource().getMesMachineNr();
+    	}
+    	if (this.delay != null) {
+    		atDelay = ", " + this.delay.toString();
+    	}
+        return "[" + job.getMesOperationNr() + atMesMachineNr + atDelay + "]";
     }
 
     // ************************************************************************
@@ -173,7 +181,7 @@ public class Allocation extends AbstractPersistable {
 
     @ValueRangeProvider(id = "delayRange")
     public CountableValueRange<Integer> getDelayRange() {
-        return ValueRangeFactory.createIntValueRange(0, 360, 1);
+        return ValueRangeFactory.createIntValueRange(0, 10, 1);
     }
 
 }

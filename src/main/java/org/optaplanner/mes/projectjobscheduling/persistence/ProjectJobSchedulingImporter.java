@@ -436,7 +436,7 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens) + ") index 3 should be positive integer.");
 					}
 
-					logger.debug("jobNumber {} has executionModeNumber {} and starts at {} with delay {}.", jobNumber, executionModeNumber,
+					logger.trace("jobNumber {} has executionModeNumber {} and starts at {} with delay {}.", jobNumber, executionModeNumber,
 							predecessorsDoneDate, delay);
 
 					Job job;
@@ -482,7 +482,7 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 				}
 				schedule.setMesSchedulingId(schedulingId);
 				schedule.setMesTimeScale(timeScale);
-				logger.debug("schedulingId {} uses timeScale {}.", schedulingId, timeScale);
+				logger.trace("schedulingId {} uses timeScale {}.", schedulingId, timeScale);
 
 				readRegexConstantLine("\\*+");
 			}
@@ -510,7 +510,7 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 					}
 					
 					String operationNr = tokens[2];
-					logger.debug("jobNumber {} maps operationId {} (operationNr {}).", jobNumber, operationId, operationNr);
+					logger.trace("jobNumber {} maps operationId {} (operationNr {}).", jobNumber, operationId, operationNr);
 
 					Job job;
 					try {
@@ -550,7 +550,7 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 					String machineNr = tokens[2];
 					schedule.getResourceList().get(i).setMesMachineId(machineId);
 					schedule.getResourceList().get(i).setMesMachineNr(machineNr);
-					logger.debug("resNumber {} maps machineId {} (machineNr {}).", resNumber, machineId, machineNr);
+					logger.trace("resNumber {} maps machineId {} (machineNr {}).", resNumber, machineId, machineNr);
 				}
 				readRegexConstantLine("\\*+");
 			}
