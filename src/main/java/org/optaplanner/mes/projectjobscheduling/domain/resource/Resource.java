@@ -16,24 +16,26 @@
 
 package org.optaplanner.mes.projectjobscheduling.domain.resource;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.optaplanner.mes.common.domain.AbstractPersistable;
+import org.optaplanner.mes.projectjobscheduling.domain.Allocation;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamInclude;
 
 @SuppressWarnings("serial")
 @XStreamAlias("PjsResource")
-@XStreamInclude({
-        GlobalResource.class,
-        LocalResource.class
-})
+@XStreamInclude({ GlobalResource.class, LocalResource.class })
 public abstract class Resource extends AbstractPersistable {
 
-    private int capacity;
-    private int mesMachineId;
-    private String mesMachineNr;
+	private int capacity;
+	private int mesMachineId;
+	private String mesMachineNr;
+	private List<Allocation> allocationList;
 
-    public String getMesMachineNr() {
+	public String getMesMachineNr() {
 		return mesMachineNr;
 	}
 
@@ -50,17 +52,30 @@ public abstract class Resource extends AbstractPersistable {
 	}
 
 	public int getCapacity() {
-        return capacity;
-    }
+		return capacity;
+	}
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
 
-    // ************************************************************************
-    // Complex methods
-    // ************************************************************************
+	public List<Allocation> getAllocationList() {
+		return allocationList;
+	}
 
-    public abstract boolean isRenewable();
+	public void setAllocationList(List<Allocation> allocationList) {
+		this.allocationList = new ArrayList<Allocation>();
+	}
+
+	// ************************************************************************
+	// Complex methods
+	// ************************************************************************
+
+	public abstract boolean isRenewable();
+
+	@Override
+	public String toString() {
+		return "[" + mesMachineNr + "]";
+	}
 
 }

@@ -126,7 +126,7 @@ public class SolutionBusiness {
         return importer.acceptInputFile(file);
     }
 
-    public String getImportFileSuffix() {
+    public String getImportFileSuffix() {    	
         return importer.getInputFileSuffix();
     }
 
@@ -146,7 +146,7 @@ public class SolutionBusiness {
         return exporter.getOutputFileSuffix();
     }
 
-    public void setSolver(Solver solver) {
+    public void setSolver(Solver solver) {    	
         this.solver = solver;
         ScoreDirectorFactory scoreDirectorFactory = solver.getScoreDirectorFactory();
         guiScoreDirector = scoreDirectorFactory.buildScoreDirector();

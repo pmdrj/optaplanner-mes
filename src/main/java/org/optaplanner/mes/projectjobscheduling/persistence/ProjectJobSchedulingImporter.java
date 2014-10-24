@@ -80,7 +80,7 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 
 		public Solution<?> readSolution() throws IOException {
 			schedule = new Schedule();
-			schedule.setId(0L);
+			schedule.setId(0L);			
 			readProjectList();
 			readResourceList();
 			for (Map.Entry<Project, File> entry : projectFileMap.entrySet()) {
@@ -131,6 +131,7 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 					GlobalResource resource = new GlobalResource();
 					resource.setId(resourceId);
 					resource.setCapacity(capacity);
+					resource.setAllocationList(new ArrayList<Allocation>());
 					resourceList.add(resource);
 					resourceId++;
 				}

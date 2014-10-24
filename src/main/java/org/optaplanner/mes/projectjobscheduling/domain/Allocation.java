@@ -17,6 +17,7 @@
 package org.optaplanner.mes.projectjobscheduling.domain;
 
 import java.util.List;
+import java.util.Random;
 
 import org.optaplanner.core.api.domain.entity.PlanningEntity;
 import org.optaplanner.core.api.domain.valuerange.CountableValueRange;
@@ -29,6 +30,8 @@ import org.optaplanner.mes.projectjobscheduling.domain.solver.DelayStrengthCompa
 import org.optaplanner.mes.projectjobscheduling.domain.solver.ExecutionModeStrengthWeightFactory;
 import org.optaplanner.mes.projectjobscheduling.domain.solver.NotSourceOrSinkAllocationFilter;
 import org.optaplanner.mes.projectjobscheduling.domain.solver.PredecessorsDoneDateUpdatingVariableListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
@@ -37,151 +40,208 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 @XStreamAlias("PjsAllocation")
 public class Allocation extends AbstractPersistable {
 
-    private Job job;
+	protected final transient Logger logger = LoggerFactory.getLogger(getClass());
 
-    private Allocation sourceAllocation;
-    private Allocation sinkAllocation;
-    private List<Allocation> predecessorAllocationList;
-    private List<Allocation> successorAllocationList;
+	private Job job;
 
-    // Planning variables: changes during planning, between score calculations.
-    private ExecutionMode executionMode;
-    private Integer delay; // In days
+	private Allocation sourceAllocation;
+	private Allocation sinkAllocation;
+	private List<Allocation> predecessorAllocationList;
+	private List<Allocation> successorAllocationList;
 
-    // Shadow variables
-    private Integer predecessorsDoneDate;
+	// Planning variables: changes during planning, between score calculations.
+	private ExecutionMode executionMode;
+	private Integer delay; // In days
 
-    public Job getJob() {
-        return job;
-    }
+	// Shadow variables
+	private Integer predecessorsDoneDate;
 
-    public void setJob(Job job) {
-        this.job = job;
-    }
+	private Long delayDecisionNr = 0L;
 
-    public Allocation getSourceAllocation() {
-        return sourceAllocation;
-    }
+	public Job getJob() {
+		return job;
+	}
 
-    public void setSourceAllocation(Allocation sourceAllocation) {
-        this.sourceAllocation = sourceAllocation;
-    }
+	public void setJob(Job job) {
+		this.job = job;
+	}
 
-    public Allocation getSinkAllocation() {
-        return sinkAllocation;
-    }
+	public Allocation getSourceAllocation() {
+		return sourceAllocation;
+	}
 
-    public void setSinkAllocation(Allocation sinkAllocation) {
-        this.sinkAllocation = sinkAllocation;
-    }
+	public void setSourceAllocation(Allocation sourceAllocation) {
+		this.sourceAllocation = sourceAllocation;
+	}
 
-    public List<Allocation> getPredecessorAllocationList() {
-        return predecessorAllocationList;
-    }
+	public Allocation getSinkAllocation() {
+		return sinkAllocation;
+	}
 
-    public void setPredecessorAllocationList(List<Allocation> predecessorAllocationList) {
-        this.predecessorAllocationList = predecessorAllocationList;
-    }
+	public void setSinkAllocation(Allocation sinkAllocation) {
+		this.sinkAllocation = sinkAllocation;
+	}
 
-    public List<Allocation> getSuccessorAllocationList() {
-        return successorAllocationList;
-    }
+	public List<Allocation> getPredecessorAllocationList() {
+		return predecessorAllocationList;
+	}
 
-    public void setSuccessorAllocationList(List<Allocation> successorAllocationList) {
-        this.successorAllocationList = successorAllocationList;
-    }
+	public void setPredecessorAllocationList(List<Allocation> predecessorAllocationList) {
+		this.predecessorAllocationList = predecessorAllocationList;
+	}
 
-    @PlanningVariable(valueRangeProviderRefs = {"executionModeRange"},
-            strengthWeightFactoryClass = ExecutionModeStrengthWeightFactory.class)
-    public ExecutionMode getExecutionMode() {
-        return executionMode;
-    }
+	public List<Allocation> getSuccessorAllocationList() {
+		return successorAllocationList;
+	}
 
-    public void setExecutionMode(ExecutionMode executionMode) {
-        this.executionMode = executionMode;
-    }
+	public void setSuccessorAllocationList(List<Allocation> successorAllocationList) {
+		this.successorAllocationList = successorAllocationList;
+	}
 
-    @PlanningVariable(valueRangeProviderRefs = {"delayRange"},
-            strengthComparatorClass = DelayStrengthComparator.class)
-    public Integer getDelay() {
-        return delay;
-    }
+	@PlanningVariable(valueRangeProviderRefs = { "executionModeRange" }, strengthWeightFactoryClass = ExecutionModeStrengthWeightFactory.class)
+	public ExecutionMode getExecutionMode() {
+		return executionMode;
+	}
 
-    public void setDelay(Integer delay) {
-        this.delay = delay;
-    }
+	public void setExecutionMode(ExecutionMode executionMode) {
+		this.executionMode = executionMode;
+	}
 
-    @CustomShadowVariable(variableListenerClass = PredecessorsDoneDateUpdatingVariableListener.class,
-            sources = {@CustomShadowVariable.Source(variableName = "executionMode"),
-                    @CustomShadowVariable.Source(variableName = "delay")})
-    public Integer getPredecessorsDoneDate() {
-        return predecessorsDoneDate;
-    }
+	@PlanningVariable(valueRangeProviderRefs = { "delayRange" }, strengthComparatorClass = DelayStrengthComparator.class)
+	public Integer getDelay() {
+		return delay;
+	}
 
-    public void setPredecessorsDoneDate(Integer predecessorsDoneDate) {
-        this.predecessorsDoneDate = predecessorsDoneDate;
-    }
-    
-    @Override
-    public String toString() {    	 
-    	String atMesMachineNr = "";
-    	String atDelay = "";
-    	if (this.executionMode != null) {
-    		atMesMachineNr =  ", " + this.executionMode.getResourceRequirementList().get(0).getResource().getMesMachineNr();
-    	}
-    	if (this.delay != null) {
-    		atDelay = ", " + this.delay.toString();
-    	}
-        return "[" + job.getMesOperationNr() + atMesMachineNr + atDelay + "]";
-    }
+	public void setDelay(Integer delay) {
+		this.delay = delay;
+	}
 
-    // ************************************************************************
-    // Complex methods
-    // ************************************************************************
+	@CustomShadowVariable(variableListenerClass = PredecessorsDoneDateUpdatingVariableListener.class, sources = {
+			@CustomShadowVariable.Source(variableName = "executionMode"), @CustomShadowVariable.Source(variableName = "delay") })
+	public Integer getPredecessorsDoneDate() {
+		return predecessorsDoneDate;
+	}
 
-    public Integer getStartDate() {
-        if (predecessorsDoneDate == null) {
-            return null;
-        }
-        return predecessorsDoneDate + (delay == null ? 0 : delay);
-    }
+	public void setPredecessorsDoneDate(Integer predecessorsDoneDate) {
+		this.predecessorsDoneDate = predecessorsDoneDate;
+	}
 
-    public Integer getEndDate() {
-        if (predecessorsDoneDate == null) {
-            return null;
-        }
-        return predecessorsDoneDate + (delay == null ? 0 : delay)
-                + (executionMode == null ? 0 : executionMode.getDuration());
-    }
+	@Override
+	public String toString() {
+		String atMesMachineNr = "";
+		String atDelay = "";
+		if (this.executionMode != null) {
+			atMesMachineNr = ", " + this.executionMode.getResourceRequirementList().get(0).getResource().getMesMachineNr();
+		}
+		if (this.delay != null) {
+			atDelay = ", " + this.delay.toString();
+		}
+		return "[" + job.getMesOperationNr() + atMesMachineNr + atDelay + "]";
+	}
 
-    public Project getProject() {
-        return job.getProject();
-    }
+	// ************************************************************************
+	// Complex methods
+	// ************************************************************************
 
-    public int getProjectCriticalPathEndDate() {
-        return job.getProject().getCriticalPathEndDate();
-    }
+	public Integer getStartDate() {
+		if (predecessorsDoneDate == null) {
+			return null;
+		}
+		return predecessorsDoneDate + (delay == null ? 0 : delay);
+	}
 
-    public JobType getJobType() {
-        return job.getJobType();
-    }
+	public Integer getEndDate() {
+		if (predecessorsDoneDate == null) {
+			return null;
+		}
+		return predecessorsDoneDate + (delay == null ? 0 : delay) + (executionMode == null ? 0 : executionMode.getDuration());
+	}
 
-    public String getLabel() {
-        return "Job " + job.getId();
-    }
+	public Project getProject() {
+		return job.getProject();
+	}
 
-    // ************************************************************************
-    // Ranges
-    // ************************************************************************
+	public int getProjectCriticalPathEndDate() {
+		return job.getProject().getCriticalPathEndDate();
+	}
 
-    @ValueRangeProvider(id = "executionModeRange")
-    public List<ExecutionMode> getExecutionModeRange() {
-        return job.getExecutionModeList();
-    }
+	public JobType getJobType() {
+		return job.getJobType();
+	}
 
-    @ValueRangeProvider(id = "delayRange")
-    public CountableValueRange<Integer> getDelayRange() {
-        return ValueRangeFactory.createIntValueRange(0, 10, 1);
-    }
+	public String getLabel() {
+		return "Job " + job.getId();
+	}
+
+	// ************************************************************************
+	// Ranges
+	// ************************************************************************
+
+	@ValueRangeProvider(id = "executionModeRange")
+	public List<ExecutionMode> getExecutionModeRange() {		
+		return job.getExecutionModeList();
+	}
+
+	@ValueRangeProvider(id = "delayRange")
+	public CountableValueRange<Integer> getDelayRange() {
+		return ValueRangeFactory.createIntValueRange(0, 1000);
+	}
+
+	private CountableValueRange<Integer> getDecreasingDelayRange() {
+		delayDecisionNr += 1;
+		if (logger != null)
+			logger.trace("Delay decision nr: {}", delayDecisionNr);
+		int from;
+		int to;
+		int step;
+		if (delayDecisionNr < 100) {
+			from = 1000;
+			to = 10000;
+			step = 1000;
+		} else if (delayDecisionNr < 200) {
+			from = 100;
+			to = 10000;
+			step = 100;
+		} else if (delayDecisionNr < 300) {
+			from = 10;
+			to = 1000;
+			step = 10;
+		} else {
+			from = 0;
+			to = 100;
+			step = 1;
+		}
+		CountableValueRange<Integer> range = ValueRangeFactory.createIntValueRange(from, to, step);
+
+		if (logger != null)
+			logger.trace("Getting delayRange from {} to {} with step {}.", from, (to - step), step);
+		return range;
+	}
+
+	private CountableValueRange<Integer> getRandomDelayRange() {
+		Random ran = new Random();
+		int x = ran.nextInt(4);
+		if (logger != null)
+			logger.trace("Random: {}", x);
+		int from;
+		int to;
+		int step;
+		CountableValueRange<Integer> range = null;
+		if (x == 0) {
+			from = 0;
+			to = 10;
+			step = 1;
+			range = ValueRangeFactory.createIntValueRange(0, 10);
+		} else {
+			from = (int) Math.pow(10, x);
+			to = (int) Math.pow(10, x + 1);
+			step = (int) Math.pow(10, x);
+			range = ValueRangeFactory.createIntValueRange(from, to, step);
+		}
+
+		if (logger != null)
+			logger.trace("Getting delayRange from {} to {} with step {}.", from, (to - step), step);
+		return range;
+	}
 
 }
