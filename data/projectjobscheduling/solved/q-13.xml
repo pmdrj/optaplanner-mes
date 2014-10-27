@@ -1,0 +1,838 @@
+<PjsSchedule id="1">
+  <id>0</id>
+  <projectList id="2">
+    <PjsProject id="3">
+      <id>0</id>
+      <releaseDate>0</releaseDate>
+      <criticalPathDuration>480</criticalPathDuration>
+      <localResourceList id="4"/>
+      <jobList id="5">
+        <PjsJob id="6">
+          <id>0</id>
+          <project reference="3"/>
+          <jobType>SOURCE</jobType>
+          <executionModeList id="7">
+            <PjsExecutionMode id="8">
+              <id>0</id>
+              <job reference="6"/>
+              <duration>0</duration>
+              <resourceRequirementList id="9"/>
+            </PjsExecutionMode>
+          </executionModeList>
+          <successorJobList id="10">
+            <PjsJob id="11">
+              <id>1</id>
+              <project reference="3"/>
+              <jobType>STANDARD</jobType>
+              <executionModeList id="12">
+                <PjsExecutionMode id="13">
+                  <id>1</id>
+                  <job reference="11"/>
+                  <duration>24</duration>
+                  <resourceRequirementList id="14">
+                    <PjsResourceRequirement id="15">
+                      <id>0</id>
+                      <executionMode reference="13"/>
+                      <resource class="PjsGlobalResource" id="16">
+                        <id>0</id>
+                        <capacity>1</capacity>
+                        <mesMachineId>101</mesMachineId>
+                        <mesMachineNr>PIEC_01</mesMachineNr>
+                        <allocationList id="17">
+                          <PjsAllocation id="18">
+                            <id>1</id>
+                            <job reference="11"/>
+                            <sourceAllocation id="19">
+                              <id>0</id>
+                              <job reference="6"/>
+                              <sourceAllocation reference="19"/>
+                              <sinkAllocation id="20">
+                                <id>6</id>
+                                <job id="21">
+                                  <id>6</id>
+                                  <project reference="3"/>
+                                  <jobType>SINK</jobType>
+                                  <executionModeList id="22">
+                                    <PjsExecutionMode id="23">
+                                      <id>16</id>
+                                      <job reference="21"/>
+                                      <duration>0</duration>
+                                      <resourceRequirementList id="24"/>
+                                    </PjsExecutionMode>
+                                  </executionModeList>
+                                  <successorJobList id="25"/>
+                                  <initialPredecessorsDoneDate>0</initialPredecessorsDoneDate>
+                                  <initialDelay>0</initialDelay>
+                                  <mesOperationId>0</mesOperationId>
+                                </job>
+                                <sourceAllocation reference="19"/>
+                                <sinkAllocation reference="20"/>
+                                <predecessorAllocationList id="26">
+                                  <PjsAllocation id="27">
+                                    <id>5</id>
+                                    <job id="28">
+                                      <id>5</id>
+                                      <project reference="3"/>
+                                      <jobType>STANDARD</jobType>
+                                      <executionModeList id="29">
+                                        <PjsExecutionMode id="30">
+                                          <id>15</id>
+                                          <job reference="28"/>
+                                          <duration>66</duration>
+                                          <resourceRequirementList id="31">
+                                            <PjsResourceRequirement id="32">
+                                              <id>14</id>
+                                              <executionMode reference="30"/>
+                                              <resource class="PjsGlobalResource" id="33">
+                                                <id>23</id>
+                                                <capacity>1</capacity>
+                                                <mesMachineId>14</mesMachineId>
+                                                <mesMachineNr>Linia_10</mesMachineNr>
+                                                <allocationList id="34">
+                                                  <PjsAllocation reference="27"/>
+                                                </allocationList>
+                                              </resource>
+                                              <requirement>1</requirement>
+                                            </PjsResourceRequirement>
+                                          </resourceRequirementList>
+                                        </PjsExecutionMode>
+                                      </executionModeList>
+                                      <successorJobList id="35">
+                                        <PjsJob reference="21"/>
+                                      </successorJobList>
+                                      <initialPredecessorsDoneDate>0</initialPredecessorsDoneDate>
+                                      <initialDelay>0</initialDelay>
+                                      <mesOperationId>26881</mesOperationId>
+                                      <mesOperationNr>PAK/2014/09/004951</mesOperationNr>
+                                    </job>
+                                    <sourceAllocation reference="19"/>
+                                    <sinkAllocation reference="20"/>
+                                    <predecessorAllocationList id="36">
+                                      <PjsAllocation id="37">
+                                        <id>4</id>
+                                        <job id="38">
+                                          <id>4</id>
+                                          <project reference="3"/>
+                                          <jobType>STANDARD</jobType>
+                                          <executionModeList id="39">
+                                            <PjsExecutionMode id="40">
+                                              <id>14</id>
+                                              <job reference="38"/>
+                                              <duration>13</duration>
+                                              <resourceRequirementList id="41">
+                                                <PjsResourceRequirement id="42">
+                                                  <id>13</id>
+                                                  <executionMode reference="40"/>
+                                                  <resource class="PjsGlobalResource" id="43">
+                                                    <id>13</id>
+                                                    <capacity>1</capacity>
+                                                    <mesMachineId>114</mesMachineId>
+                                                    <mesMachineNr>VT_WOZEK</mesMachineNr>
+                                                    <allocationList id="44">
+                                                      <PjsAllocation reference="37"/>
+                                                    </allocationList>
+                                                  </resource>
+                                                  <requirement>1</requirement>
+                                                </PjsResourceRequirement>
+                                              </resourceRequirementList>
+                                            </PjsExecutionMode>
+                                          </executionModeList>
+                                          <successorJobList id="45">
+                                            <PjsJob reference="28"/>
+                                          </successorJobList>
+                                          <initialPredecessorsDoneDate>0</initialPredecessorsDoneDate>
+                                          <initialDelay>0</initialDelay>
+                                          <mesOperationId>27612</mesOperationId>
+                                          <mesOperationNr>ODG/MIE/2014/09/033457</mesOperationNr>
+                                        </job>
+                                        <sourceAllocation reference="19"/>
+                                        <sinkAllocation reference="20"/>
+                                        <predecessorAllocationList id="46">
+                                          <PjsAllocation id="47">
+                                            <id>3</id>
+                                            <job id="48">
+                                              <id>3</id>
+                                              <project reference="3"/>
+                                              <jobType>STANDARD</jobType>
+                                              <executionModeList id="49">
+                                                <PjsExecutionMode id="50">
+                                                  <id>4</id>
+                                                  <job reference="48"/>
+                                                  <duration>75</duration>
+                                                  <resourceRequirementList id="51">
+                                                    <PjsResourceRequirement id="52">
+                                                      <id>3</id>
+                                                      <executionMode reference="50"/>
+                                                      <resource class="PjsGlobalResource" id="53">
+                                                        <id>3</id>
+                                                        <capacity>1</capacity>
+                                                        <mesMachineId>103</mesMachineId>
+                                                        <mesMachineNr>MLYN_01</mesMachineNr>
+                                                        <allocationList id="54"/>
+                                                      </resource>
+                                                      <requirement>1</requirement>
+                                                    </PjsResourceRequirement>
+                                                  </resourceRequirementList>
+                                                </PjsExecutionMode>
+                                                <PjsExecutionMode id="55">
+                                                  <id>5</id>
+                                                  <job reference="48"/>
+                                                  <duration>75</duration>
+                                                  <resourceRequirementList id="56">
+                                                    <PjsResourceRequirement id="57">
+                                                      <id>4</id>
+                                                      <executionMode reference="55"/>
+                                                      <resource class="PjsGlobalResource" id="58">
+                                                        <id>4</id>
+                                                        <capacity>1</capacity>
+                                                        <mesMachineId>104</mesMachineId>
+                                                        <mesMachineNr>MLYN_02</mesMachineNr>
+                                                        <allocationList id="59"/>
+                                                      </resource>
+                                                      <requirement>1</requirement>
+                                                    </PjsResourceRequirement>
+                                                  </resourceRequirementList>
+                                                </PjsExecutionMode>
+                                                <PjsExecutionMode id="60">
+                                                  <id>6</id>
+                                                  <job reference="48"/>
+                                                  <duration>75</duration>
+                                                  <resourceRequirementList id="61">
+                                                    <PjsResourceRequirement id="62">
+                                                      <id>5</id>
+                                                      <executionMode reference="60"/>
+                                                      <resource class="PjsGlobalResource" id="63">
+                                                        <id>5</id>
+                                                        <capacity>1</capacity>
+                                                        <mesMachineId>105</mesMachineId>
+                                                        <mesMachineNr>MLYN_03</mesMachineNr>
+                                                        <allocationList id="64"/>
+                                                      </resource>
+                                                      <requirement>1</requirement>
+                                                    </PjsResourceRequirement>
+                                                  </resourceRequirementList>
+                                                </PjsExecutionMode>
+                                                <PjsExecutionMode id="65">
+                                                  <id>7</id>
+                                                  <job reference="48"/>
+                                                  <duration>75</duration>
+                                                  <resourceRequirementList id="66">
+                                                    <PjsResourceRequirement id="67">
+                                                      <id>6</id>
+                                                      <executionMode reference="65"/>
+                                                      <resource class="PjsGlobalResource" id="68">
+                                                        <id>6</id>
+                                                        <capacity>1</capacity>
+                                                        <mesMachineId>106</mesMachineId>
+                                                        <mesMachineNr>MLYN_04</mesMachineNr>
+                                                        <allocationList id="69"/>
+                                                      </resource>
+                                                      <requirement>1</requirement>
+                                                    </PjsResourceRequirement>
+                                                  </resourceRequirementList>
+                                                </PjsExecutionMode>
+                                                <PjsExecutionMode id="70">
+                                                  <id>8</id>
+                                                  <job reference="48"/>
+                                                  <duration>75</duration>
+                                                  <resourceRequirementList id="71">
+                                                    <PjsResourceRequirement id="72">
+                                                      <id>7</id>
+                                                      <executionMode reference="70"/>
+                                                      <resource class="PjsGlobalResource" id="73">
+                                                        <id>7</id>
+                                                        <capacity>1</capacity>
+                                                        <mesMachineId>107</mesMachineId>
+                                                        <mesMachineNr>MLYN_05</mesMachineNr>
+                                                        <allocationList id="74"/>
+                                                      </resource>
+                                                      <requirement>1</requirement>
+                                                    </PjsResourceRequirement>
+                                                  </resourceRequirementList>
+                                                </PjsExecutionMode>
+                                                <PjsExecutionMode id="75">
+                                                  <id>9</id>
+                                                  <job reference="48"/>
+                                                  <duration>75</duration>
+                                                  <resourceRequirementList id="76">
+                                                    <PjsResourceRequirement id="77">
+                                                      <id>8</id>
+                                                      <executionMode reference="75"/>
+                                                      <resource class="PjsGlobalResource" id="78">
+                                                        <id>8</id>
+                                                        <capacity>1</capacity>
+                                                        <mesMachineId>108</mesMachineId>
+                                                        <mesMachineNr>MLYN_06</mesMachineNr>
+                                                        <allocationList id="79"/>
+                                                      </resource>
+                                                      <requirement>1</requirement>
+                                                    </PjsResourceRequirement>
+                                                  </resourceRequirementList>
+                                                </PjsExecutionMode>
+                                                <PjsExecutionMode id="80">
+                                                  <id>10</id>
+                                                  <job reference="48"/>
+                                                  <duration>58</duration>
+                                                  <resourceRequirementList id="81">
+                                                    <PjsResourceRequirement id="82">
+                                                      <id>9</id>
+                                                      <executionMode reference="80"/>
+                                                      <resource class="PjsGlobalResource" id="83">
+                                                        <id>9</id>
+                                                        <capacity>1</capacity>
+                                                        <mesMachineId>109</mesMachineId>
+                                                        <mesMachineNr>MLYN_07</mesMachineNr>
+                                                        <allocationList id="84"/>
+                                                      </resource>
+                                                      <requirement>1</requirement>
+                                                    </PjsResourceRequirement>
+                                                  </resourceRequirementList>
+                                                </PjsExecutionMode>
+                                                <PjsExecutionMode id="85">
+                                                  <id>11</id>
+                                                  <job reference="48"/>
+                                                  <duration>58</duration>
+                                                  <resourceRequirementList id="86">
+                                                    <PjsResourceRequirement id="87">
+                                                      <id>10</id>
+                                                      <executionMode reference="85"/>
+                                                      <resource class="PjsGlobalResource" id="88">
+                                                        <id>10</id>
+                                                        <capacity>1</capacity>
+                                                        <mesMachineId>110</mesMachineId>
+                                                        <mesMachineNr>MLYN_08</mesMachineNr>
+                                                        <allocationList id="89"/>
+                                                      </resource>
+                                                      <requirement>1</requirement>
+                                                    </PjsResourceRequirement>
+                                                  </resourceRequirementList>
+                                                </PjsExecutionMode>
+                                                <PjsExecutionMode id="90">
+                                                  <id>12</id>
+                                                  <job reference="48"/>
+                                                  <duration>75</duration>
+                                                  <resourceRequirementList id="91">
+                                                    <PjsResourceRequirement id="92">
+                                                      <id>11</id>
+                                                      <executionMode reference="90"/>
+                                                      <resource class="PjsGlobalResource" id="93">
+                                                        <id>11</id>
+                                                        <capacity>1</capacity>
+                                                        <mesMachineId>111</mesMachineId>
+                                                        <mesMachineNr>MLYN_09</mesMachineNr>
+                                                        <allocationList id="94"/>
+                                                      </resource>
+                                                      <requirement>1</requirement>
+                                                    </PjsResourceRequirement>
+                                                  </resourceRequirementList>
+                                                </PjsExecutionMode>
+                                                <PjsExecutionMode id="95">
+                                                  <id>13</id>
+                                                  <job reference="48"/>
+                                                  <duration>44</duration>
+                                                  <resourceRequirementList id="96">
+                                                    <PjsResourceRequirement id="97">
+                                                      <id>12</id>
+                                                      <executionMode reference="95"/>
+                                                      <resource class="PjsGlobalResource" id="98">
+                                                        <id>12</id>
+                                                        <capacity>1</capacity>
+                                                        <mesMachineId>112</mesMachineId>
+                                                        <mesMachineNr>MLYN_10</mesMachineNr>
+                                                        <allocationList id="99">
+                                                          <PjsAllocation reference="47"/>
+                                                        </allocationList>
+                                                      </resource>
+                                                      <requirement>1</requirement>
+                                                    </PjsResourceRequirement>
+                                                  </resourceRequirementList>
+                                                </PjsExecutionMode>
+                                              </executionModeList>
+                                              <successorJobList id="100">
+                                                <PjsJob reference="38"/>
+                                              </successorJobList>
+                                              <initialPredecessorsDoneDate>0</initialPredecessorsDoneDate>
+                                              <initialDelay>0</initialDelay>
+                                              <mesOperationId>27613</mesOperationId>
+                                              <mesOperationNr>MIE/2014/09/012932</mesOperationNr>
+                                            </job>
+                                            <sourceAllocation reference="19"/>
+                                            <sinkAllocation reference="20"/>
+                                            <predecessorAllocationList id="101">
+                                              <PjsAllocation id="102">
+                                                <id>2</id>
+                                                <job id="103">
+                                                  <id>2</id>
+                                                  <project reference="3"/>
+                                                  <jobType>STANDARD</jobType>
+                                                  <executionModeList id="104">
+                                                    <PjsExecutionMode id="105">
+                                                      <id>3</id>
+                                                      <job reference="103"/>
+                                                      <duration>13</duration>
+                                                      <resourceRequirementList id="106">
+                                                        <PjsResourceRequirement id="107">
+                                                          <id>2</id>
+                                                          <executionMode reference="105"/>
+                                                          <resource class="PjsGlobalResource" id="108">
+                                                            <id>2</id>
+                                                            <capacity>1</capacity>
+                                                            <mesMachineId>113</mesMachineId>
+                                                            <mesMachineNr>VT_SILOS</mesMachineNr>
+                                                            <allocationList id="109">
+                                                              <PjsAllocation reference="102"/>
+                                                            </allocationList>
+                                                          </resource>
+                                                          <requirement>1</requirement>
+                                                        </PjsResourceRequirement>
+                                                      </resourceRequirementList>
+                                                    </PjsExecutionMode>
+                                                  </executionModeList>
+                                                  <successorJobList id="110">
+                                                    <PjsJob reference="48"/>
+                                                  </successorJobList>
+                                                  <initialPredecessorsDoneDate>0</initialPredecessorsDoneDate>
+                                                  <initialDelay>0</initialDelay>
+                                                  <mesOperationId>27615</mesOperationId>
+                                                  <mesOperationNr>ODG/PRA/2014/09/019180</mesOperationNr>
+                                                </job>
+                                                <sourceAllocation reference="19"/>
+                                                <sinkAllocation reference="20"/>
+                                                <predecessorAllocationList id="111">
+                                                  <PjsAllocation reference="18"/>
+                                                </predecessorAllocationList>
+                                                <successorAllocationList id="112">
+                                                  <PjsAllocation reference="47"/>
+                                                </successorAllocationList>
+                                                <executionMode reference="105"/>
+                                                <delay>0</delay>
+                                                <predecessorsDoneDate>24</predecessorsDoneDate>
+                                                <delayDecisionNr>0</delayDecisionNr>
+                                              </PjsAllocation>
+                                            </predecessorAllocationList>
+                                            <successorAllocationList id="113">
+                                              <PjsAllocation reference="37"/>
+                                            </successorAllocationList>
+                                            <executionMode reference="95"/>
+                                            <delay>0</delay>
+                                            <predecessorsDoneDate>37</predecessorsDoneDate>
+                                            <delayDecisionNr>0</delayDecisionNr>
+                                          </PjsAllocation>
+                                        </predecessorAllocationList>
+                                        <successorAllocationList id="114">
+                                          <PjsAllocation reference="27"/>
+                                        </successorAllocationList>
+                                        <executionMode reference="40"/>
+                                        <delay>0</delay>
+                                        <predecessorsDoneDate>81</predecessorsDoneDate>
+                                        <delayDecisionNr>0</delayDecisionNr>
+                                      </PjsAllocation>
+                                    </predecessorAllocationList>
+                                    <successorAllocationList id="115">
+                                      <PjsAllocation reference="20"/>
+                                    </successorAllocationList>
+                                    <executionMode reference="30"/>
+                                    <delay>0</delay>
+                                    <predecessorsDoneDate>94</predecessorsDoneDate>
+                                    <delayDecisionNr>0</delayDecisionNr>
+                                  </PjsAllocation>
+                                </predecessorAllocationList>
+                                <successorAllocationList id="116"/>
+                                <executionMode reference="23"/>
+                                <delay>0</delay>
+                                <predecessorsDoneDate>160</predecessorsDoneDate>
+                                <delayDecisionNr>0</delayDecisionNr>
+                              </sinkAllocation>
+                              <predecessorAllocationList id="117"/>
+                              <successorAllocationList id="118">
+                                <PjsAllocation reference="18"/>
+                              </successorAllocationList>
+                              <executionMode reference="8"/>
+                              <delay>0</delay>
+                              <predecessorsDoneDate>0</predecessorsDoneDate>
+                              <delayDecisionNr>0</delayDecisionNr>
+                            </sourceAllocation>
+                            <sinkAllocation reference="20"/>
+                            <predecessorAllocationList id="119">
+                              <PjsAllocation reference="19"/>
+                            </predecessorAllocationList>
+                            <successorAllocationList id="120">
+                              <PjsAllocation reference="102"/>
+                            </successorAllocationList>
+                            <executionMode reference="13"/>
+                            <delay>0</delay>
+                            <predecessorsDoneDate>0</predecessorsDoneDate>
+                            <delayDecisionNr>0</delayDecisionNr>
+                          </PjsAllocation>
+                        </allocationList>
+                      </resource>
+                      <requirement>1</requirement>
+                    </PjsResourceRequirement>
+                  </resourceRequirementList>
+                </PjsExecutionMode>
+                <PjsExecutionMode id="121">
+                  <id>2</id>
+                  <job reference="11"/>
+                  <duration>24</duration>
+                  <resourceRequirementList id="122">
+                    <PjsResourceRequirement id="123">
+                      <id>1</id>
+                      <executionMode reference="121"/>
+                      <resource class="PjsGlobalResource" id="124">
+                        <id>1</id>
+                        <capacity>1</capacity>
+                        <mesMachineId>102</mesMachineId>
+                        <mesMachineNr>PIEC_02</mesMachineNr>
+                        <allocationList id="125"/>
+                      </resource>
+                      <requirement>1</requirement>
+                    </PjsResourceRequirement>
+                  </resourceRequirementList>
+                </PjsExecutionMode>
+              </executionModeList>
+              <successorJobList id="126">
+                <PjsJob reference="103"/>
+              </successorJobList>
+              <initialPredecessorsDoneDate>0</initialPredecessorsDoneDate>
+              <initialDelay>0</initialDelay>
+              <mesOperationId>27614</mesOperationId>
+              <mesOperationNr>PRA/2014/09/014573</mesOperationNr>
+            </PjsJob>
+          </successorJobList>
+          <initialPredecessorsDoneDate>0</initialPredecessorsDoneDate>
+          <initialDelay>0</initialDelay>
+          <mesOperationId>0</mesOperationId>
+        </PjsJob>
+        <PjsJob reference="11"/>
+        <PjsJob reference="103"/>
+        <PjsJob reference="48"/>
+        <PjsJob reference="38"/>
+        <PjsJob reference="28"/>
+        <PjsJob reference="21"/>
+      </jobList>
+      <schedule id="127">
+        <id>0</id>
+        <projectList reference="2"/>
+        <jobList id="128">
+          <PjsJob reference="6"/>
+          <PjsJob reference="11"/>
+          <PjsJob reference="103"/>
+          <PjsJob reference="48"/>
+          <PjsJob reference="38"/>
+          <PjsJob reference="28"/>
+          <PjsJob reference="21"/>
+        </jobList>
+        <executionModeList id="129">
+          <PjsExecutionMode reference="8"/>
+          <PjsExecutionMode reference="13"/>
+          <PjsExecutionMode reference="121"/>
+          <PjsExecutionMode reference="105"/>
+          <PjsExecutionMode reference="50"/>
+          <PjsExecutionMode reference="55"/>
+          <PjsExecutionMode reference="60"/>
+          <PjsExecutionMode reference="65"/>
+          <PjsExecutionMode reference="70"/>
+          <PjsExecutionMode reference="75"/>
+          <PjsExecutionMode reference="80"/>
+          <PjsExecutionMode reference="85"/>
+          <PjsExecutionMode reference="90"/>
+          <PjsExecutionMode reference="95"/>
+          <PjsExecutionMode reference="40"/>
+          <PjsExecutionMode reference="30"/>
+          <PjsExecutionMode reference="23"/>
+        </executionModeList>
+        <resourceList id="130">
+          <PjsGlobalResource reference="16"/>
+          <PjsGlobalResource reference="124"/>
+          <PjsGlobalResource reference="108"/>
+          <PjsGlobalResource reference="53"/>
+          <PjsGlobalResource reference="58"/>
+          <PjsGlobalResource reference="63"/>
+          <PjsGlobalResource reference="68"/>
+          <PjsGlobalResource reference="73"/>
+          <PjsGlobalResource reference="78"/>
+          <PjsGlobalResource reference="83"/>
+          <PjsGlobalResource reference="88"/>
+          <PjsGlobalResource reference="93"/>
+          <PjsGlobalResource reference="98"/>
+          <PjsGlobalResource reference="43"/>
+          <PjsGlobalResource id="131">
+            <id>14</id>
+            <capacity>1</capacity>
+            <mesMachineId>4</mesMachineId>
+            <mesMachineNr>Linia_01</mesMachineNr>
+            <allocationList id="132"/>
+          </PjsGlobalResource>
+          <PjsGlobalResource id="133">
+            <id>15</id>
+            <capacity>1</capacity>
+            <mesMachineId>5</mesMachineId>
+            <mesMachineNr>Linia_03</mesMachineNr>
+            <allocationList id="134"/>
+          </PjsGlobalResource>
+          <PjsGlobalResource id="135">
+            <id>16</id>
+            <capacity>1</capacity>
+            <mesMachineId>6</mesMachineId>
+            <mesMachineNr>Linia_02</mesMachineNr>
+            <allocationList id="136"/>
+          </PjsGlobalResource>
+          <PjsGlobalResource id="137">
+            <id>17</id>
+            <capacity>1</capacity>
+            <mesMachineId>7</mesMachineId>
+            <mesMachineNr>Linia_04</mesMachineNr>
+            <allocationList id="138"/>
+          </PjsGlobalResource>
+          <PjsGlobalResource id="139">
+            <id>18</id>
+            <capacity>1</capacity>
+            <mesMachineId>8</mesMachineId>
+            <mesMachineNr>Linia_05</mesMachineNr>
+            <allocationList id="140"/>
+          </PjsGlobalResource>
+          <PjsGlobalResource id="141">
+            <id>19</id>
+            <capacity>1</capacity>
+            <mesMachineId>10</mesMachineId>
+            <mesMachineNr>Linia_06</mesMachineNr>
+            <allocationList id="142"/>
+          </PjsGlobalResource>
+          <PjsGlobalResource id="143">
+            <id>20</id>
+            <capacity>1</capacity>
+            <mesMachineId>11</mesMachineId>
+            <mesMachineNr>Linia_07</mesMachineNr>
+            <allocationList id="144"/>
+          </PjsGlobalResource>
+          <PjsGlobalResource id="145">
+            <id>21</id>
+            <capacity>1</capacity>
+            <mesMachineId>12</mesMachineId>
+            <mesMachineNr>Linia_08</mesMachineNr>
+            <allocationList id="146"/>
+          </PjsGlobalResource>
+          <PjsGlobalResource id="147">
+            <id>22</id>
+            <capacity>1</capacity>
+            <mesMachineId>13</mesMachineId>
+            <mesMachineNr>Linia_09</mesMachineNr>
+            <allocationList id="148"/>
+          </PjsGlobalResource>
+          <PjsGlobalResource reference="33"/>
+          <PjsGlobalResource id="149">
+            <id>24</id>
+            <capacity>1</capacity>
+            <mesMachineId>15</mesMachineId>
+            <mesMachineNr>Linia_11</mesMachineNr>
+            <allocationList id="150"/>
+          </PjsGlobalResource>
+          <PjsGlobalResource id="151">
+            <id>25</id>
+            <capacity>1</capacity>
+            <mesMachineId>236</mesMachineId>
+            <mesMachineNr>Linia_12</mesMachineNr>
+            <allocationList id="152"/>
+          </PjsGlobalResource>
+        </resourceList>
+        <resourceRequirementList id="153">
+          <PjsResourceRequirement reference="15"/>
+          <PjsResourceRequirement reference="123"/>
+          <PjsResourceRequirement reference="107"/>
+          <PjsResourceRequirement reference="52"/>
+          <PjsResourceRequirement reference="57"/>
+          <PjsResourceRequirement reference="62"/>
+          <PjsResourceRequirement reference="67"/>
+          <PjsResourceRequirement reference="72"/>
+          <PjsResourceRequirement reference="77"/>
+          <PjsResourceRequirement reference="82"/>
+          <PjsResourceRequirement reference="87"/>
+          <PjsResourceRequirement reference="92"/>
+          <PjsResourceRequirement reference="97"/>
+          <PjsResourceRequirement reference="42"/>
+          <PjsResourceRequirement reference="32"/>
+        </resourceRequirementList>
+        <allocationList id="154">
+          <PjsAllocation id="155">
+            <id>0</id>
+            <job reference="6"/>
+            <sourceAllocation reference="155"/>
+            <sinkAllocation id="156">
+              <id>6</id>
+              <job reference="21"/>
+              <sourceAllocation reference="155"/>
+              <sinkAllocation reference="156"/>
+              <predecessorAllocationList id="157">
+                <PjsAllocation id="158">
+                  <id>5</id>
+                  <job reference="28"/>
+                  <sourceAllocation reference="155"/>
+                  <sinkAllocation reference="156"/>
+                  <predecessorAllocationList id="159">
+                    <PjsAllocation id="160">
+                      <id>4</id>
+                      <job reference="38"/>
+                      <sourceAllocation reference="155"/>
+                      <sinkAllocation reference="156"/>
+                      <predecessorAllocationList id="161">
+                        <PjsAllocation id="162">
+                          <id>3</id>
+                          <job reference="48"/>
+                          <sourceAllocation reference="155"/>
+                          <sinkAllocation reference="156"/>
+                          <predecessorAllocationList id="163">
+                            <PjsAllocation id="164">
+                              <id>2</id>
+                              <job reference="103"/>
+                              <sourceAllocation reference="155"/>
+                              <sinkAllocation reference="156"/>
+                              <predecessorAllocationList id="165">
+                                <PjsAllocation id="166">
+                                  <id>1</id>
+                                  <job reference="11"/>
+                                  <sourceAllocation reference="155"/>
+                                  <sinkAllocation reference="156"/>
+                                  <predecessorAllocationList id="167">
+                                    <PjsAllocation reference="155"/>
+                                  </predecessorAllocationList>
+                                  <successorAllocationList id="168">
+                                    <PjsAllocation reference="164"/>
+                                  </successorAllocationList>
+                                  <predecessorsDoneDate>0</predecessorsDoneDate>
+                                  <delayDecisionNr>0</delayDecisionNr>
+                                </PjsAllocation>
+                              </predecessorAllocationList>
+                              <successorAllocationList id="169">
+                                <PjsAllocation reference="162"/>
+                              </successorAllocationList>
+                              <predecessorsDoneDate>0</predecessorsDoneDate>
+                              <delayDecisionNr>0</delayDecisionNr>
+                            </PjsAllocation>
+                          </predecessorAllocationList>
+                          <successorAllocationList id="170">
+                            <PjsAllocation reference="160"/>
+                          </successorAllocationList>
+                          <predecessorsDoneDate>0</predecessorsDoneDate>
+                          <delayDecisionNr>0</delayDecisionNr>
+                        </PjsAllocation>
+                      </predecessorAllocationList>
+                      <successorAllocationList id="171">
+                        <PjsAllocation reference="158"/>
+                      </successorAllocationList>
+                      <predecessorsDoneDate>0</predecessorsDoneDate>
+                      <delayDecisionNr>0</delayDecisionNr>
+                    </PjsAllocation>
+                  </predecessorAllocationList>
+                  <successorAllocationList id="172">
+                    <PjsAllocation reference="156"/>
+                  </successorAllocationList>
+                  <predecessorsDoneDate>0</predecessorsDoneDate>
+                  <delayDecisionNr>0</delayDecisionNr>
+                </PjsAllocation>
+              </predecessorAllocationList>
+              <successorAllocationList id="173"/>
+              <executionMode reference="23"/>
+              <delay>0</delay>
+              <predecessorsDoneDate>0</predecessorsDoneDate>
+              <delayDecisionNr>0</delayDecisionNr>
+            </sinkAllocation>
+            <predecessorAllocationList id="174"/>
+            <successorAllocationList id="175">
+              <PjsAllocation reference="166"/>
+            </successorAllocationList>
+            <executionMode reference="8"/>
+            <delay>0</delay>
+            <predecessorsDoneDate>0</predecessorsDoneDate>
+            <delayDecisionNr>0</delayDecisionNr>
+          </PjsAllocation>
+          <PjsAllocation reference="166"/>
+          <PjsAllocation reference="164"/>
+          <PjsAllocation reference="162"/>
+          <PjsAllocation reference="160"/>
+          <PjsAllocation reference="158"/>
+          <PjsAllocation reference="156"/>
+        </allocationList>
+        <mesSchedulingId>13</mesSchedulingId>
+        <mesTimeScale>1440</mesTimeScale>
+        <scoreDefMap id="176">
+          <entry>
+            <org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>FREE_SPACE</org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>
+            <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef id="177">
+              <type>SOFT</type>
+              <level>1</level>
+              <name>Wolna przestrzeń</name>
+              <description>Niezagospodarowany czas do końca sesji</description>
+              <value>320</value>
+            </org.optaplanner.mes.projectjobscheduling.domain.ScoreDef>
+          </entry>
+          <entry>
+            <org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>RESOURCE</org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>
+            <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef id="178">
+              <type>HARD</type>
+              <level>0</level>
+              <name>Zasoby</name>
+              <description>Niedobór zasobów</description>
+              <value>0</value>
+            </org.optaplanner.mes.projectjobscheduling.domain.ScoreDef>
+          </entry>
+          <entry>
+            <org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>DELAY</org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>
+            <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef id="179">
+              <type>SOFT</type>
+              <level>4</level>
+              <name>Opóźnienia</name>
+              <description>Suma opóźnień między powiązanymi operacjami</description>
+              <value>0</value>
+            </org.optaplanner.mes.projectjobscheduling.domain.ScoreDef>
+          </entry>
+          <entry>
+            <org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>SPAN</org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>
+            <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef id="180">
+              <type>SOFT</type>
+              <level>2</level>
+              <name>Rozpiętość</name>
+              <description>Czas od początku pierwszej do końca ostatniej operacji</description>
+              <value>-160</value>
+            </org.optaplanner.mes.projectjobscheduling.domain.ScoreDef>
+          </entry>
+          <entry>
+            <org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>GAP</org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>
+            <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef id="181">
+              <type>SOFT</type>
+              <level>3</level>
+              <name>Przerwy</name>
+              <description>Suma przerw na maszynach</description>
+              <value>0</value>
+            </org.optaplanner.mes.projectjobscheduling.domain.ScoreDef>
+          </entry>
+        </scoreDefMap>
+        <scoreDefArray id="182">
+          <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef reference="178"/>
+          <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef reference="177"/>
+          <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef reference="180"/>
+          <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef reference="181"/>
+          <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef reference="179"/>
+        </scoreDefArray>
+        <score id="183">0/480/0/0</score>
+      </schedule>
+    </PjsProject>
+  </projectList>
+  <jobList reference="128"/>
+  <executionModeList reference="129"/>
+  <resourceList reference="130"/>
+  <resourceRequirementList reference="153"/>
+  <allocationList id="184">
+    <PjsAllocation reference="19"/>
+    <PjsAllocation reference="18"/>
+    <PjsAllocation reference="102"/>
+    <PjsAllocation reference="47"/>
+    <PjsAllocation reference="37"/>
+    <PjsAllocation reference="27"/>
+    <PjsAllocation reference="20"/>
+  </allocationList>
+  <mesSchedulingId>13</mesSchedulingId>
+  <mesTimeScale>1440</mesTimeScale>
+  <scoreDefMap reference="176"/>
+  <scoreDefArray reference="182"/>
+  <score id="185">0/320/-160/0</score>
+</PjsSchedule>

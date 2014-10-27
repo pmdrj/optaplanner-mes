@@ -75,7 +75,7 @@ public abstract class Resource extends AbstractPersistable {
 
 	@Override
 	public String toString() {
-		return "[" + mesMachineNr + "]";
+		return "[id: " + this.getId().toString() + ", mesMachineNr: " + mesMachineNr + "]";
 	}
 
 }

@@ -43,19 +43,6 @@ public class RenewableResourceCapacityTracker extends ResourceCapacityTracker {
 			}
 			usedPerDay.put(i, used);
 		}
-
-		Long jobId = allocation.getJob().getId();
-		Allocation toRemoveAllocation = getAllocationToRemoveFromResource(jobId);
-		while (toRemoveAllocation != null) {
-			logger.trace("Before putting new allocation to resource: {} remove allocation: {}", resource.toString(), toRemoveAllocation.toString());
-			resource.getAllocationList().remove(toRemoveAllocation);
-			toRemoveAllocation = getAllocationToRemoveFromResource(jobId);
-		}
-
-		logger.trace("On resource: {} putting allocation: {}", resource.toString(), allocation.toString());
-		resource.getAllocationList().add(allocation);
-
-		logger.trace("After insert allocation list on resource {}: {}", resource.toString(), getAllocationListOnResource());
 	}
 
 	@Override
@@ -77,42 +64,10 @@ public class RenewableResourceCapacityTracker extends ResourceCapacityTracker {
 			}
 			usedPerDay.put(i, used);
 		}
-
-		Long jobId = allocation.getJob().getId();
-		Allocation toRemoveAllocation = getAllocationToRemoveFromResource(jobId);
-		while (toRemoveAllocation != null) {
-			logger.trace("From resource: {} remove allocation: {}", resource.toString(), toRemoveAllocation.toString());
-			resource.getAllocationList().remove(toRemoveAllocation);
-			toRemoveAllocation = getAllocationToRemoveFromResource(jobId);
-		}
-		logger.trace("Afetr retract allocation list on resource {}: {}", resource.toString(), getAllocationListOnResource());
 	}
 
 	@Override
 	public int getHardScore() {
 		return hardScore;
 	}
-
-	private String getAllocationListOnResource() {
-		String theList = "";
-		for (Allocation a : this.resource.getAllocationList()) {
-			if (theList != "") {
-				theList += ", ";
-			}
-			theList += a.toString();
-		}
-		return theList;
-	}
-
-	private Allocation getAllocationToRemoveFromResource(Long jobId) {
-		Allocation toRemoveAllocation = null;
-		for (Allocation resourceAllocation : resource.getAllocationList()) {
-			if (resourceAllocation.getJob().getId() == jobId) {
-				toRemoveAllocation = resourceAllocation;
-				break;
-			}
-		}
-		return toRemoveAllocation;
-	}
-
 }

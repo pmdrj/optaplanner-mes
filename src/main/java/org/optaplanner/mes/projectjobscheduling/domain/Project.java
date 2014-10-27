@@ -27,54 +27,62 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 @XStreamAlias("PjsProject")
 public class Project extends AbstractPersistable {
 
-    private int releaseDate;
-    private int criticalPathDuration;
+	private int releaseDate;
+	private int criticalPathDuration;
 
-    private List<LocalResource> localResourceList;
-    private List<Job> jobList;
+	private List<LocalResource> localResourceList;
+	private List<Job> jobList;
+	private Schedule schedule;
 
-    public int getReleaseDate() {
-        return releaseDate;
-    }
+	public int getReleaseDate() {
+		return releaseDate;
+	}
 
-    public void setReleaseDate(int releaseDate) {
-        this.releaseDate = releaseDate;
-    }
+	public void setReleaseDate(int releaseDate) {
+		this.releaseDate = releaseDate;
+	}
 
-    public int getCriticalPathDuration() {
-        return criticalPathDuration;
-    }
+	public int getCriticalPathDuration() {
+		return criticalPathDuration;
+	}
 
-    public void setCriticalPathDuration(int criticalPathDuration) {
-        this.criticalPathDuration = criticalPathDuration;
-    }
+	public void setCriticalPathDuration(int criticalPathDuration) {
+		this.criticalPathDuration = criticalPathDuration;
+	}
 
-    public List<LocalResource> getLocalResourceList() {
-        return localResourceList;
-    }
+	public List<LocalResource> getLocalResourceList() {
+		return localResourceList;
+	}
 
-    public void setLocalResourceList(List<LocalResource> localResourceList) {
-        this.localResourceList = localResourceList;
-    }
+	public void setLocalResourceList(List<LocalResource> localResourceList) {
+		this.localResourceList = localResourceList;
+	}
 
-    public List<Job> getJobList() {
-        return jobList;
-    }
+	public List<Job> getJobList() {
+		return jobList;
+	}
 
-    public void setJobList(List<Job> jobList) {
-        this.jobList = jobList;
-    }
+	public void setJobList(List<Job> jobList) {
+		this.jobList = jobList;
+	}
 
-    // ************************************************************************
-    // Complex methods
-    // ************************************************************************
+	public Schedule getSchedule() {
+		return schedule;
+	}
 
-    public int getCriticalPathEndDate() {
-        return releaseDate + criticalPathDuration;
-    }
+	public void setSchedule(Schedule schedule) {
+		this.schedule = schedule;
+	}
 
-    public String getLabel() {
-        return "Project " + id;
-    }
+	// ************************************************************************
+	// Complex methods
+	// ************************************************************************
 
+	public int getCriticalPathEndDate() {
+		return releaseDate + criticalPathDuration;
+	}
+
+	public String getLabel() {
+		return "Project " + id;
+	}
 }

@@ -33,7 +33,7 @@ rule "renewableResourceUsedDay"
             insertLogical(new RenewableResourceUsedDay($resource, i));
         }
 end
-/*
+
 rule "renewableResourceCapacity"
     when
         RenewableResourceUsedDay($resource : resource, $capacity : resourceCapacity, $usedDay : usedDay)
@@ -47,7 +47,7 @@ rule "renewableResourceCapacity"
     then
         scoreHolder.addHardConstraintMatch(kcontext, 0, $capacity - $used.intValue());        
 end
-*/
+
 // ############################################################################
 // Soft constraints
 // ############################################################################

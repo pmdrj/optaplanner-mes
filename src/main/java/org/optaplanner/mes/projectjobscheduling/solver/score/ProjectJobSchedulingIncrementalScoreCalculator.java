@@ -1,5 +1,6 @@
 package org.optaplanner.mes.projectjobscheduling.solver.score;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,148 +14,216 @@ import org.optaplanner.mes.projectjobscheduling.domain.JobType;
 import org.optaplanner.mes.projectjobscheduling.domain.Project;
 import org.optaplanner.mes.projectjobscheduling.domain.ResourceRequirement;
 import org.optaplanner.mes.projectjobscheduling.domain.Schedule;
+import org.optaplanner.mes.projectjobscheduling.domain.ScoreDef;
+import org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode;
 import org.optaplanner.mes.projectjobscheduling.domain.resource.Resource;
 import org.optaplanner.mes.projectjobscheduling.solver.score.capacity.NonrenewableResourceCapacityTracker;
 import org.optaplanner.mes.projectjobscheduling.solver.score.capacity.RenewableResourceCapacityTracker;
 import org.optaplanner.mes.projectjobscheduling.solver.score.capacity.ResourceCapacityTracker;
+import org.optaplanner.mes.projectjobscheduling.solver.score.resourcegap.ResourceGapTracker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ProjectJobSchedulingIncrementalScoreCalculator extends AbstractIncrementalScoreCalculator<Schedule> {
 
-    private Map<Resource, ResourceCapacityTracker> resourceCapacityTrackerMap;
-    private Map<Project, Integer> projectEndDateMap;
-    private int maximumProjectEndDate;
+	private Map<Resource, ResourceCapacityTracker> resourceCapacityTrackerMap;
+	private Map<Resource, ResourceGapTracker> resourceGapTrackerMap;
+	private Map<Project, Integer> projectEndDateMap;
+	private int maximumProjectEndDate;
+	private Map<ScoreDefCode, ScoreDef> scoreDefMap;
 
-    private int hardScore;
-    private int soft0Score;
-    private int soft1Score;
-    
-    protected final transient Logger logger = LoggerFactory.getLogger(getClass());
-    
+	protected final transient Logger logger = LoggerFactory.getLogger(getClass());
 
-    public void resetWorkingSolution(Schedule schedule) {
-        List<Resource> resourceList = schedule.getResourceList();
-        resourceCapacityTrackerMap = new HashMap<Resource, ResourceCapacityTracker>(resourceList.size());
-        for (Resource resource : resourceList) {
-            resourceCapacityTrackerMap.put(resource, resource.isRenewable()
-                    ? new RenewableResourceCapacityTracker(resource)
-                    : new NonrenewableResourceCapacityTracker(resource));
-        }
-        List<Project> projectList = schedule.getProjectList();
-        projectEndDateMap = new HashMap<Project, Integer>(projectList.size());
-        maximumProjectEndDate = 0;
-        hardScore = 0;
-        soft0Score = 0;
-        soft1Score = 0;
-        int minimumReleaseDate = Integer.MAX_VALUE;
-        for (Project p: projectList) {
-            minimumReleaseDate = Math.min(p.getReleaseDate(), minimumReleaseDate);
-        }
-        soft1Score += minimumReleaseDate;
-        for (Allocation allocation : schedule.getAllocationList()) {
-            insert(allocation);
-        }
-    }
+	public void resetWorkingSolution(Schedule schedule) {
+		this.scoreDefMap = schedule.getScoreDefMap();
+		List<Resource> resourceList = schedule.getResourceList();
+		resourceCapacityTrackerMap = new HashMap<Resource, ResourceCapacityTracker>(resourceList.size());
+		resourceGapTrackerMap = new HashMap<Resource, ResourceGapTracker>(resourceList.size());
+		for (Resource resource : resourceList) {
+			resourceCapacityTrackerMap.put(resource, resource.isRenewable() ? new RenewableResourceCapacityTracker(
+					resource) : new NonrenewableResourceCapacityTracker(resource));
+			resourceGapTrackerMap.put(resource, new ResourceGapTracker(resource));
+			resource.getAllocationList().clear();
+		}
+		List<Project> projectList = schedule.getProjectList();
+		projectEndDateMap = new HashMap<Project, Integer>(projectList.size());
+		maximumProjectEndDate = 0;
 
-    public void beforeEntityAdded(Object entity) {
-        // Do nothing
-    }
+		for (ScoreDefCode code : scoreDefMap.keySet()) {
+			scoreDefMap.get(code).setValue(0);
+		}
 
-    public void afterEntityAdded(Object entity) {
-        insert((Allocation) entity);
-    }
+		int minimumReleaseDate = Integer.MAX_VALUE;
+		for (Project p : projectList) {
+			minimumReleaseDate = Math.min(p.getReleaseDate(), minimumReleaseDate);
+		}
+		scoreDefMap.get(ScoreDefCode.SPAN).add(minimumReleaseDate);
+		for (Allocation allocation : schedule.getAllocationList()) {
+			insert(allocation);
+		}
 
-    public void beforeVariableChanged(Object entity, String variableName) {
-        retract((Allocation) entity);
-    }
+		for (Resource resource : resourceList) {
+			ResourceGapTracker gapTracker = resourceGapTrackerMap.get(resource);
+			scoreDefMap.get(ScoreDefCode.GAP).subtruct(gapTracker.getGap());
+			logger.trace("Allocation list on resource {}: {}", resource.toString(),
+					getAllocationListOnResource(resource));
+			logger.trace("Sum gap on mesMachineNr {}: {}", resource.getMesMachineNr(), gapTracker.getGap());
+		}
+	}
 
-    public void afterVariableChanged(Object entity, String variableName) {
-        insert((Allocation) entity);
-    }
+	public void beforeEntityAdded(Object entity) {
+		// Do nothing
+	}
 
-    public void beforeEntityRemoved(Object entity) {
-        retract((Allocation) entity);
-    }
+	public void afterEntityAdded(Object entity) {
+		Allocation allocation = (Allocation) entity;
+		logger.trace("ScoreCalculator, afterEntityAdded: insert allocation");
+		logger.trace("    allocation  : {}", allocation.toString());
+		insert(allocation);
+	}
 
-    public void afterEntityRemoved(Object entity) {
-        // Do nothing
-    }
+	public void beforeVariableChanged(Object entity, String variableName) {
+		Allocation allocation = (Allocation) entity;
+		logger.trace("ScoreCalculator, beforeVariableChanged: retract allocation");
+		logger.trace("    allocation  : {}", allocation.toString());
+		logger.trace("    variableName: {}", variableName);
+		retract(allocation);
+	}
 
-    private void insert(Allocation allocation) {
-        // Job precedence is build-in
-        // Resource capacity
-        ExecutionMode executionMode = allocation.getExecutionMode();
-        if (executionMode != null && allocation.getJob().getJobType() == JobType.STANDARD) {
-            for (ResourceRequirement resourceRequirement : executionMode.getResourceRequirementList()) {
-                ResourceCapacityTracker tracker = resourceCapacityTrackerMap.get(
-                        resourceRequirement.getResource());
-                hardScore -= tracker.getHardScore();
-                tracker.insert(resourceRequirement, allocation);
-                hardScore += tracker.getHardScore();
-            }            
-        }
-        // Total project delay and total make span
-        if (allocation.getJob().getJobType() == JobType.SINK) {
-            Integer endDate = allocation.getEndDate();
-            if (endDate != null) {
-                Project project = allocation.getProject();
-                projectEndDateMap.put(project, endDate);
-                // Total project delay
-                soft0Score -= endDate - project.getCriticalPathEndDate();
-                // Total make span
-                if (endDate > maximumProjectEndDate) {
-                    soft1Score -= endDate - maximumProjectEndDate;
-                    maximumProjectEndDate = endDate;
-                }
-            }
-        }
-    }
+	public void afterVariableChanged(Object entity, String variableName) {
+		Allocation allocation = (Allocation) entity;
+		logger.trace("ScoreCalculator, afterVariableChanged: insert allocation");
+		logger.trace("    allocation  : {}", allocation.toString());
+		logger.trace("    variableName: {}", variableName);
+		insert(allocation);
+	}
 
-    private void retract(Allocation allocation) {
-        // Job precedence is build-in
-        // Resource capacity    	
-        ExecutionMode executionMode = allocation.getExecutionMode();
-        if (executionMode != null && allocation.getJob().getJobType() == JobType.STANDARD) {
-            for (ResourceRequirement resourceRequirement : executionMode.getResourceRequirementList()) {
-                ResourceCapacityTracker tracker = resourceCapacityTrackerMap.get(
-                        resourceRequirement.getResource());
-                hardScore -= tracker.getHardScore();
-                tracker.retract(resourceRequirement, allocation);
-                hardScore += tracker.getHardScore();
-            }
-        }
-        // Total project delay and total make span
-        if (allocation.getJob().getJobType() == JobType.SINK) {
-            Integer endDate = allocation.getEndDate();
-            if (endDate != null) {
-                Project project = allocation.getProject();
-                projectEndDateMap.remove(project);
-                // Total project delay
-                soft0Score += endDate - project.getCriticalPathEndDate();
-                // Total make span
-                if (endDate == maximumProjectEndDate) {
-                    updateMaximumProjectEndDate();
-                    soft1Score += endDate - maximumProjectEndDate;
-                }
-            }
-        }
-    }
+	public void beforeEntityRemoved(Object entity) {
+		Allocation allocation = (Allocation) entity;
+		logger.trace("ScoreCalculator, beforeEntityRemoved: retract allocation");
+		logger.trace("    allocation  : {}", allocation.toString());
+		retract(allocation);
+	}
 
-    private void updateMaximumProjectEndDate() {
-        int maximum = 0;
-        for (Integer endDate : projectEndDateMap.values()) {
-            if (endDate > maximum) {
-                maximum = endDate;
-            }
-        }
-        maximumProjectEndDate = maximum;
-    }
+	public void afterEntityRemoved(Object entity) {
+		// Do nothing
+	}
 
-    public Score<?> calculateScore() {    	
-		//logger.debug("hardScore: {}, soft0Score: {}, soft1Score: {}", hardScore, soft0Score, soft1Score);                
-        return BendableScore.valueOf(new int[] {hardScore}, new int[] {soft0Score, soft1Score});
-    }
+	private void insert(Allocation allocation) {
+		// Job precedence is build-in
+		// Resource capacity
+		ExecutionMode executionMode = allocation.getExecutionMode();
+		if (executionMode != null && allocation.getJob().getJobType() == JobType.STANDARD) {
+			for (ResourceRequirement resourceRequirement : executionMode.getResourceRequirementList()) {
+				Resource resource = resourceRequirement.getResource();
+				ResourceCapacityTracker tracker = resourceCapacityTrackerMap.get(resource);
+				scoreDefMap.get(ScoreDefCode.RESOURCE).subtruct(tracker.getHardScore());
+				tracker.insert(resourceRequirement, allocation);
+				scoreDefMap.get(ScoreDefCode.RESOURCE).add(tracker.getHardScore());
+				ResourceGapTracker gapTracker = resourceGapTrackerMap.get(resource);
+				scoreDefMap.get(ScoreDefCode.GAP).add(gapTracker.getGap());
+				putAlocationOnResource(allocation, resource);
+				scoreDefMap.get(ScoreDefCode.GAP).subtruct(gapTracker.getGap());
+			}
+		}
 
+		// Total project delay and total make span
+		if (allocation.getJob().getJobType() == JobType.SINK) {
+			Integer endDate = allocation.getEndDate();
+			if (endDate != null) {
+				Project project = allocation.getProject();
+				projectEndDateMap.put(project, endDate);
+
+				// Total project delay
+				scoreDefMap.get(ScoreDefCode.FREE_SPACE).subtruct(endDate - project.getCriticalPathEndDate());
+
+				// Total make span
+				if (endDate > maximumProjectEndDate) {
+					scoreDefMap.get(ScoreDefCode.SPAN).subtruct(endDate - maximumProjectEndDate);
+					maximumProjectEndDate = endDate;
+				}
+			}
+		}
+	}
+
+	private void retract(Allocation allocation) {
+		// Job precedence is build-in
+		// Resource capacity
+		ExecutionMode executionMode = allocation.getExecutionMode();
+		if (executionMode != null && allocation.getJob().getJobType() == JobType.STANDARD) {
+			for (ResourceRequirement resourceRequirement : executionMode.getResourceRequirementList()) {
+				Resource resource = resourceRequirement.getResource();
+				ResourceCapacityTracker tracker = resourceCapacityTrackerMap.get(resource);
+				scoreDefMap.get(ScoreDefCode.RESOURCE).subtruct(tracker.getHardScore());
+				tracker.retract(resourceRequirement, allocation);
+				scoreDefMap.get(ScoreDefCode.RESOURCE).add(tracker.getHardScore());
+
+				ResourceGapTracker gapTracker = resourceGapTrackerMap.get(resource);
+				scoreDefMap.get(ScoreDefCode.GAP).add(gapTracker.getGap());
+				while (resource.getAllocationList().remove(allocation)) {
+				}
+				scoreDefMap.get(ScoreDefCode.GAP).subtruct(gapTracker.getGap());
+			}
+		}
+		// Total project delay and total make span
+		if (allocation.getJob().getJobType() == JobType.SINK) {
+			Integer endDate = allocation.getEndDate();
+			if (endDate != null) {
+				Project project = allocation.getProject();
+				projectEndDateMap.remove(project);
+
+				// Total project delay
+				scoreDefMap.get(ScoreDefCode.FREE_SPACE).add(endDate - project.getCriticalPathEndDate());
+
+				// Total make span
+				if (endDate == maximumProjectEndDate) {
+					updateMaximumProjectEndDate();
+					scoreDefMap.get(ScoreDefCode.SPAN).add(endDate - maximumProjectEndDate);
+				}
+			}
+		}
+	}
+
+	private void updateMaximumProjectEndDate() {
+		int maximum = 0;
+		for (Integer endDate : projectEndDateMap.values()) {
+			if (endDate > maximum) {
+				maximum = endDate;
+			}
+		}
+		maximumProjectEndDate = maximum;
+	}
+
+	public Score<?> calculateScore() {
+		return BendableScore.valueOf(new int[] { scoreDefMap.get(ScoreDefCode.RESOURCE).getValue() }, new int[] {
+				scoreDefMap.get(ScoreDefCode.FREE_SPACE).getValue(), scoreDefMap.get(ScoreDefCode.SPAN).getValue(),
+				scoreDefMap.get(ScoreDefCode.GAP).getValue() });
+	}
+
+	private String getAllocationListOnResource(Resource resource) {
+		String theList = "";
+		List<Allocation> allocationList = new ArrayList<Allocation>(resource.getAllocationList());
+		try {
+			for (Allocation allocation : allocationList) {
+				if (theList != "") {
+					theList += ", ";
+				}
+				theList += allocation.toString();
+			}
+		} catch (Exception e) {
+			theList = e.toString();
+		}
+		return theList;
+	}
+
+	private void putAlocationOnResource(Allocation allocation, Resource resource) {
+		List<Resource> resourceList = allocation.getSchedule().getResourceList();
+		for (Resource r : resourceList) {
+			List<Allocation> allocationList = r.getAllocationList();
+			while (allocationList.remove(allocation)) {
+			}
+		}
+		resource.getAllocationList().add(allocation);
+	}
 
 }

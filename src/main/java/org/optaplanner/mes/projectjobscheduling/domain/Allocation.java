@@ -16,6 +16,7 @@
 
 package org.optaplanner.mes.projectjobscheduling.domain;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
@@ -116,8 +117,8 @@ public class Allocation extends AbstractPersistable {
 		this.delay = delay;
 	}
 
-	@CustomShadowVariable(variableListenerClass = PredecessorsDoneDateUpdatingVariableListener.class, sources = {
-			@CustomShadowVariable.Source(variableName = "executionMode"), @CustomShadowVariable.Source(variableName = "delay") })
+	@CustomShadowVariable(variableListenerClass = PredecessorsDoneDateUpdatingVariableListener.class, sources = { @CustomShadowVariable.Source(variableName = "executionMode"),
+			@CustomShadowVariable.Source(variableName = "delay") })
 	public Integer getPredecessorsDoneDate() {
 		return predecessorsDoneDate;
 	}
@@ -128,15 +129,16 @@ public class Allocation extends AbstractPersistable {
 
 	@Override
 	public String toString() {
+		String mesOperationNr = ", mesOperationNr: " + job.getMesOperationNr();
 		String atMesMachineNr = "";
 		String atDelay = "";
-		if (this.executionMode != null) {
-			atMesMachineNr = ", " + this.executionMode.getResourceRequirementList().get(0).getResource().getMesMachineNr();
+		if (this.executionMode != null && !this.executionMode.getResourceRequirementList().isEmpty()) {
+			atMesMachineNr = ", mesMachineNr: " + this.executionMode.getResourceRequirementList().get(0).getResource().getMesMachineNr();
 		}
 		if (this.delay != null) {
-			atDelay = ", " + this.delay.toString();
+			atDelay = ", delay: " + this.delay.toString();
 		}
-		return "[" + job.getMesOperationNr() + atMesMachineNr + atDelay + "]";
+		return "[id: " + this.id.toString() + atDelay + mesOperationNr + atMesMachineNr + "]";
 	}
 
 	// ************************************************************************
@@ -161,6 +163,10 @@ public class Allocation extends AbstractPersistable {
 		return job.getProject();
 	}
 
+	public Schedule getSchedule() {
+		return job.getProject().getSchedule();
+	}
+
 	public int getProjectCriticalPathEndDate() {
 		return job.getProject().getCriticalPathEndDate();
 	}
@@ -178,13 +184,13 @@ public class Allocation extends AbstractPersistable {
 	// ************************************************************************
 
 	@ValueRangeProvider(id = "executionModeRange")
-	public List<ExecutionMode> getExecutionModeRange() {		
+	public List<ExecutionMode> getExecutionModeRange() {
 		return job.getExecutionModeList();
 	}
 
 	@ValueRangeProvider(id = "delayRange")
 	public CountableValueRange<Integer> getDelayRange() {
-		return ValueRangeFactory.createIntValueRange(0, 1000);
+		return ValueRangeFactory.createIntValueRange(0, 2000, 1);
 	}
 
 	private CountableValueRange<Integer> getDecreasingDelayRange() {
@@ -244,4 +250,11 @@ public class Allocation extends AbstractPersistable {
 		return range;
 	}
 
+	public static Comparator<Allocation> StartDateComparator = new Comparator<Allocation>() {
+		public int compare(Allocation allocation1, Allocation allocation2) {
+			Integer startDate1 = (allocation1 == null || allocation1.getStartDate() == null) ? 0 : allocation1.getStartDate();
+			Integer startDate2 = (allocation2 == null || allocation2.getStartDate() == null) ? 0 : allocation2.getStartDate();
+			return startDate1.compareTo(startDate2);
+		}
+	};
 }

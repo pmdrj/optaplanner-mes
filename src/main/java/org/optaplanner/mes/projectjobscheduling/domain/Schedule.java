@@ -18,7 +18,9 @@ package org.optaplanner.mes.projectjobscheduling.domain;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.optaplanner.core.api.domain.solution.PlanningEntityCollectionProperty;
 import org.optaplanner.core.api.domain.solution.PlanningSolution;
@@ -44,8 +46,32 @@ public class Schedule extends AbstractPersistable implements Solution<BendableSc
 	private List<Allocation> allocationList;
 	private int mesSchedulingId;
 	private int mesTimeScale;
+	private Map<ScoreDefCode, ScoreDef> scoreDefMap;
+	private ScoreDef[] scoreDefArray;
 
-	@XStreamConverter(value = XStreamBendableScoreConverter.class, ints = { 1, 2 })
+	public Schedule() {
+		super();
+		scoreDefMap = new HashMap<ScoreDefCode, ScoreDef>();
+		scoreDefMap.put(ScoreDefCode.RESOURCE, new ScoreDef(ScoreDefType.HARD, 0, "Zasoby", "Niedobór zasobów"));
+		scoreDefMap.put(ScoreDefCode.FREE_SPACE, new ScoreDef(ScoreDefType.SOFT, 1, "Wolna przestrzeń",
+				"Niezagospodarowany czas do końca sesji"));
+		scoreDefMap.put(ScoreDefCode.SPAN, new ScoreDef(ScoreDefType.SOFT, 2, "Rozpiętość",
+				"Czas od początku pierwszej do końca ostatniej operacji"));
+		scoreDefMap.put(ScoreDefCode.GAP, new ScoreDef(ScoreDefType.SOFT, 3, "Przerwy", "Suma przerw na maszynach"));
+		scoreDefMap.put(ScoreDefCode.DELAY, new ScoreDef(ScoreDefType.SOFT, 4, "Opóźnienia",
+				"Suma opóźnień między powiązanymi operacjami"));
+
+		List<ScoreDef> scoreDefList = new ArrayList<ScoreDef>(scoreDefMap.values());
+		scoreDefList.sort(ScoreDef.ScoreLevelComparator);
+		scoreDefArray = new ScoreDef[scoreDefList.size()];
+		int i = 0;
+		for (ScoreDef scoreDef : scoreDefList) {
+			scoreDefArray[i] = scoreDef;
+			i++;
+		}
+	}
+
+	@XStreamConverter(value = XStreamBendableScoreConverter.class, ints = { 1, 3 })
 	private BendableScore score;
 
 	public List<Project> getProjectList() {
@@ -119,6 +145,14 @@ public class Schedule extends AbstractPersistable implements Solution<BendableSc
 
 	public void setMesTimeScale(int mesTimeScale) {
 		this.mesTimeScale = mesTimeScale;
+	}
+
+	public Map<ScoreDefCode, ScoreDef> getScoreDefMap() {
+		return scoreDefMap;
+	}
+
+	public ScoreDef[] getScoreDefArray() {
+		return scoreDefArray;
 	}
 
 	// ************************************************************************

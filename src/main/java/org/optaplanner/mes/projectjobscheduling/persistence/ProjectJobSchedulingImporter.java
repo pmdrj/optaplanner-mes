@@ -106,6 +106,7 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 			for (int i = 0; i < projectListSize; i++) {
 				Project project = new Project();
 				project.setId(projectId);
+				project.setSchedule(schedule);
 				project.setReleaseDate(readIntegerValue());
 				project.setCriticalPathDuration(readIntegerValue());
 				File projectFile = new File(inputFile.getParentFile(), readStringValue());
