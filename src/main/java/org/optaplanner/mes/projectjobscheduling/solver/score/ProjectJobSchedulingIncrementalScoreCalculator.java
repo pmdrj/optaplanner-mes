@@ -31,11 +31,15 @@ public class ProjectJobSchedulingIncrementalScoreCalculator extends AbstractIncr
 	private Map<Project, Integer> projectEndDateMap;
 	private int maximumProjectEndDate;
 	private Map<ScoreDefCode, ScoreDef> scoreDefMap;
+	private ScoreDef[] hardScoreDefArray;
+	private ScoreDef[] softScoreDefArray;
 
 	protected final transient Logger logger = LoggerFactory.getLogger(getClass());
 
 	public void resetWorkingSolution(Schedule schedule) {
 		this.scoreDefMap = schedule.getScoreDefMap();
+		this.hardScoreDefArray = schedule.getHardScoreDefArray();
+		this.softScoreDefArray = schedule.getSoftScoreDefArray();
 		List<Resource> resourceList = schedule.getResourceList();
 		resourceCapacityTrackerMap = new HashMap<Resource, ResourceCapacityTracker>(resourceList.size());
 		resourceGapTrackerMap = new HashMap<Resource, ResourceGapTracker>(resourceList.size());
@@ -68,6 +72,12 @@ public class ProjectJobSchedulingIncrementalScoreCalculator extends AbstractIncr
 			logger.trace("Allocation list on resource {}: {}", resource.toString(),
 					getAllocationListOnResource(resource));
 			logger.trace("Sum gap on mesMachineNr {}: {}", resource.getMesMachineNr(), gapTracker.getGap());
+		}
+
+		for (Allocation allocation : schedule.getAllocationList()) {
+			if (allocation.getJob().getJobType() == JobType.STANDARD) {
+				scoreDefMap.get(ScoreDefCode.DELAY).subtruct(allocation.getDelay());
+			}
 		}
 	}
 
@@ -125,6 +135,7 @@ public class ProjectJobSchedulingIncrementalScoreCalculator extends AbstractIncr
 				putAlocationOnResource(allocation, resource);
 				scoreDefMap.get(ScoreDefCode.GAP).subtruct(gapTracker.getGap());
 			}
+			scoreDefMap.get(ScoreDefCode.DELAY).subtruct(allocation.getDelay());
 		}
 
 		// Total project delay and total make span
@@ -165,6 +176,8 @@ public class ProjectJobSchedulingIncrementalScoreCalculator extends AbstractIncr
 				scoreDefMap.get(ScoreDefCode.GAP).subtruct(gapTracker.getGap());
 			}
 		}
+		// scoreDefMap.get(ScoreDefCode.DELAY).add(allocation.getDelay());
+
 		// Total project delay and total make span
 		if (allocation.getJob().getJobType() == JobType.SINK) {
 			Integer endDate = allocation.getEndDate();
@@ -195,9 +208,16 @@ public class ProjectJobSchedulingIncrementalScoreCalculator extends AbstractIncr
 	}
 
 	public Score<?> calculateScore() {
-		return BendableScore.valueOf(new int[] { scoreDefMap.get(ScoreDefCode.RESOURCE).getValue() }, new int[] {
-				scoreDefMap.get(ScoreDefCode.FREE_SPACE).getValue(), scoreDefMap.get(ScoreDefCode.SPAN).getValue(),
-				scoreDefMap.get(ScoreDefCode.GAP).getValue() });
+
+		int[] hardScoreValueArray = new int[hardScoreDefArray.length];
+		int[] softScoreValueArray = new int[softScoreDefArray.length];
+		for (int i = 0; i != hardScoreDefArray.length; i++) {
+			hardScoreValueArray[i] = hardScoreDefArray[i].getValue();
+		}
+		for (int i = 0; i != softScoreDefArray.length; i++) {
+			softScoreValueArray[i] = softScoreDefArray[i].getValue();
+		}
+		return BendableScore.valueOf(hardScoreValueArray, softScoreValueArray);
 	}
 
 	private String getAllocationListOnResource(Resource resource) {

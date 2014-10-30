@@ -619,6 +619,9 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 					allocation.setExecutionMode(job.getExecutionModeList().get(0));
 					projectToSinkAllocationMap.put(job.getProject(), allocation);
 				}
+				if (allocation.getDelay() == null) {
+					allocation.setDelay(0);
+				}
 				allocationList.add(allocation);
 				jobToAllocationMap.put(job, allocation);
 			}

@@ -12,7 +12,7 @@ import org.optaplanner.mes.projectjobscheduling.domain.resource.Resource;
 
 /**
  * @author tbista
- *
+ * Computing sum gap on resource for incremental score calculator
  */
 public class ResourceGapTracker extends LoggingMain {
 	protected Resource resource;

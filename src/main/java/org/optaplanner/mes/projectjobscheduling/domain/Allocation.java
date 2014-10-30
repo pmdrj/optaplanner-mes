@@ -193,6 +193,7 @@ public class Allocation extends AbstractPersistable {
 		return ValueRangeFactory.createIntValueRange(0, 2000, 1);
 	}
 
+	@SuppressWarnings("unused")
 	private CountableValueRange<Integer> getDecreasingDelayRange() {
 		delayDecisionNr += 1;
 		if (logger != null)
@@ -224,6 +225,7 @@ public class Allocation extends AbstractPersistable {
 		return range;
 	}
 
+	@SuppressWarnings("unused")
 	private CountableValueRange<Integer> getRandomDelayRange() {
 		Random ran = new Random();
 		int x = ran.nextInt(4);

@@ -47,10 +47,15 @@ public class Schedule extends AbstractPersistable implements Solution<BendableSc
 	private int mesSchedulingId;
 	private int mesTimeScale;
 	private Map<ScoreDefCode, ScoreDef> scoreDefMap;
-	private ScoreDef[] scoreDefArray;
+	private ScoreDef[] hardScoreDefArray;
+	private ScoreDef[] softScoreDefArray;
 
 	public Schedule() {
 		super();
+		createScoreHierarchy();
+	}
+
+	private void createScoreHierarchy() {
 		scoreDefMap = new HashMap<ScoreDefCode, ScoreDef>();
 		scoreDefMap.put(ScoreDefCode.RESOURCE, new ScoreDef(ScoreDefType.HARD, 0, "Zasoby", "Niedobór zasobów"));
 		scoreDefMap.put(ScoreDefCode.FREE_SPACE, new ScoreDef(ScoreDefType.SOFT, 1, "Wolna przestrzeń",
@@ -63,15 +68,30 @@ public class Schedule extends AbstractPersistable implements Solution<BendableSc
 
 		List<ScoreDef> scoreDefList = new ArrayList<ScoreDef>(scoreDefMap.values());
 		scoreDefList.sort(ScoreDef.ScoreLevelComparator);
-		scoreDefArray = new ScoreDef[scoreDefList.size()];
-		int i = 0;
+		int hardScoreCount = 0;
+		int softScoreCount = 0;
 		for (ScoreDef scoreDef : scoreDefList) {
-			scoreDefArray[i] = scoreDef;
-			i++;
+			if (scoreDef.getType() == ScoreDefType.HARD) {
+				hardScoreCount++;
+			} else if (scoreDef.getType() == ScoreDefType.SOFT) {
+				softScoreCount++;
+			}
+		}
+
+		int hardIdx = 0;
+		int softIdx = 0;
+		hardScoreDefArray = new ScoreDef[hardScoreCount];
+		softScoreDefArray = new ScoreDef[softScoreCount];
+		for (ScoreDef scoreDef : scoreDefList) {
+			if (scoreDef.getType() == ScoreDefType.HARD) {
+				hardScoreDefArray[hardIdx++] = scoreDef;
+			} else if (scoreDef.getType() == ScoreDefType.SOFT) {
+				softScoreDefArray[softIdx++] = scoreDef;
+			}
 		}
 	}
 
-	@XStreamConverter(value = XStreamBendableScoreConverter.class, ints = { 1, 3 })
+	@XStreamConverter(value = XStreamBendableScoreConverter.class, ints = { 1, 4 })
 	private BendableScore score;
 
 	public List<Project> getProjectList() {
@@ -151,8 +171,12 @@ public class Schedule extends AbstractPersistable implements Solution<BendableSc
 		return scoreDefMap;
 	}
 
-	public ScoreDef[] getScoreDefArray() {
-		return scoreDefArray;
+	public ScoreDef[] getHardScoreDefArray() {
+		return hardScoreDefArray;
+	}
+
+	public ScoreDef[] getSoftScoreDefArray() {
+		return softScoreDefArray;
 	}
 
 	// ************************************************************************

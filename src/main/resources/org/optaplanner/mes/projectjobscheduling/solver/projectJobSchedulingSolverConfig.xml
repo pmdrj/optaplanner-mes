@@ -7,11 +7,11 @@
 	<randomSeed>10</randomSeed>
 
 	<scoreDirectorFactory>
-		<scoreDefinitionType>BENDABLE</scoreDefinitionType>
-		<bendableHardLevelsSize>1</bendableHardLevelsSize>
-		<bendableSoftLevelsSize>3</bendableSoftLevelsSize>
+		<!-- <scoreDefinitionType>BENDABLE</scoreDefinitionType> -->
+		<!-- <bendableHardLevelsSize>1</bendableHardLevelsSize> -->
+		<!-- <bendableSoftLevelsSize>4</bendableSoftLevelsSize> -->
 		<incrementalScoreCalculatorClass>org.optaplanner.mes.projectjobscheduling.solver.score.ProjectJobSchedulingIncrementalScoreCalculator</incrementalScoreCalculatorClass>
-<!-- 		<scoreDrl>org/optaplanner/mes/projectjobscheduling/solver/projectJobSchedulingScoreRules.drl</scoreDrl> -->
+		<!-- <scoreDrl>org/optaplanner/mes/projectjobscheduling/solver/projectJobSchedulingScoreRules.drl</scoreDrl> -->
 	</scoreDirectorFactory>
 	<termination>
 		<secondsSpentLimit>290000</secondsSpentLimit>
@@ -30,16 +30,15 @@
 			<!-- <selectedCountLimit>4</selectedCountLimit> -->
 			<selectionOrder>RANDOM</selectionOrder>
 			<changeMoveSelector>
-
 				<valueSelector>
 					<variableName>executionMode</variableName>
 				</valueSelector>
 			</changeMoveSelector>
-<!-- 			<changeMoveSelector> -->
-<!-- 				<valueSelector> -->
-<!-- 					<variableName>delay</variableName> -->
-<!-- 				</valueSelector> -->
-<!-- 			</changeMoveSelector> -->
+			<changeMoveSelector>
+				<valueSelector>
+					<variableName>delay</variableName>
+				</valueSelector>
+			</changeMoveSelector>
 		</unionMoveSelector>
 		<acceptor>
 			<!-- <acceptorType>HILL_CLIMBING</acceptorType> -->

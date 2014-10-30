@@ -53,7 +53,6 @@ end
 // ############################################################################
 
 //suma końców
-/*
 rule "sumEnd"
     when
          $sumEnd : Number() from accumulate(
@@ -63,8 +62,7 @@ rule "sumEnd"
     then
         scoreHolder.addSoftConstraintMatch(kcontext, 0, -$sumEnd.intValue());
 end
-*/
-/*
+
 rule "totalProjectDelay"
     when
         Allocation(jobType == JobType.SINK, endDate != null, $endDate : endDate,
@@ -72,9 +70,8 @@ rule "totalProjectDelay"
     then
         scoreHolder.addSoftConstraintMatch(kcontext, 0,  $criticalPathEndDate - $endDate);
 end        
-*/
+
 //czas trwania projektu
-/*
 rule "totalMakespan"
     when
          $maxProjectEndDate : Number() from accumulate(
@@ -84,26 +81,26 @@ rule "totalMakespan"
     then
         scoreHolder.addSoftConstraintMatch(kcontext, 1, -$maxProjectEndDate.intValue());        
 end
-*/
+
 
 //suma czasów trwania operacji
-//rule "sumDuration"
-//    when
-//         $sumDuration : Number() from accumulate(
-//            Allocation(jobType == JobType.STANDARD, $endDate : endDate, $startDate : startDate),
-//            sum($endDate - $startDate)
-//        )
-//    then
-//        scoreHolder.addSoftConstraintMatch(kcontext, 1, -$sumDuration.intValue());        
-//end
+rule "sumDuration"
+    when
+         $sumDuration : Number() from accumulate(
+            Allocation(jobType == JobType.STANDARD, $endDate : endDate, $startDate : startDate),
+            sum($endDate - $startDate)
+        )
+    then
+        scoreHolder.addSoftConstraintMatch(kcontext, 1, -$sumDuration.intValue());        
+end
 
 //suma opóźnień
-//rule "sumDelay"
-//    when
-//         $sumDelay : Number() from accumulate(
-//            Allocation(jobType == JobType.STANDARD && delay != null, $delay : delay),
-//            sum($delay)
-//        )
-//    then
-//        scoreHolder.addSoftConstraintMatch(kcontext, 2, -$sumDelay.intValue());
-//end
+rule "sumDelay"
+    when
+         $sumDelay : Number() from accumulate(
+            Allocation(jobType == JobType.STANDARD && delay != null, $delay : delay),
+            sum($delay)
+        )
+    then
+        scoreHolder.addSoftConstraintMatch(kcontext, 2, -$sumDelay.intValue());
+end

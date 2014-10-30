@@ -134,15 +134,31 @@ public class SolverAndPersistenceFrame extends JFrame {
 	private void setScoreTextArea(String title, Solution<?> solution) {
 		Schedule schedule = (Schedule) solution;
 		if (schedule != null && scoreTextArea != null) {
+
 			Number[] scoreLevelNumbers = solution.getScore().toLevelNumbers();
+			int scoreLevelNr = 0;
 			String scoreString = "";
-			for (int i = 0; i != scoreLevelNumbers.length; i++) {
+
+			scoreString += "- - - - - - - - - H A R D - - - - - - - - -";
+			for (int i = 0; i != schedule.getHardScoreDefArray().length; i++) {
 				if (scoreString != "") {
 					scoreString += "\n";
 				}
-				String scoreName = schedule.getScoreDefArray()[i].getName();
-				String scoreDescription = schedule.getScoreDefArray()[i].getDescription();
-				String bestValueString = scoreLevelNumbers[i].toString();
+				String scoreName = schedule.getHardScoreDefArray()[i].getName();
+				String scoreDescription = schedule.getHardScoreDefArray()[i].getDescription();
+				String bestValueString = scoreLevelNumbers[scoreLevelNr++].toString();
+				scoreString += scoreName + " (" + scoreDescription.toLowerCase() + ")" + "\n     = " + bestValueString;
+			}
+			
+			scoreString += "\n\n";
+			scoreString += "- - - - - - - - - S O F T - - - - - - - - -";
+			for (int i = 0; i != schedule.getSoftScoreDefArray().length; i++) {
+				if (scoreString != "") {
+					scoreString += "\n";
+				}
+				String scoreName = schedule.getSoftScoreDefArray()[i].getName();
+				String scoreDescription = schedule.getSoftScoreDefArray()[i].getDescription();
+				String bestValueString = scoreLevelNumbers[scoreLevelNr++].toString();
 				scoreString += scoreName + " (" + scoreDescription.toLowerCase() + ")" + "\n     = " + bestValueString;
 			}
 			scoreTextArea.setText(scoreString);

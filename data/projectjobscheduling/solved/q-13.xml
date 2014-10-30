@@ -61,7 +61,8 @@
                                     </PjsExecutionMode>
                                   </executionModeList>
                                   <successorJobList id="25"/>
-                                  <initialPredecessorsDoneDate>0</initialPredecessorsDoneDate>
+                                  <initialPredecessorsDoneDate>160</initialPredecessorsDoneDate>
+                                  <initialExecutionMode reference="23"/>
                                   <initialDelay>0</initialDelay>
                                   <mesOperationId>0</mesOperationId>
                                 </job>
@@ -100,7 +101,8 @@
                                       <successorJobList id="35">
                                         <PjsJob reference="21"/>
                                       </successorJobList>
-                                      <initialPredecessorsDoneDate>0</initialPredecessorsDoneDate>
+                                      <initialPredecessorsDoneDate>94</initialPredecessorsDoneDate>
+                                      <initialExecutionMode reference="30"/>
                                       <initialDelay>0</initialDelay>
                                       <mesOperationId>26881</mesOperationId>
                                       <mesOperationNr>PAK/2014/09/004951</mesOperationNr>
@@ -140,7 +142,8 @@
                                           <successorJobList id="45">
                                             <PjsJob reference="28"/>
                                           </successorJobList>
-                                          <initialPredecessorsDoneDate>0</initialPredecessorsDoneDate>
+                                          <initialPredecessorsDoneDate>81</initialPredecessorsDoneDate>
+                                          <initialExecutionMode reference="40"/>
                                           <initialDelay>0</initialDelay>
                                           <mesOperationId>27612</mesOperationId>
                                           <mesOperationNr>ODG/MIE/2014/09/033457</mesOperationNr>
@@ -351,7 +354,8 @@
                                               <successorJobList id="100">
                                                 <PjsJob reference="38"/>
                                               </successorJobList>
-                                              <initialPredecessorsDoneDate>0</initialPredecessorsDoneDate>
+                                              <initialPredecessorsDoneDate>37</initialPredecessorsDoneDate>
+                                              <initialExecutionMode reference="95"/>
                                               <initialDelay>0</initialDelay>
                                               <mesOperationId>27613</mesOperationId>
                                               <mesOperationNr>MIE/2014/09/012932</mesOperationNr>
@@ -391,7 +395,8 @@
                                                   <successorJobList id="110">
                                                     <PjsJob reference="48"/>
                                                   </successorJobList>
-                                                  <initialPredecessorsDoneDate>0</initialPredecessorsDoneDate>
+                                                  <initialPredecessorsDoneDate>24</initialPredecessorsDoneDate>
+                                                  <initialExecutionMode reference="105"/>
                                                   <initialDelay>0</initialDelay>
                                                   <mesOperationId>27615</mesOperationId>
                                                   <mesOperationNr>ODG/PRA/2014/09/019180</mesOperationNr>
@@ -494,12 +499,14 @@
                 <PjsJob reference="103"/>
               </successorJobList>
               <initialPredecessorsDoneDate>0</initialPredecessorsDoneDate>
+              <initialExecutionMode reference="13"/>
               <initialDelay>0</initialDelay>
               <mesOperationId>27614</mesOperationId>
               <mesOperationNr>PRA/2014/09/014573</mesOperationNr>
             </PjsJob>
           </successorJobList>
           <initialPredecessorsDoneDate>0</initialPredecessorsDoneDate>
+          <initialExecutionMode reference="8"/>
           <initialDelay>0</initialDelay>
           <mesOperationId>0</mesOperationId>
         </PjsJob>
@@ -510,318 +517,149 @@
         <PjsJob reference="28"/>
         <PjsJob reference="21"/>
       </jobList>
-      <schedule id="127">
-        <id>0</id>
-        <projectList reference="2"/>
-        <jobList id="128">
-          <PjsJob reference="6"/>
-          <PjsJob reference="11"/>
-          <PjsJob reference="103"/>
-          <PjsJob reference="48"/>
-          <PjsJob reference="38"/>
-          <PjsJob reference="28"/>
-          <PjsJob reference="21"/>
-        </jobList>
-        <executionModeList id="129">
-          <PjsExecutionMode reference="8"/>
-          <PjsExecutionMode reference="13"/>
-          <PjsExecutionMode reference="121"/>
-          <PjsExecutionMode reference="105"/>
-          <PjsExecutionMode reference="50"/>
-          <PjsExecutionMode reference="55"/>
-          <PjsExecutionMode reference="60"/>
-          <PjsExecutionMode reference="65"/>
-          <PjsExecutionMode reference="70"/>
-          <PjsExecutionMode reference="75"/>
-          <PjsExecutionMode reference="80"/>
-          <PjsExecutionMode reference="85"/>
-          <PjsExecutionMode reference="90"/>
-          <PjsExecutionMode reference="95"/>
-          <PjsExecutionMode reference="40"/>
-          <PjsExecutionMode reference="30"/>
-          <PjsExecutionMode reference="23"/>
-        </executionModeList>
-        <resourceList id="130">
-          <PjsGlobalResource reference="16"/>
-          <PjsGlobalResource reference="124"/>
-          <PjsGlobalResource reference="108"/>
-          <PjsGlobalResource reference="53"/>
-          <PjsGlobalResource reference="58"/>
-          <PjsGlobalResource reference="63"/>
-          <PjsGlobalResource reference="68"/>
-          <PjsGlobalResource reference="73"/>
-          <PjsGlobalResource reference="78"/>
-          <PjsGlobalResource reference="83"/>
-          <PjsGlobalResource reference="88"/>
-          <PjsGlobalResource reference="93"/>
-          <PjsGlobalResource reference="98"/>
-          <PjsGlobalResource reference="43"/>
-          <PjsGlobalResource id="131">
-            <id>14</id>
-            <capacity>1</capacity>
-            <mesMachineId>4</mesMachineId>
-            <mesMachineNr>Linia_01</mesMachineNr>
-            <allocationList id="132"/>
-          </PjsGlobalResource>
-          <PjsGlobalResource id="133">
-            <id>15</id>
-            <capacity>1</capacity>
-            <mesMachineId>5</mesMachineId>
-            <mesMachineNr>Linia_03</mesMachineNr>
-            <allocationList id="134"/>
-          </PjsGlobalResource>
-          <PjsGlobalResource id="135">
-            <id>16</id>
-            <capacity>1</capacity>
-            <mesMachineId>6</mesMachineId>
-            <mesMachineNr>Linia_02</mesMachineNr>
-            <allocationList id="136"/>
-          </PjsGlobalResource>
-          <PjsGlobalResource id="137">
-            <id>17</id>
-            <capacity>1</capacity>
-            <mesMachineId>7</mesMachineId>
-            <mesMachineNr>Linia_04</mesMachineNr>
-            <allocationList id="138"/>
-          </PjsGlobalResource>
-          <PjsGlobalResource id="139">
-            <id>18</id>
-            <capacity>1</capacity>
-            <mesMachineId>8</mesMachineId>
-            <mesMachineNr>Linia_05</mesMachineNr>
-            <allocationList id="140"/>
-          </PjsGlobalResource>
-          <PjsGlobalResource id="141">
-            <id>19</id>
-            <capacity>1</capacity>
-            <mesMachineId>10</mesMachineId>
-            <mesMachineNr>Linia_06</mesMachineNr>
-            <allocationList id="142"/>
-          </PjsGlobalResource>
-          <PjsGlobalResource id="143">
-            <id>20</id>
-            <capacity>1</capacity>
-            <mesMachineId>11</mesMachineId>
-            <mesMachineNr>Linia_07</mesMachineNr>
-            <allocationList id="144"/>
-          </PjsGlobalResource>
-          <PjsGlobalResource id="145">
-            <id>21</id>
-            <capacity>1</capacity>
-            <mesMachineId>12</mesMachineId>
-            <mesMachineNr>Linia_08</mesMachineNr>
-            <allocationList id="146"/>
-          </PjsGlobalResource>
-          <PjsGlobalResource id="147">
-            <id>22</id>
-            <capacity>1</capacity>
-            <mesMachineId>13</mesMachineId>
-            <mesMachineNr>Linia_09</mesMachineNr>
-            <allocationList id="148"/>
-          </PjsGlobalResource>
-          <PjsGlobalResource reference="33"/>
-          <PjsGlobalResource id="149">
-            <id>24</id>
-            <capacity>1</capacity>
-            <mesMachineId>15</mesMachineId>
-            <mesMachineNr>Linia_11</mesMachineNr>
-            <allocationList id="150"/>
-          </PjsGlobalResource>
-          <PjsGlobalResource id="151">
-            <id>25</id>
-            <capacity>1</capacity>
-            <mesMachineId>236</mesMachineId>
-            <mesMachineNr>Linia_12</mesMachineNr>
-            <allocationList id="152"/>
-          </PjsGlobalResource>
-        </resourceList>
-        <resourceRequirementList id="153">
-          <PjsResourceRequirement reference="15"/>
-          <PjsResourceRequirement reference="123"/>
-          <PjsResourceRequirement reference="107"/>
-          <PjsResourceRequirement reference="52"/>
-          <PjsResourceRequirement reference="57"/>
-          <PjsResourceRequirement reference="62"/>
-          <PjsResourceRequirement reference="67"/>
-          <PjsResourceRequirement reference="72"/>
-          <PjsResourceRequirement reference="77"/>
-          <PjsResourceRequirement reference="82"/>
-          <PjsResourceRequirement reference="87"/>
-          <PjsResourceRequirement reference="92"/>
-          <PjsResourceRequirement reference="97"/>
-          <PjsResourceRequirement reference="42"/>
-          <PjsResourceRequirement reference="32"/>
-        </resourceRequirementList>
-        <allocationList id="154">
-          <PjsAllocation id="155">
-            <id>0</id>
-            <job reference="6"/>
-            <sourceAllocation reference="155"/>
-            <sinkAllocation id="156">
-              <id>6</id>
-              <job reference="21"/>
-              <sourceAllocation reference="155"/>
-              <sinkAllocation reference="156"/>
-              <predecessorAllocationList id="157">
-                <PjsAllocation id="158">
-                  <id>5</id>
-                  <job reference="28"/>
-                  <sourceAllocation reference="155"/>
-                  <sinkAllocation reference="156"/>
-                  <predecessorAllocationList id="159">
-                    <PjsAllocation id="160">
-                      <id>4</id>
-                      <job reference="38"/>
-                      <sourceAllocation reference="155"/>
-                      <sinkAllocation reference="156"/>
-                      <predecessorAllocationList id="161">
-                        <PjsAllocation id="162">
-                          <id>3</id>
-                          <job reference="48"/>
-                          <sourceAllocation reference="155"/>
-                          <sinkAllocation reference="156"/>
-                          <predecessorAllocationList id="163">
-                            <PjsAllocation id="164">
-                              <id>2</id>
-                              <job reference="103"/>
-                              <sourceAllocation reference="155"/>
-                              <sinkAllocation reference="156"/>
-                              <predecessorAllocationList id="165">
-                                <PjsAllocation id="166">
-                                  <id>1</id>
-                                  <job reference="11"/>
-                                  <sourceAllocation reference="155"/>
-                                  <sinkAllocation reference="156"/>
-                                  <predecessorAllocationList id="167">
-                                    <PjsAllocation reference="155"/>
-                                  </predecessorAllocationList>
-                                  <successorAllocationList id="168">
-                                    <PjsAllocation reference="164"/>
-                                  </successorAllocationList>
-                                  <predecessorsDoneDate>0</predecessorsDoneDate>
-                                  <delayDecisionNr>0</delayDecisionNr>
-                                </PjsAllocation>
-                              </predecessorAllocationList>
-                              <successorAllocationList id="169">
-                                <PjsAllocation reference="162"/>
-                              </successorAllocationList>
-                              <predecessorsDoneDate>0</predecessorsDoneDate>
-                              <delayDecisionNr>0</delayDecisionNr>
-                            </PjsAllocation>
-                          </predecessorAllocationList>
-                          <successorAllocationList id="170">
-                            <PjsAllocation reference="160"/>
-                          </successorAllocationList>
-                          <predecessorsDoneDate>0</predecessorsDoneDate>
-                          <delayDecisionNr>0</delayDecisionNr>
-                        </PjsAllocation>
-                      </predecessorAllocationList>
-                      <successorAllocationList id="171">
-                        <PjsAllocation reference="158"/>
-                      </successorAllocationList>
-                      <predecessorsDoneDate>0</predecessorsDoneDate>
-                      <delayDecisionNr>0</delayDecisionNr>
-                    </PjsAllocation>
-                  </predecessorAllocationList>
-                  <successorAllocationList id="172">
-                    <PjsAllocation reference="156"/>
-                  </successorAllocationList>
-                  <predecessorsDoneDate>0</predecessorsDoneDate>
-                  <delayDecisionNr>0</delayDecisionNr>
-                </PjsAllocation>
-              </predecessorAllocationList>
-              <successorAllocationList id="173"/>
-              <executionMode reference="23"/>
-              <delay>0</delay>
-              <predecessorsDoneDate>0</predecessorsDoneDate>
-              <delayDecisionNr>0</delayDecisionNr>
-            </sinkAllocation>
-            <predecessorAllocationList id="174"/>
-            <successorAllocationList id="175">
-              <PjsAllocation reference="166"/>
-            </successorAllocationList>
-            <executionMode reference="8"/>
-            <delay>0</delay>
-            <predecessorsDoneDate>0</predecessorsDoneDate>
-            <delayDecisionNr>0</delayDecisionNr>
-          </PjsAllocation>
-          <PjsAllocation reference="166"/>
-          <PjsAllocation reference="164"/>
-          <PjsAllocation reference="162"/>
-          <PjsAllocation reference="160"/>
-          <PjsAllocation reference="158"/>
-          <PjsAllocation reference="156"/>
-        </allocationList>
-        <mesSchedulingId>13</mesSchedulingId>
-        <mesTimeScale>1440</mesTimeScale>
-        <scoreDefMap id="176">
-          <entry>
-            <org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>FREE_SPACE</org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>
-            <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef id="177">
-              <type>SOFT</type>
-              <level>1</level>
-              <name>Wolna przestrzeń</name>
-              <description>Niezagospodarowany czas do końca sesji</description>
-              <value>320</value>
-            </org.optaplanner.mes.projectjobscheduling.domain.ScoreDef>
-          </entry>
-          <entry>
-            <org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>RESOURCE</org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>
-            <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef id="178">
-              <type>HARD</type>
-              <level>0</level>
-              <name>Zasoby</name>
-              <description>Niedobór zasobów</description>
-              <value>0</value>
-            </org.optaplanner.mes.projectjobscheduling.domain.ScoreDef>
-          </entry>
-          <entry>
-            <org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>DELAY</org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>
-            <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef id="179">
-              <type>SOFT</type>
-              <level>4</level>
-              <name>Opóźnienia</name>
-              <description>Suma opóźnień między powiązanymi operacjami</description>
-              <value>0</value>
-            </org.optaplanner.mes.projectjobscheduling.domain.ScoreDef>
-          </entry>
-          <entry>
-            <org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>SPAN</org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>
-            <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef id="180">
-              <type>SOFT</type>
-              <level>2</level>
-              <name>Rozpiętość</name>
-              <description>Czas od początku pierwszej do końca ostatniej operacji</description>
-              <value>-160</value>
-            </org.optaplanner.mes.projectjobscheduling.domain.ScoreDef>
-          </entry>
-          <entry>
-            <org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>GAP</org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>
-            <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef id="181">
-              <type>SOFT</type>
-              <level>3</level>
-              <name>Przerwy</name>
-              <description>Suma przerw na maszynach</description>
-              <value>0</value>
-            </org.optaplanner.mes.projectjobscheduling.domain.ScoreDef>
-          </entry>
-        </scoreDefMap>
-        <scoreDefArray id="182">
-          <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef reference="178"/>
-          <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef reference="177"/>
-          <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef reference="180"/>
-          <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef reference="181"/>
-          <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef reference="179"/>
-        </scoreDefArray>
-        <score id="183">0/480/0/0</score>
-      </schedule>
+      <schedule reference="1"/>
     </PjsProject>
   </projectList>
-  <jobList reference="128"/>
-  <executionModeList reference="129"/>
-  <resourceList reference="130"/>
-  <resourceRequirementList reference="153"/>
-  <allocationList id="184">
+  <jobList id="127">
+    <PjsJob reference="6"/>
+    <PjsJob reference="11"/>
+    <PjsJob reference="103"/>
+    <PjsJob reference="48"/>
+    <PjsJob reference="38"/>
+    <PjsJob reference="28"/>
+    <PjsJob reference="21"/>
+  </jobList>
+  <executionModeList id="128">
+    <PjsExecutionMode reference="8"/>
+    <PjsExecutionMode reference="13"/>
+    <PjsExecutionMode reference="121"/>
+    <PjsExecutionMode reference="105"/>
+    <PjsExecutionMode reference="50"/>
+    <PjsExecutionMode reference="55"/>
+    <PjsExecutionMode reference="60"/>
+    <PjsExecutionMode reference="65"/>
+    <PjsExecutionMode reference="70"/>
+    <PjsExecutionMode reference="75"/>
+    <PjsExecutionMode reference="80"/>
+    <PjsExecutionMode reference="85"/>
+    <PjsExecutionMode reference="90"/>
+    <PjsExecutionMode reference="95"/>
+    <PjsExecutionMode reference="40"/>
+    <PjsExecutionMode reference="30"/>
+    <PjsExecutionMode reference="23"/>
+  </executionModeList>
+  <resourceList id="129">
+    <PjsGlobalResource reference="16"/>
+    <PjsGlobalResource reference="124"/>
+    <PjsGlobalResource reference="108"/>
+    <PjsGlobalResource reference="53"/>
+    <PjsGlobalResource reference="58"/>
+    <PjsGlobalResource reference="63"/>
+    <PjsGlobalResource reference="68"/>
+    <PjsGlobalResource reference="73"/>
+    <PjsGlobalResource reference="78"/>
+    <PjsGlobalResource reference="83"/>
+    <PjsGlobalResource reference="88"/>
+    <PjsGlobalResource reference="93"/>
+    <PjsGlobalResource reference="98"/>
+    <PjsGlobalResource reference="43"/>
+    <PjsGlobalResource id="130">
+      <id>14</id>
+      <capacity>1</capacity>
+      <mesMachineId>4</mesMachineId>
+      <mesMachineNr>Linia_01</mesMachineNr>
+      <allocationList id="131"/>
+    </PjsGlobalResource>
+    <PjsGlobalResource id="132">
+      <id>15</id>
+      <capacity>1</capacity>
+      <mesMachineId>5</mesMachineId>
+      <mesMachineNr>Linia_03</mesMachineNr>
+      <allocationList id="133"/>
+    </PjsGlobalResource>
+    <PjsGlobalResource id="134">
+      <id>16</id>
+      <capacity>1</capacity>
+      <mesMachineId>6</mesMachineId>
+      <mesMachineNr>Linia_02</mesMachineNr>
+      <allocationList id="135"/>
+    </PjsGlobalResource>
+    <PjsGlobalResource id="136">
+      <id>17</id>
+      <capacity>1</capacity>
+      <mesMachineId>7</mesMachineId>
+      <mesMachineNr>Linia_04</mesMachineNr>
+      <allocationList id="137"/>
+    </PjsGlobalResource>
+    <PjsGlobalResource id="138">
+      <id>18</id>
+      <capacity>1</capacity>
+      <mesMachineId>8</mesMachineId>
+      <mesMachineNr>Linia_05</mesMachineNr>
+      <allocationList id="139"/>
+    </PjsGlobalResource>
+    <PjsGlobalResource id="140">
+      <id>19</id>
+      <capacity>1</capacity>
+      <mesMachineId>10</mesMachineId>
+      <mesMachineNr>Linia_06</mesMachineNr>
+      <allocationList id="141"/>
+    </PjsGlobalResource>
+    <PjsGlobalResource id="142">
+      <id>20</id>
+      <capacity>1</capacity>
+      <mesMachineId>11</mesMachineId>
+      <mesMachineNr>Linia_07</mesMachineNr>
+      <allocationList id="143"/>
+    </PjsGlobalResource>
+    <PjsGlobalResource id="144">
+      <id>21</id>
+      <capacity>1</capacity>
+      <mesMachineId>12</mesMachineId>
+      <mesMachineNr>Linia_08</mesMachineNr>
+      <allocationList id="145"/>
+    </PjsGlobalResource>
+    <PjsGlobalResource id="146">
+      <id>22</id>
+      <capacity>1</capacity>
+      <mesMachineId>13</mesMachineId>
+      <mesMachineNr>Linia_09</mesMachineNr>
+      <allocationList id="147"/>
+    </PjsGlobalResource>
+    <PjsGlobalResource reference="33"/>
+    <PjsGlobalResource id="148">
+      <id>24</id>
+      <capacity>1</capacity>
+      <mesMachineId>15</mesMachineId>
+      <mesMachineNr>Linia_11</mesMachineNr>
+      <allocationList id="149"/>
+    </PjsGlobalResource>
+    <PjsGlobalResource id="150">
+      <id>25</id>
+      <capacity>1</capacity>
+      <mesMachineId>236</mesMachineId>
+      <mesMachineNr>Linia_12</mesMachineNr>
+      <allocationList id="151"/>
+    </PjsGlobalResource>
+  </resourceList>
+  <resourceRequirementList id="152">
+    <PjsResourceRequirement reference="15"/>
+    <PjsResourceRequirement reference="123"/>
+    <PjsResourceRequirement reference="107"/>
+    <PjsResourceRequirement reference="52"/>
+    <PjsResourceRequirement reference="57"/>
+    <PjsResourceRequirement reference="62"/>
+    <PjsResourceRequirement reference="67"/>
+    <PjsResourceRequirement reference="72"/>
+    <PjsResourceRequirement reference="77"/>
+    <PjsResourceRequirement reference="82"/>
+    <PjsResourceRequirement reference="87"/>
+    <PjsResourceRequirement reference="92"/>
+    <PjsResourceRequirement reference="97"/>
+    <PjsResourceRequirement reference="42"/>
+    <PjsResourceRequirement reference="32"/>
+  </resourceRequirementList>
+  <allocationList id="153">
     <PjsAllocation reference="19"/>
     <PjsAllocation reference="18"/>
     <PjsAllocation reference="102"/>
@@ -832,7 +670,66 @@
   </allocationList>
   <mesSchedulingId>13</mesSchedulingId>
   <mesTimeScale>1440</mesTimeScale>
-  <scoreDefMap reference="176"/>
-  <scoreDefArray reference="182"/>
-  <score id="185">0/320/-160/0</score>
+  <scoreDefMap id="154">
+    <entry>
+      <org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>RESOURCE</org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>
+      <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef id="155">
+        <type>HARD</type>
+        <level>0</level>
+        <name>Zasoby</name>
+        <description>Niedobór zasobów</description>
+        <value>0</value>
+      </org.optaplanner.mes.projectjobscheduling.domain.ScoreDef>
+    </entry>
+    <entry>
+      <org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>FREE_SPACE</org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>
+      <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef id="156">
+        <type>SOFT</type>
+        <level>1</level>
+        <name>Wolna przestrzeń</name>
+        <description>Niezagospodarowany czas do końca sesji</description>
+        <value>320</value>
+      </org.optaplanner.mes.projectjobscheduling.domain.ScoreDef>
+    </entry>
+    <entry>
+      <org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>SPAN</org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>
+      <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef id="157">
+        <type>SOFT</type>
+        <level>2</level>
+        <name>Rozpiętość</name>
+        <description>Czas od początku pierwszej do końca ostatniej operacji</description>
+        <value>-160</value>
+      </org.optaplanner.mes.projectjobscheduling.domain.ScoreDef>
+    </entry>
+    <entry>
+      <org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>GAP</org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>
+      <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef id="158">
+        <type>SOFT</type>
+        <level>3</level>
+        <name>Przerwy</name>
+        <description>Suma przerw na maszynach</description>
+        <value>0</value>
+      </org.optaplanner.mes.projectjobscheduling.domain.ScoreDef>
+    </entry>
+    <entry>
+      <org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>DELAY</org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>
+      <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef id="159">
+        <type>SOFT</type>
+        <level>4</level>
+        <name>Opóźnienia</name>
+        <description>Suma opóźnień między powiązanymi operacjami</description>
+        <value>0</value>
+      </org.optaplanner.mes.projectjobscheduling.domain.ScoreDef>
+    </entry>
+  </scoreDefMap>
+  <hardScoreDefArray id="160">
+    <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef reference="155"/>
+  </hardScoreDefArray>
+  <softScoreDefArray id="161">
+    <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef reference="156"/>
+    <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef reference="157"/>
+    <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef reference="158"/>
+    <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef reference="159"/>
+  </softScoreDefArray>
+  <score id="162">0/320/-160/0/0</score>
 </PjsSchedule>

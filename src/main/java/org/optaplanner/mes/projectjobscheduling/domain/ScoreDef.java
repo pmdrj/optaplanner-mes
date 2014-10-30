@@ -7,7 +7,7 @@ import java.util.Comparator;
 
 /**
  * @author tbista
- *
+ * Score definition for score identification.
  */
 public class ScoreDef {
 	private ScoreDefType type;
