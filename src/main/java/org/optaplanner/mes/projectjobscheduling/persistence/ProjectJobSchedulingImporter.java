@@ -31,6 +31,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import org.apache.commons.io.IOUtils;
 import org.optaplanner.core.api.domain.solution.Solution;
@@ -48,7 +53,7 @@ import org.optaplanner.mes.projectjobscheduling.domain.resource.Resource;
 
 public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		new ProjectJobSchedulingImporter().convertAll();
 	}
 
@@ -63,28 +68,34 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 	public static class ProjectJobSchedulingInputBuilder extends TxtInputBuilder {
 
 		private Schedule schedule;
-
 		private int projectListSize;
 		private int resourceListSize;
 		private int globalResourceListSize;
-
 		private long projectId = 0L;
 		private long resourceId = 0L;
 		private long jobId = 0L;
 		private long executionModeId = 0L;
 		private long resourceRequirementId = 0L;
-
 		private Map<Project, File> projectFileMap;
-
 		private boolean useMesAllocations = true;
+		private boolean readFromDb;
+		private String dbConnectString;
 
 		public Solution<?> readSolution() throws IOException {
 			schedule = new Schedule();
-			schedule.setId(0L);			
+			schedule.setId(0L);
 			readProjectList();
-			readResourceList();
-			for (Map.Entry<Project, File> entry : projectFileMap.entrySet()) {
-				readProjectFile(entry.getKey(), entry.getValue());
+			if (readFromDb) {
+				try {
+					readSolutionFormDb();
+				} catch (SQLException e) {
+					throw new IOException("Error while reading solutin form database.");
+				}
+			} else {
+				readResourceList();
+				for (Map.Entry<Project, File> entry : projectFileMap.entrySet()) {
+					readProjectFile(entry.getKey(), entry.getValue());
+				}
 			}
 			removePointlessExecutionModes();
 			if (useMesAllocations) {
@@ -93,33 +104,116 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 				createAllocationList();
 			}
 
-			logger.info("Schedule {} has {} projects, {} jobs, {} execution modes, {} resources" + " and {} resource requirements.", getInputId(), schedule
-					.getProjectList().size(), schedule.getJobList().size(), schedule.getExecutionModeList().size(), schedule.getResourceList().size(), schedule
-					.getResourceRequirementList().size());
+			logger.info("Schedule {} has {} projects, {} jobs, {} execution modes, {} resources"
+					+ " and {} resource requirements.", getInputId(), schedule.getProjectList().size(), schedule
+					.getJobList().size(), schedule.getExecutionModeList().size(), schedule.getResourceList().size(),
+					schedule.getResourceRequirementList().size());
 			return schedule;
 		}
 
-		private void readProjectList() throws IOException {
-			projectListSize = readIntegerValue();
-			List<Project> projectList = new ArrayList<Project>(projectListSize);
-			projectFileMap = new LinkedHashMap<Project, File>(projectListSize);
-			for (int i = 0; i < projectListSize; i++) {
-				Project project = new Project();
-				project.setId(projectId);
-				project.setSchedule(schedule);
-				project.setReleaseDate(readIntegerValue());
-				project.setCriticalPathDuration(readIntegerValue());
-				File projectFile = new File(inputFile.getParentFile(), readStringValue());
-				if (!projectFile.exists()) {
-					throw new IllegalArgumentException("The projectFile (" + projectFile + ") does not exist.");
-				}
-				projectFileMap.put(project, projectFile);
-				projectList.add(project);
-				projectId++;
+		private void readSolutionFormDb() throws SQLException {
+			String[] tokens = splitBySpacesOrTabs(this.dbConnectString);
+			if (tokens.length < 4) {
+				throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+						+ ") should be at least 4 in length.");
 			}
-			schedule.setProjectList(projectList);
-			schedule.setJobList(new ArrayList<Job>(projectListSize * 10));
-			schedule.setExecutionModeList(new ArrayList<ExecutionMode>(projectListSize * 10 * 5));
+			String url = tokens[0].trim();
+			String user = tokens[1].trim();
+			String password = tokens[2].trim();
+			int schedulingId = 0;
+			try {
+				schedulingId = Integer.parseInt(tokens[3]);
+			} catch (NumberFormatException e) {
+				throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+						+ ") index 3 should be iteger.");
+			}
+
+			Dbo db = new Dbo(url, user, password);
+			Connection dbConnection = null;
+
+			try {
+				dbConnection = db.getConnection("ProjectJobSchedulingInputBuilder.readSolutionFormDb");
+				setDbData(dbConnection, schedulingId); 
+				readProjectListFromDb(dbConnection);
+
+				
+			} catch (Exception e) {
+				throw new SQLException(e);
+			} finally {
+				if (db != null)
+					db.closeConnection("ProjectJobSchedulingInputBuilder.readSolutionFormDb");
+			}
+		}
+		
+		private void setDbData(Connection dbConnection, int schedulingId) throws SQLException {
+			String sqlCall = "{call qmesp_bl_optaplanner.create_pjs_mm(p_scheduling_id => ?)}";
+			CallableStatement cstmt = null;
+			try {
+				cstmt = dbConnection.prepareCall(sqlCall);
+				cstmt.setLong(1, schedulingId);
+				cstmt.execute();
+			} catch (SQLException e) {
+				logger.error("SQL call: " + sqlCall);
+				logger.error(e.toString());
+				throw new SQLException(e);
+			} finally {
+				if (cstmt != null)
+					cstmt.close();
+			}
+		}
+		
+		private void readProjectListFromDb(Connection dbConnection) throws SQLException {
+			String sqlQuery = "select info from qmes_info where group_nr = 1 order by info_nr";
+			Statement stmt = null;
+			ResultSet result = null;
+			try {
+				stmt = dbConnection.createStatement();
+				result = stmt.executeQuery(sqlQuery);
+				while (result.next()) {
+					String info = result.getString("info");
+					logger.info("{}", info);
+				}
+			} catch (SQLException e) {
+				logger.error("SQL query: " + sqlQuery);
+				logger.error(e.toString());
+				throw e;
+			} finally {
+				if (result != null)
+					result.close();
+				if (stmt != null)
+					stmt.close();
+			}
+		}
+
+		private void readProjectList() throws IOException {
+			String preamble = readStringValue();
+			if (preamble.startsWith("#db")) {
+				this.readFromDb = true;
+				this.dbConnectString = readStringValue();
+			} else {
+				this.readFromDb = false;
+				this.dbConnectString = "";
+				projectListSize = Integer.parseInt(preamble);
+				List<Project> projectList = new ArrayList<Project>(projectListSize);
+				projectFileMap = new LinkedHashMap<Project, File>(projectListSize);
+				for (int i = 0; i < projectListSize; i++) {
+					Project project = new Project();
+					project.setId(projectId);
+					project.setSchedule(schedule);
+					project.setReleaseDate(readIntegerValue());
+					project.setCriticalPathDuration(readIntegerValue());
+					File projectFile = new File(inputFile.getParentFile(), readStringValue());
+					if (!projectFile.exists()) {
+						throw new IllegalArgumentException("The projectFile (" + projectFile + ") does not exist.");
+					}
+					projectFileMap.put(project, projectFile);
+					projectList.add(project);
+					projectId++;
+				}
+				schedule.setProjectList(projectList);
+				schedule.setJobList(new ArrayList<Job>(projectListSize * 10));
+				schedule.setExecutionModeList(new ArrayList<ExecutionMode>(projectListSize * 10 * 5));
+			}
 		}
 
 		private void readResourceList() throws IOException {
@@ -139,7 +233,8 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 			}
 			globalResourceListSize = resourceList.size();
 			schedule.setResourceList(resourceList);
-			schedule.setResourceRequirementList(new ArrayList<ResourceRequirement>(projectListSize * 10 * 5 * resourceListSize));
+			schedule.setResourceRequirementList(new ArrayList<ResourceRequirement>(projectListSize * 10 * 5
+					* resourceListSize));
 		}
 
 		private void readProjectFile(Project project, File projectFile) {
@@ -184,29 +279,29 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 				readPrecedenceRelations();
 				readRequestDurations();
 				readResourceAvailabilities();
-				
+
 				readMesExtensionMarker();
 				try {
-					readMesJobAllocations();					
+					readMesJobAllocations();
 				} catch (Exception e) {
 					useMesAllocations = false;
 					logger.error(e.toString());
 					logger.warn("Loading MES allocations faild. Back to standard mode.");
 				}
-				
-				try {					
+
+				try {
 					readMesSchedulingSession();
 					readMesJob2MesOperation();
 					readMesRes2MesMachine();
-				} catch (Exception e) {					
+				} catch (Exception e) {
 					logger.error(e.toString());
 					logger.warn("Loading MES mappings faild. Export will not be possible.");
-				}						
-				
+				}
+
 				detectPointlessSuccessor();
 				return null; // Hack so the code can reuse read methods from
 								// TxtInputBuilder
-			}			
+			}
 
 			private void readHeader() throws IOException {
 				readRegexConstantLine("\\*+");
@@ -234,10 +329,11 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 				nonrenewableLocalResourceSize = readIntegerValue("- nonrenewable              :", "N");
 				int doublyConstrainedResourceSize = readIntegerValue("- doubly constrained        :", "D");
 				if (doublyConstrainedResourceSize != 0) {
-					throw new IllegalArgumentException("The doublyConstrainedResourceSize (" + doublyConstrainedResourceSize + ") should always be 0.");
+					throw new IllegalArgumentException("The doublyConstrainedResourceSize ("
+							+ doublyConstrainedResourceSize + ") should always be 0.");
 				}
-				List<LocalResource> localResourceList = new ArrayList<LocalResource>(globalResourceListSize + renewableLocalResourceSize
-						+ nonrenewableLocalResourceSize);
+				List<LocalResource> localResourceList = new ArrayList<LocalResource>(globalResourceListSize
+						+ renewableLocalResourceSize + nonrenewableLocalResourceSize);
 				for (int i = 0; i < renewableLocalResourceSize; i++) {
 					LocalResource localResource = new LocalResource();
 					localResource.setId(resourceId);
@@ -264,11 +360,12 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 				readConstantLine("pronr.  #jobs rel.date duedate tardcost  MPM-Time");
 				String[] tokens = splitBySpacesOrTabs(readStringValue(), 6);
 				if (Integer.parseInt(tokens[0]) != 1) {
-					throw new IllegalArgumentException("The project information tokens (" + Arrays.toString(tokens) + ") index 0 should be 1.");
+					throw new IllegalArgumentException("The project information tokens (" + Arrays.toString(tokens)
+							+ ") index 0 should be 1.");
 				}
 				if (Integer.parseInt(tokens[1]) != jobListSize - 2) {
-					throw new IllegalArgumentException("The project information tokens (" + Arrays.toString(tokens) + ") index 1 should be "
-							+ (jobListSize - 2) + ".");
+					throw new IllegalArgumentException("The project information tokens (" + Arrays.toString(tokens)
+							+ ") index 1 should be " + (jobListSize - 2) + ".");
 				}
 				// Ignore releaseDate, dueDate, tardinessCost and mpmTime
 				readRegexConstantLine("\\*+");
@@ -298,10 +395,12 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 					Job job = jobList.get(i);
 					String[] tokens = splitBySpacesOrTabs(readStringValue());
 					if (tokens.length < 3) {
-						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens) + ") should be at least 3 in length.");
+						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+								+ ") should be at least 3 in length.");
 					}
 					if (Integer.parseInt(tokens[0]) != i + 1) {
-						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens) + ") index 0 should be " + (i + 1) + ".");
+						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+								+ ") index 0 should be " + (i + 1) + ".");
 					}
 					int executionModeListSize = Integer.parseInt(tokens[1]);
 					List<ExecutionMode> executionModeList = new ArrayList<ExecutionMode>(executionModeListSize);
@@ -316,8 +415,8 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 					schedule.getExecutionModeList().addAll(executionModeList);
 					int successorJobListSize = Integer.parseInt(tokens[2]);
 					if (tokens.length != 3 + successorJobListSize) {
-						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens) + ") should be " + (3 + successorJobListSize)
-								+ " in length.");
+						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens) + ") should be "
+								+ (3 + successorJobListSize) + " in length.");
 					}
 					List<Job> successorJobList = new ArrayList<Job>(successorJobListSize);
 					for (int j = 0; j < successorJobListSize; j++) {
@@ -343,15 +442,17 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 						boolean first = j == 0;
 						String[] tokens = splitBySpacesOrTabs(readStringValue(), (first ? 3 : 2) + resourceSize);
 						if (first && Integer.parseInt(tokens[0]) != i + 1) {
-							throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens) + ") index 0 should be " + (i + 1) + ".");
+							throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+									+ ") index 0 should be " + (i + 1) + ".");
 						}
 						if (Integer.parseInt(tokens[first ? 1 : 0]) != j + 1) {
-							throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens) + ") index " + (first ? 1 : 0) + " should be "
-									+ (j + 1) + ".");
+							throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens) + ") index "
+									+ (first ? 1 : 0) + " should be " + (j + 1) + ".");
 						}
 						int duration = Integer.parseInt(tokens[first ? 2 : 1]);
 						executionMode.setDuration(duration);
-						List<ResourceRequirement> resourceRequirementList = new ArrayList<ResourceRequirement>(resourceSize);
+						List<ResourceRequirement> resourceRequirementList = new ArrayList<ResourceRequirement>(
+								resourceSize);
 						for (int k = 0; k < resourceSize; k++) {
 							int requirement = Integer.parseInt(tokens[(first ? 3 : 2) + k]);
 							if (requirement != 0) {
@@ -393,10 +494,10 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 				}
 				readRegexConstantLine("\\*+");
 			}
-			
+
 			private void readMesExtensionMarker() {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			private void readMesJobAllocations() throws IOException {
@@ -411,48 +512,55 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 					try {
 						jobNumber = Integer.parseInt(tokens[0]);
 					} catch (NumberFormatException e) {
-						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens) + ") index 0 should be integer.");
+						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+								+ ") index 0 should be integer.");
 					}
 
 					int executionModeNumber = -1;
 					try {
 						executionModeNumber = Integer.parseInt(tokens[1]);
 					} catch (NumberFormatException e) {
-						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens) + ") index 1 should be integer.");
+						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+								+ ") index 1 should be integer.");
 					}
 
 					int predecessorsDoneDate = -1;
 					try {
 						predecessorsDoneDate = Integer.parseInt(tokens[2]);
 					} catch (NumberFormatException e) {
-						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens) + ") index 2 should be integer.");
+						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+								+ ") index 2 should be integer.");
 					}
 
 					int delay = -1;
 					try {
 						delay = Integer.parseInt(tokens[3]);
 					} catch (NumberFormatException e) {
-						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens) + ") index 3 should be integer.");
+						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+								+ ") index 3 should be integer.");
 					}
 					if (delay < 0) {
-						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens) + ") index 3 should be positive integer.");
+						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+								+ ") index 3 should be positive integer.");
 					}
 
-					logger.trace("jobNumber {} has executionModeNumber {} and starts at {} with delay {}.", jobNumber, executionModeNumber,
-							predecessorsDoneDate, delay);
+					logger.trace("jobNumber {} has executionModeNumber {} and starts at {} with delay {}.", jobNumber,
+							executionModeNumber, predecessorsDoneDate, delay);
 
 					Job job;
 					try {
 						job = project.getJobList().get(jobNumber - 1);
 					} catch (Exception e) {
-						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens) + ") index 0 should be existing job number.");
+						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+								+ ") index 0 should be existing job number.");
 					}
 
 					ExecutionMode executionMode;
 					try {
 						executionMode = job.getExecutionModeList().get(executionModeNumber - 1);
 					} catch (Exception e) {
-						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens) + ") index 1 should be existing execution mode number.");
+						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+								+ ") index 1 should be existing execution mode number.");
 					}
 
 					job.setInitialPredecessorsDoneDate(predecessorsDoneDate);
@@ -473,14 +581,16 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 				try {
 					schedulingId = Integer.parseInt(tokens[0]);
 				} catch (NumberFormatException e) {
-					throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens) + ") index 0 should be integer.");
+					throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+							+ ") index 0 should be integer.");
 				}
 
 				int timeScale = -1;
 				try {
 					timeScale = Integer.parseInt(tokens[1]);
 				} catch (NumberFormatException e) {
-					throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens) + ") index 0 should be integer.");
+					throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+							+ ") index 0 should be integer.");
 				}
 				schedule.setMesSchedulingId(schedulingId);
 				schedule.setMesTimeScale(timeScale);
@@ -501,24 +611,28 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 					try {
 						jobNumber = Integer.parseInt(tokens[0]);
 					} catch (NumberFormatException e) {
-						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens) + ") index 0 should be integer.");
+						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+								+ ") index 0 should be integer.");
 					}
 
 					int operationId = -1;
 					try {
 						operationId = Integer.parseInt(tokens[1]);
 					} catch (NumberFormatException e) {
-						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens) + ") index 1 should be integer.");
+						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+								+ ") index 1 should be integer.");
 					}
-					
+
 					String operationNr = tokens[2];
-					logger.trace("jobNumber {} maps operationId {} (operationNr {}).", jobNumber, operationId, operationNr);
+					logger.trace("jobNumber {} maps operationId {} (operationNr {}).", jobNumber, operationId,
+							operationNr);
 
 					Job job;
 					try {
 						job = project.getJobList().get(jobNumber - 1);
 					} catch (Exception e) {
-						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens) + ") index 0 should be existing job number.");
+						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+								+ ") index 0 should be existing job number.");
 					}
 
 					job.setMesOperationId(operationId);
@@ -540,14 +654,16 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 					try {
 						resNumber = Integer.parseInt(tokens[0]);
 					} catch (NumberFormatException e) {
-						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens) + ") index 0 should be integer.");
+						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+								+ ") index 0 should be integer.");
 					}
 
 					int machineId = -1;
 					try {
 						machineId = Integer.parseInt(tokens[1]);
 					} catch (NumberFormatException e) {
-						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens) + ") index 1 should be integer.");
+						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+								+ ") index 1 should be integer.");
 					}
 					String machineNr = tokens[2];
 					schedule.getResourceList().get(i).setMesMachineId(machineId);
@@ -571,8 +687,8 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 							continue;
 						}
 						if (baseSuccessorJobSet.contains(uncheckedJob)) {
-							throw new IllegalStateException("The baseJob (" + baseJob + ") has a direct successor (" + uncheckedJob
-									+ ") that is also an indirect successor. That's pointless.");
+							throw new IllegalStateException("The baseJob (" + baseJob + ") has a direct successor ("
+									+ uncheckedJob + ") that is also an indirect successor. That's pointless.");
 						}
 						uncheckedSuccessorQueue.addAll(uncheckedJob.getSuccessorJobList());
 					}
@@ -605,16 +721,16 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 				if (job.getJobType() == JobType.SOURCE) {
 					allocation.setDelay(0);
 					if (job.getExecutionModeList().size() != 1) {
-						throw new IllegalArgumentException("The job (" + job + ")'s executionModeList (" + job.getExecutionModeList()
-								+ ") is expected to be a singleton.");
+						throw new IllegalArgumentException("The job (" + job + ")'s executionModeList ("
+								+ job.getExecutionModeList() + ") is expected to be a singleton.");
 					}
 					allocation.setExecutionMode(job.getExecutionModeList().get(0));
 					projectToSourceAllocationMap.put(job.getProject(), allocation);
 				} else if (job.getJobType() == JobType.SINK) {
 					allocation.setDelay(0);
 					if (job.getExecutionModeList().size() != 1) {
-						throw new IllegalArgumentException("The job (" + job + ")'s executionModeList (" + job.getExecutionModeList()
-								+ ") is expected to be a singleton.");
+						throw new IllegalArgumentException("The job (" + job + ")'s executionModeList ("
+								+ job.getExecutionModeList() + ") is expected to be a singleton.");
 					}
 					allocation.setExecutionMode(job.getExecutionModeList().get(0));
 					projectToSinkAllocationMap.put(job.getProject(), allocation);
@@ -654,21 +770,21 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 				allocation.setId(job.getId());
 				allocation.setJob(job);
 				allocation.setPredecessorAllocationList(new ArrayList<Allocation>(job.getSuccessorJobList().size()));
-				allocation.setSuccessorAllocationList(new ArrayList<Allocation>(job.getSuccessorJobList().size()));				
+				allocation.setSuccessorAllocationList(new ArrayList<Allocation>(job.getSuccessorJobList().size()));
 				allocation.setPredecessorsDoneDate(job.getInitialPredecessorsDoneDate());
 				allocation.setExecutionMode(job.getInitialExecutionMode());
 				allocation.setDelay(job.getInitialDelay());
 
 				if (job.getJobType() == JobType.SOURCE) {
 					if (job.getExecutionModeList().size() != 1) {
-						throw new IllegalArgumentException("The job (" + job + ")'s executionModeList (" + job.getExecutionModeList()
-								+ ") is expected to be a singleton.");
+						throw new IllegalArgumentException("The job (" + job + ")'s executionModeList ("
+								+ job.getExecutionModeList() + ") is expected to be a singleton.");
 					}
 					projectToSourceAllocationMap.put(job.getProject(), allocation);
 				} else if (job.getJobType() == JobType.SINK) {
 					if (job.getExecutionModeList().size() != 1) {
-						throw new IllegalArgumentException("The job (" + job + ")'s executionModeList (" + job.getExecutionModeList()
-								+ ") is expected to be a singleton.");
+						throw new IllegalArgumentException("The job (" + job + ")'s executionModeList ("
+								+ job.getExecutionModeList() + ") is expected to be a singleton.");
 					}
 					projectToSinkAllocationMap.put(job.getProject(), allocation);
 				}
