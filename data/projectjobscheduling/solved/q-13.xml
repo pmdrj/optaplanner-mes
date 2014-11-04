@@ -672,38 +672,8 @@
   <mesTimeScale>1440</mesTimeScale>
   <scoreDefMap id="154">
     <entry>
-      <org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>RESOURCE</org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>
-      <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef id="155">
-        <type>HARD</type>
-        <level>0</level>
-        <name>Zasoby</name>
-        <description>Niedobór zasobów</description>
-        <value>0</value>
-      </org.optaplanner.mes.projectjobscheduling.domain.ScoreDef>
-    </entry>
-    <entry>
-      <org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>FREE_SPACE</org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>
-      <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef id="156">
-        <type>SOFT</type>
-        <level>1</level>
-        <name>Wolna przestrzeń</name>
-        <description>Niezagospodarowany czas do końca sesji</description>
-        <value>320</value>
-      </org.optaplanner.mes.projectjobscheduling.domain.ScoreDef>
-    </entry>
-    <entry>
-      <org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>SPAN</org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>
-      <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef id="157">
-        <type>SOFT</type>
-        <level>2</level>
-        <name>Rozpiętość</name>
-        <description>Czas od początku pierwszej do końca ostatniej operacji</description>
-        <value>-160</value>
-      </org.optaplanner.mes.projectjobscheduling.domain.ScoreDef>
-    </entry>
-    <entry>
       <org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>GAP</org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>
-      <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef id="158">
+      <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef id="155">
         <type>SOFT</type>
         <level>3</level>
         <name>Przerwy</name>
@@ -713,7 +683,7 @@
     </entry>
     <entry>
       <org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>DELAY</org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>
-      <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef id="159">
+      <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef id="156">
         <type>SOFT</type>
         <level>4</level>
         <name>Opóźnienia</name>
@@ -721,15 +691,46 @@
         <value>0</value>
       </org.optaplanner.mes.projectjobscheduling.domain.ScoreDef>
     </entry>
+    <entry>
+      <org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>RESOURCE</org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>
+      <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef id="157">
+        <type>HARD</type>
+        <level>0</level>
+        <name>Zasoby</name>
+        <description>Niedobór zasobów</description>
+        <value>0</value>
+      </org.optaplanner.mes.projectjobscheduling.domain.ScoreDef>
+    </entry>
+    <entry>
+      <org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>FREE_SPACE</org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>
+      <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef id="158">
+        <type>SOFT</type>
+        <level>1</level>
+        <name>Wolna przestrzeń</name>
+        <description>Niezagospodarowany czas do końca sesji</description>
+        <value>320</value>
+      </org.optaplanner.mes.projectjobscheduling.domain.ScoreDef>
+    </entry>
+    <entry>
+      <org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>SPAN</org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode>
+      <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef id="159">
+        <type>SOFT</type>
+        <level>2</level>
+        <name>Rozpiętość</name>
+        <description>Czas od początku pierwszej do końca ostatniej operacji</description>
+        <value>-160</value>
+      </org.optaplanner.mes.projectjobscheduling.domain.ScoreDef>
+    </entry>
   </scoreDefMap>
   <hardScoreDefArray id="160">
-    <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef reference="155"/>
+    <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef reference="157"/>
   </hardScoreDefArray>
   <softScoreDefArray id="161">
-    <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef reference="156"/>
-    <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef reference="157"/>
     <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef reference="158"/>
     <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef reference="159"/>
+    <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef reference="155"/>
+    <org.optaplanner.mes.projectjobscheduling.domain.ScoreDef reference="156"/>
   </softScoreDefArray>
+  <readFromDb>false</readFromDb>
   <score id="162">0/320/-160/0/0</score>
 </PjsSchedule>

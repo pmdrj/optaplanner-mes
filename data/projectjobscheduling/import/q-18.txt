@@ -1,6 +1,2 @@
-1
-0
-10080
-q-18.mm
-26
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+#db (db_url db_user db_password scheduling_session_id)
+jdbc:oracle:thin:@vmdbmes55dev:1521:mes55dev mes55_dev quantum 18

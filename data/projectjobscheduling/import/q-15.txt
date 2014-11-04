@@ -1,9 +1,3 @@
 #db (db_url db_user db_password scheduling_session_id)
 jdbc:oracle:thin:@vmdbmes55dev:1521:mes55dev mes55_dev quantum 15
 	
-1
-0
-6504
-q-15.mm
-26
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1

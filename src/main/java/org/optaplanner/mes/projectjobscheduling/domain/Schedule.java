@@ -49,6 +49,8 @@ public class Schedule extends AbstractPersistable implements Solution<BendableSc
 	private Map<ScoreDefCode, ScoreDef> scoreDefMap;
 	private ScoreDef[] hardScoreDefArray;
 	private ScoreDef[] softScoreDefArray;
+	private boolean readFromDb;
+	private String dbConnectString;
 
 	public Schedule() {
 		super();
@@ -178,6 +180,22 @@ public class Schedule extends AbstractPersistable implements Solution<BendableSc
 	public ScoreDef[] getSoftScoreDefArray() {
 		return softScoreDefArray;
 	}
+	
+	public boolean isReadFromDb() {
+		return readFromDb;
+	}
+
+	public void setReadFromDb(boolean readFromDb) {
+		this.readFromDb = readFromDb;
+	}
+
+	public String getDbConnectString() {
+		return dbConnectString;
+	}
+
+	public void setDbConnectString(String dbConnectString) {
+		this.dbConnectString = dbConnectString;
+	}
 
 	// ************************************************************************
 	// Complex methods
@@ -194,5 +212,7 @@ public class Schedule extends AbstractPersistable implements Solution<BendableSc
 		// be done automatically
 		return facts;
 	}
+
+
 
 }

@@ -86,12 +86,14 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 			schedule.setId(0L);
 			readProjectList();
 			if (readFromDb) {
+				this.schedule.setReadFromDb(true);
 				try {
 					readSolutionFormDb();
 				} catch (SQLException e) {
-					throw new IOException("Error while reading solutin form database.");
+					throw new IOException("Error while reading solution from database.");
 				}
 			} else {
+				this.schedule.setReadFromDb(false);
 				readResourceList();
 				for (Map.Entry<Project, File> entry : projectFileMap.entrySet()) {
 					readProjectFile(entry.getKey(), entry.getValue());
@@ -116,7 +118,8 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 			if (tokens.length < 4) {
 				throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
 						+ ") should be at least 4 in length.");
-			}
+			}			
+			this.schedule.setDbConnectString(this.dbConnectString);
 			String url = tokens[0].trim();
 			String user = tokens[1].trim();
 			String password = tokens[2].trim();
@@ -133,10 +136,14 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 
 			try {
 				dbConnection = db.getConnection("ProjectJobSchedulingInputBuilder.readSolutionFormDb");
-				setDbData(dbConnection, schedulingId); 
+				setDbData(dbConnection, schedulingId);
 				readProjectListFromDb(dbConnection);
+				readResourceListFromDb(dbConnection);
 
-				
+				for (Map.Entry<Project, File> entry : projectFileMap.entrySet()) {
+					readProjectFromDb(entry.getKey(), dbConnection);
+				}
+
 			} catch (Exception e) {
 				throw new SQLException(e);
 			} finally {
@@ -144,7 +151,7 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 					db.closeConnection("ProjectJobSchedulingInputBuilder.readSolutionFormDb");
 			}
 		}
-		
+
 		private void setDbData(Connection dbConnection, int schedulingId) throws SQLException {
 			String sqlCall = "{call qmesp_bl_optaplanner.create_pjs_mm(p_scheduling_id => ?)}";
 			CallableStatement cstmt = null;
@@ -161,18 +168,570 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 					cstmt.close();
 			}
 		}
-		
+
 		private void readProjectListFromDb(Connection dbConnection) throws SQLException {
-			String sqlQuery = "select info from qmes_info where group_nr = 1 order by info_nr";
+			String sqlQuery = "select info from qmes_opta_info where group_nr = 1 order by info_nr";
 			Statement stmt = null;
 			ResultSet result = null;
 			try {
 				stmt = dbConnection.createStatement();
 				result = stmt.executeQuery(sqlQuery);
-				while (result.next()) {
-					String info = result.getString("info");
-					logger.info("{}", info);
+				// projectListSize
+				result.next();
+				projectListSize = result.getInt("info");
+				logger.trace("projectListSize: {}", projectListSize);
+				if (projectListSize != 1) {
+					throw new IllegalArgumentException("The projectListSize is " + projectListSize + " but must be 1.");
 				}
+				List<Project> projectList = new ArrayList<Project>(projectListSize);
+				projectFileMap = new LinkedHashMap<Project, File>(projectListSize);
+				for (int i = 0; i < projectListSize; i++) {
+					Project project = new Project();
+					project.setId(projectId);
+					project.setSchedule(schedule);
+					// releaseDate
+					result.next();
+					int releaseDate = result.getInt("info");
+					project.setReleaseDate(releaseDate);
+					logger.trace("releaseDate: {}", releaseDate);
+					// criticalPathDuration
+					result.next();
+					int criticalPathDuration = result.getInt("info");
+					project.setCriticalPathDuration(criticalPathDuration);
+					logger.trace("criticalPathDuration: {}", criticalPathDuration);
+					// projectFile
+					File projectFile = new File(inputFile.getParentFile(), dbConnectString);
+					logger.trace("projectFile: {}", dbConnectString);
+					projectFileMap.put(project, projectFile);
+					projectList.add(project);
+					projectId++;
+				}
+				schedule.setProjectList(projectList);
+				schedule.setJobList(new ArrayList<Job>(projectListSize * 10));
+				schedule.setExecutionModeList(new ArrayList<ExecutionMode>(projectListSize * 10 * 5));
+
+			} catch (SQLException e) {
+				logger.error("SQL query: " + sqlQuery);
+				logger.error(e.toString());
+				throw e;
+			} finally {
+				if (result != null)
+					result.close();
+				if (stmt != null)
+					stmt.close();
+			}
+		}
+
+		private void readResourceListFromDb(Connection dbConnection) throws SQLException {
+			String sqlQuery = "select info from qmes_opta_info where group_nr = 2 order by info_nr";
+			Statement stmt = null;
+			ResultSet result = null;
+			try {
+				stmt = dbConnection.createStatement();
+				result = stmt.executeQuery(sqlQuery);
+				// resourceListSize
+				result.next();
+				resourceListSize = result.getInt("info");
+				logger.trace("resourceListSize: {}", resourceListSize);
+				// resourceList
+				result.next();
+				String resourceStringValue = result.getString("info");
+				logger.trace("resourceStringValue: {}", resourceStringValue);
+				String[] tokens = splitBySpacesOrTabs(resourceStringValue, resourceListSize);
+				List<Resource> resourceList = new ArrayList<Resource>(resourceListSize * projectListSize * 10);
+				for (int i = 0; i < resourceListSize; i++) {
+					int capacity = Integer.parseInt(tokens[i]);
+					if (capacity != -1) {
+						GlobalResource resource = new GlobalResource();
+						resource.setId(resourceId);
+						resource.setCapacity(capacity);
+						resource.setAllocationList(new ArrayList<Allocation>());
+						resourceList.add(resource);
+						resourceId++;
+					}
+				}
+				globalResourceListSize = resourceList.size();
+				schedule.setResourceList(resourceList);
+				schedule.setResourceRequirementList(new ArrayList<ResourceRequirement>(projectListSize * 10 * 5
+						* resourceListSize));
+
+			} catch (SQLException e) {
+				logger.error("SQL query: " + sqlQuery);
+				logger.error(e.toString());
+				throw e;
+			} finally {
+				if (result != null)
+					result.close();
+				if (stmt != null)
+					stmt.close();
+			}
+		}
+
+		private int getIntPatternValue(ResultSet result, String pattern, String trimEnd) throws SQLException {
+			String info = "";
+			boolean found = false;
+			while (result.next()) {
+				info = result.getString("info");
+				logger.trace("info: {}", info);
+				if (info.startsWith(pattern)) {
+					found = true;
+					break;
+				}
+			}
+			int trimEndIdx = (trimEnd == "") ? info.length() : info.indexOf(trimEnd);
+			logger.trace("trimEndIdx: {}", trimEndIdx);
+
+			String stringValue = info.substring(pattern.length(), trimEndIdx).trim();
+			logger.trace("stringValue: {}", stringValue);
+			int intValue;
+			try {
+				intValue = Integer.parseInt(stringValue);
+			} catch (NumberFormatException e) {
+				throw new IllegalArgumentException("The pattern (" + pattern + ") should have an integer succesor.");
+			}
+			if (!found) {
+				throw new IllegalArgumentException("The pattern (" + pattern + ") is not found.");
+			}
+			return intValue;
+		}
+
+		private void findPattern(ResultSet result, String pattern) throws SQLException {
+			String info = "";
+			boolean found = false;
+			while (result.next()) {
+				info = result.getString("info");
+				logger.trace("info: {}", info);
+				if (info.startsWith(pattern)) {
+					found = true;
+					break;
+				}
+			}
+			if (!found) {
+				throw new IllegalArgumentException("The pattern (" + pattern + ") is not found.");
+			}
+		}
+
+		private void readProjectFromDb(Project project, Connection dbConnection) throws SQLException {
+			int projects;
+			int jobListSize;
+			int renewableLocalResourceSize;
+			int nonrenewableLocalResourceSize;
+
+			String info;
+			String[] tokens;
+			String sqlQuery = "select info from qmes_opta_info where group_nr = 0 order by info_nr";
+			Statement stmt = null;
+			ResultSet result = null;
+			try {
+				stmt = dbConnection.createStatement();
+				result = stmt.executeQuery(sqlQuery);
+
+				/*
+				 * Header -----------------------------------------------------
+				 */
+				projects = getIntPatternValue(result, "projects                      :", "");
+				if (projects != 1) {
+					throw new IllegalArgumentException("The projects value (" + projects + ") should always be 1.");
+				}
+				jobListSize = getIntPatternValue(result, "jobs (incl. supersource/sink ):", "");
+
+				/*
+				 * ResourceList -----------------------------------------------
+				 */
+				int renewableResourceSize = getIntPatternValue(result, "  - renewable                 :", "R");
+
+				if (renewableResourceSize < globalResourceListSize) {
+					throw new IllegalArgumentException("The renewableResourceSize (" + renewableResourceSize
+							+ ") can not be less than globalResourceListSize (" + globalResourceListSize + ").");
+				}
+				renewableLocalResourceSize = renewableResourceSize - globalResourceListSize;
+				nonrenewableLocalResourceSize = getIntPatternValue(result, "  - nonrenewable              :", "N");
+				int doublyConstrainedResourceSize = getIntPatternValue(result, "  - doubly constrained        :", "D");
+				if (doublyConstrainedResourceSize != 0) {
+					throw new IllegalArgumentException("The doublyConstrainedResourceSize ("
+							+ doublyConstrainedResourceSize + ") should always be 0.");
+				}
+
+				List<LocalResource> localResourceList = new ArrayList<LocalResource>(globalResourceListSize
+						+ renewableLocalResourceSize + nonrenewableLocalResourceSize);
+				for (int i = 0; i < renewableLocalResourceSize; i++) {
+					LocalResource localResource = new LocalResource();
+					localResource.setId(resourceId);
+					localResource.setProject(project);
+					localResource.setRenewable(true);
+					resourceId++;
+					localResourceList.add(localResource);
+				}
+				for (int i = 0; i < nonrenewableLocalResourceSize; i++) {
+					LocalResource localResource = new LocalResource();
+					localResource.setId(resourceId);
+					localResource.setProject(project);
+					localResource.setRenewable(false);
+					resourceId++;
+					localResourceList.add(localResource);
+				}
+				project.setLocalResourceList(localResourceList);
+				schedule.getResourceList().addAll(localResourceList);
+
+				/*
+				 * ProjectInformation -----------------------------------------
+				 */
+				findPattern(result, "pronr.  #jobs rel.date duedate tardcost  MPM-Time");
+				result.next();
+				info = result.getString("info");
+				logger.trace("info: {}", info);
+				tokens = splitBySpacesOrTabs(info.trim(), 6);
+				if (Integer.parseInt(tokens[0]) != 1) {
+					throw new IllegalArgumentException("The project information tokens (" + Arrays.toString(tokens)
+							+ ") index 0 should be 1.");
+				}
+				if (Integer.parseInt(tokens[1]) != jobListSize - 2) {
+					throw new IllegalArgumentException("The project information tokens (" + Arrays.toString(tokens)
+							+ ") index 1 should be " + (jobListSize - 2) + ".");
+				}
+
+				/*
+				 * PrecedenceRelations ----------------------------------------
+				 */
+				findPattern(result, "jobnr.    #modes  #successors   successors");
+				List<Job> jobList = new ArrayList<Job>(jobListSize);
+				for (int i = 0; i < jobListSize; i++) {
+					Job job = new Job();
+					job.setId(jobId);
+					job.setProject(project);
+					if (i == 0) {
+						job.setJobType(JobType.SOURCE);
+					} else if (i == jobListSize - 1) {
+						job.setJobType(JobType.SINK);
+					} else {
+						job.setJobType(JobType.STANDARD);
+					}
+					jobList.add(job);
+					jobId++;
+				}
+				project.setJobList(jobList);
+				schedule.getJobList().addAll(jobList);
+
+				for (int i = 0; i < jobListSize; i++) {
+					Job job = jobList.get(i);
+
+					result.next();
+					info = result.getString("info");
+					logger.trace("info: {}", info);
+
+					tokens = splitBySpacesOrTabs(info.trim());
+					if (tokens.length < 3) {
+						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+								+ ") should be at least 3 in length.");
+					}
+					if (Integer.parseInt(tokens[0]) != i + 1) {
+						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+								+ ") index 0 should be " + (i + 1) + ".");
+					}
+					int executionModeListSize = Integer.parseInt(tokens[1]);
+					List<ExecutionMode> executionModeList = new ArrayList<ExecutionMode>(executionModeListSize);
+					for (int j = 0; j < executionModeListSize; j++) {
+						ExecutionMode executionMode = new ExecutionMode();
+						executionMode.setId(executionModeId);
+						executionMode.setJob(job);
+						executionModeList.add(executionMode);
+						executionModeId++;
+					}
+					job.setExecutionModeList(executionModeList);
+					schedule.getExecutionModeList().addAll(executionModeList);
+					int successorJobListSize = Integer.parseInt(tokens[2]);
+					if (tokens.length != 3 + successorJobListSize) {
+						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens) + ") should be "
+								+ (3 + successorJobListSize) + " in length.");
+					}
+					List<Job> successorJobList = new ArrayList<Job>(successorJobListSize);
+					for (int j = 0; j < successorJobListSize; j++) {
+						int successorIndex = Integer.parseInt(tokens[3 + j]);
+						Job successorJob = project.getJobList().get(successorIndex - 1);
+						successorJobList.add(successorJob);
+					}
+					job.setSuccessorJobList(successorJobList);
+				}
+
+				/*
+				 * RequestDurations ---------------------------------------
+				 */
+				findPattern(result, "REQUESTS/DURATIONS:");
+				result.next();
+				info = result.getString("info");
+				logger.trace("info: {}", info);
+
+				tokens = splitBySpacesOrTabs(info.trim());
+				findPattern(result, "------------------------------------------------------------------------");
+
+				int resourceSize = globalResourceListSize + renewableLocalResourceSize + nonrenewableLocalResourceSize;
+				for (int i = 0; i < jobListSize; i++) {
+					Job job = project.getJobList().get(i);
+					int executionModeSize = job.getExecutionModeList().size();
+					for (int j = 0; j < executionModeSize; j++) {
+						ExecutionMode executionMode = job.getExecutionModeList().get(j);
+						boolean first = j == 0;
+
+						result.next();
+						info = result.getString("info");
+						logger.trace("info: {}", info);
+
+						tokens = splitBySpacesOrTabs(info.trim(), (first ? 3 : 2) + resourceSize);
+						if (first && Integer.parseInt(tokens[0]) != i + 1) {
+							throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+									+ ") index 0 should be " + (i + 1) + ".");
+						}
+						if (Integer.parseInt(tokens[first ? 1 : 0]) != j + 1) {
+							throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens) + ") index "
+									+ (first ? 1 : 0) + " should be " + (j + 1) + ".");
+						}
+						int duration = Integer.parseInt(tokens[first ? 2 : 1]);
+						executionMode.setDuration(duration);
+						List<ResourceRequirement> resourceRequirementList = new ArrayList<ResourceRequirement>(
+								resourceSize);
+						for (int k = 0; k < resourceSize; k++) {
+							int requirement = Integer.parseInt(tokens[(first ? 3 : 2) + k]);
+							if (requirement != 0) {
+								ResourceRequirement resourceRequirement = new ResourceRequirement();
+								resourceRequirement.setId(resourceRequirementId);
+								resourceRequirement.setExecutionMode(executionMode);
+								Resource resource;
+								if (k < globalResourceListSize) {
+									resource = schedule.getResourceList().get(k);
+								} else {
+									resource = project.getLocalResourceList().get(k - globalResourceListSize);
+								}
+								resourceRequirement.setResource(resource);
+								resourceRequirement.setRequirement(requirement);
+								resourceRequirementList.add(resourceRequirement);
+								resourceRequirementId++;
+							}
+						}
+						executionMode.setResourceRequirementList(resourceRequirementList);
+						schedule.getResourceRequirementList().addAll(resourceRequirementList);
+					}
+				}
+
+				/*
+				 * ResourceAvailabilities -------------------------------------
+				 */
+				findPattern(result, "RESOURCEAVAILABILITIES:");
+				result.next();
+				info = result.getString("info");
+				logger.trace("info: {}", info);
+				tokens = splitBySpacesOrTabs(info.trim());
+
+				result.next();
+				info = result.getString("info");
+				logger.trace("info: {}", info);
+				tokens = splitBySpacesOrTabs(info.trim(), resourceSize);
+
+				for (int i = 0; i < resourceSize; i++) {
+					int capacity = Integer.parseInt(tokens[i]);
+					if (i < globalResourceListSize) {
+						// Overwritten by global resource
+					} else {
+						Resource resource = project.getLocalResourceList().get(i - globalResourceListSize);
+						resource.setCapacity(capacity);
+					}
+				}
+
+				/*
+				 * MesJobAllocations ------------------------------------------
+				 */
+				try {
+					findPattern(result, "jobNumber    executionModeNumber    predecessorsDoneDate           delay");
+					findPattern(result, "------------------------------------------------------------------------");
+
+					for (int i = 0; i < jobListSize; i++) {
+						result.next();
+						info = result.getString("info");
+						logger.trace("info: {}", info);
+
+						tokens = splitBySpacesOrTabs(info.trim(), 4);
+
+						int jobNumber = -1;
+						try {
+							jobNumber = Integer.parseInt(tokens[0]);
+						} catch (NumberFormatException e) {
+							throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+									+ ") index 0 should be integer.");
+						}
+
+						int executionModeNumber = -1;
+						try {
+							executionModeNumber = Integer.parseInt(tokens[1]);
+						} catch (NumberFormatException e) {
+							throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+									+ ") index 1 should be integer.");
+						}
+
+						int predecessorsDoneDate = -1;
+						try {
+							predecessorsDoneDate = Integer.parseInt(tokens[2]);
+						} catch (NumberFormatException e) {
+							throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+									+ ") index 2 should be integer.");
+						}
+
+						int delay = -1;
+						try {
+							delay = Integer.parseInt(tokens[3]);
+						} catch (NumberFormatException e) {
+							throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+									+ ") index 3 should be integer.");
+						}
+						if (delay < 0) {
+							throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+									+ ") index 3 should be positive integer.");
+						}
+
+						logger.trace("jobNumber {} has executionModeNumber {} and starts at {} with delay {}.",
+								jobNumber, executionModeNumber, predecessorsDoneDate, delay);
+
+						Job job;
+						try {
+							job = project.getJobList().get(jobNumber - 1);
+						} catch (Exception e) {
+							throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+									+ ") index 0 should be existing job number.");
+						}
+
+						ExecutionMode executionMode;
+						try {
+							executionMode = job.getExecutionModeList().get(executionModeNumber - 1);
+						} catch (Exception e) {
+							throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+									+ ") index 1 should be existing execution mode number.");
+						}
+
+						job.setInitialPredecessorsDoneDate(predecessorsDoneDate);
+						job.setInitialExecutionMode(executionMode);
+						job.setInitialDelay(delay);
+					}
+				} catch (Exception e) {
+					useMesAllocations = false;
+					logger.error(e.toString());
+					logger.warn("Loading MES allocations faild. Back to standard mode.");
+				}
+
+				try {
+					/*
+					 * MesSchedulingSession -----------------------------------
+					 */
+
+					findPattern(result, "MESSCHEDULINGSESSION:");
+					findPattern(result, "schedulingId           timeScale");
+					findPattern(result, "------------------------------------------------------------------------");
+					result.next();
+					info = result.getString("info");
+					logger.trace("info: {}", info);
+
+					tokens = splitBySpacesOrTabs(info.trim(), 2);
+
+					int schedulingId = -1;
+					try {
+						schedulingId = Integer.parseInt(tokens[0]);
+					} catch (NumberFormatException e) {
+						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+								+ ") index 0 should be integer.");
+					}
+
+					int timeScale = -1;
+					try {
+						timeScale = Integer.parseInt(tokens[1]);
+					} catch (NumberFormatException e) {
+						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+								+ ") index 0 should be integer.");
+					}
+					schedule.setMesSchedulingId(schedulingId);
+					schedule.setMesTimeScale(timeScale);
+					logger.trace("schedulingId {} uses timeScale {}.", schedulingId, timeScale);
+
+					/*
+					 * MesJob2MesOperation ------------------------------------
+					 */
+					findPattern(result, "JOB2MESOPERATION:");
+					findPattern(result, "jobNumber            operationId     operationNr");
+					findPattern(result, "------------------------------------------------------------------------");
+					result.next();
+					info = result.getString("info");
+					logger.trace("info: {}", info);
+
+					for (int i = 1; i < jobListSize - 1; i++) {
+						tokens = splitBySpacesOrTabs(info.trim(), 3);
+
+						int jobNumber = -1;
+						try {
+							jobNumber = Integer.parseInt(tokens[0]);
+						} catch (NumberFormatException e) {
+							throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+									+ ") index 0 should be integer.");
+						}
+
+						int operationId = -1;
+						try {
+							operationId = Integer.parseInt(tokens[1]);
+						} catch (NumberFormatException e) {
+							throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+									+ ") index 1 should be integer.");
+						}
+
+						String operationNr = tokens[2];
+						logger.trace("jobNumber {} maps operationId {} (operationNr {}).", jobNumber, operationId,
+								operationNr);
+
+						Job job;
+						try {
+							job = project.getJobList().get(jobNumber - 1);
+						} catch (Exception e) {
+							throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+									+ ") index 0 should be existing job number.");
+						}
+
+						job.setMesOperationId(operationId);
+						job.setMesOperationNr(operationNr);
+					}
+
+					/*
+					 * MesRes2MesMachine --------------------------------------
+					 */
+					findPattern(result, "RESOURCE2MESMACHINE:");
+					findPattern(result, "resNumber              machineId     machineNr");
+					findPattern(result, "------------------------------------------------------------------------");
+					result.next();
+					info = result.getString("info");
+					logger.trace("info: {}", info);
+
+					for (int i = 0; i < resourceSize; i++) {
+						tokens = splitBySpacesOrTabs(info.trim(), 3);
+
+						int resNumber = -1;
+						try {
+							resNumber = Integer.parseInt(tokens[0]);
+						} catch (NumberFormatException e) {
+							throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+									+ ") index 0 should be integer.");
+						}
+
+						int machineId = -1;
+						try {
+							machineId = Integer.parseInt(tokens[1]);
+						} catch (NumberFormatException e) {
+							throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+									+ ") index 1 should be integer.");
+						}
+						String machineNr = tokens[2];
+						schedule.getResourceList().get(i).setMesMachineId(machineId);
+						schedule.getResourceList().get(i).setMesMachineNr(machineNr);
+						logger.trace("resNumber {} maps machineId {} (machineNr {}).", resNumber, machineId, machineNr);
+					}
+
+				} catch (Exception e) {
+					logger.error(e.toString());
+					logger.warn("Loading MES mappings faild. Export will not be possible.");
+				}
+
 			} catch (SQLException e) {
 				logger.error("SQL query: " + sqlQuery);
 				logger.error(e.toString());
@@ -280,7 +839,6 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 				readRequestDurations();
 				readResourceAvailabilities();
 
-				readMesExtensionMarker();
 				try {
 					readMesJobAllocations();
 				} catch (Exception e) {
@@ -493,11 +1051,6 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 					}
 				}
 				readRegexConstantLine("\\*+");
-			}
-
-			private void readMesExtensionMarker() {
-				// TODO Auto-generated method stub
-
 			}
 
 			private void readMesJobAllocations() throws IOException {
