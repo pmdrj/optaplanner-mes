@@ -47,6 +47,9 @@ import org.optaplanner.mes.projectjobscheduling.domain.JobType;
 import org.optaplanner.mes.projectjobscheduling.domain.Project;
 import org.optaplanner.mes.projectjobscheduling.domain.ResourceRequirement;
 import org.optaplanner.mes.projectjobscheduling.domain.Schedule;
+import org.optaplanner.mes.projectjobscheduling.domain.ScoreDef;
+import org.optaplanner.mes.projectjobscheduling.domain.ScoreDefCode;
+import org.optaplanner.mes.projectjobscheduling.domain.ScoreDefType;
 import org.optaplanner.mes.projectjobscheduling.domain.resource.GlobalResource;
 import org.optaplanner.mes.projectjobscheduling.domain.resource.LocalResource;
 import org.optaplanner.mes.projectjobscheduling.domain.resource.Resource;
@@ -100,9 +103,10 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 				}
 			}
 			removePointlessExecutionModes();
+			
 			if (useMesAllocations) {
 				createMesAllocationList();
-			} else {
+			} else {				
 				createAllocationList();
 			}
 
@@ -118,7 +122,7 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 			if (tokens.length < 4) {
 				throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
 						+ ") should be at least 4 in length.");
-			}			
+			}
 			this.schedule.setDbConnectString(this.dbConnectString);
 			String url = tokens[0].trim();
 			String user = tokens[1].trim();
@@ -731,6 +735,74 @@ public class ProjectJobSchedulingImporter extends AbstractTxtSolutionImporter {
 					logger.error(e.toString());
 					logger.warn("Loading MES mappings faild. Export will not be possible.");
 				}
+
+				/*
+				 * ScoreSetting -----------------------------------------------
+				 */
+				Map<ScoreDefCode, ScoreDef> scoreDefMap = new HashMap<ScoreDefCode, ScoreDef>();
+				findPattern(result, "SCOREHIERARCHY:");
+				findPattern(result, "scoreCode scoreType scoreName scoreDescription scoreLevel");
+				findPattern(result, "------------------------------------------------------------------------");
+
+				while (result.next()) {
+					info = result.getString("info");
+					logger.trace("info: {}", info);
+					if (info.startsWith("***")) {
+						break;
+					}
+					tokens = splitBySpacesOrTabs(info.trim(), 5);
+					
+					ScoreDefCode scoreCode;
+					switch (tokens[0]) {
+					case "RESOURCE":
+						scoreCode = ScoreDefCode.RESOURCE;
+						break;
+					case "FREE_SPACE":
+						scoreCode = ScoreDefCode.FREE_SPACE;
+						break;
+					case "SPAN":
+						scoreCode = ScoreDefCode.SPAN;
+						break;
+					case "GAP":
+						scoreCode = ScoreDefCode.GAP;
+						break;
+					case "DELAY":
+						scoreCode = ScoreDefCode.DELAY;
+						break;
+					default:
+						scoreCode = null;
+						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+								+ ") index 0 should be one of: RESOURCE, FREE_SPACE, SPAN, GAP, DELAY.");
+					}
+
+					ScoreDefType scoreType;
+					switch (tokens[1]) {
+					case "HARD":
+						scoreType = ScoreDefType.HARD;
+						break;
+					case "SOFT":
+						scoreType = ScoreDefType.SOFT;
+						break;					
+					default:
+						scoreType = null;
+						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+								+ ") index 1 should be one of: HARD, SOFT.");
+					}					
+					
+					String scoreName = tokens[2].replaceAll("&nbsp;", " ");
+					String scoreDescription = tokens[3].replaceAll("&nbsp;", " ");
+					int scoreLevel = -1;
+					try {
+						scoreLevel = Integer.parseInt(tokens[4]);
+					} catch (NumberFormatException e) {
+						throw new IllegalArgumentException("The tokens (" + Arrays.toString(tokens)
+								+ ") index 4 should be integer.");
+					}
+
+					scoreDefMap.put(scoreCode, new ScoreDef(scoreType, scoreLevel, scoreName,
+							scoreDescription));
+				}
+				schedule.createScoreHierarchy(scoreDefMap);
 
 			} catch (SQLException e) {
 				logger.error("SQL query: " + sqlQuery);

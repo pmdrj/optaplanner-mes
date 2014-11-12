@@ -14,7 +14,7 @@
 		<!-- <scoreDrl>org/optaplanner/mes/projectjobscheduling/solver/projectJobSchedulingScoreRules.drl</scoreDrl> -->
 	</scoreDirectorFactory>
 	<termination>
-		<secondsSpentLimit>290000</secondsSpentLimit>
+		<secondsSpentLimit>29</secondsSpentLimit>
 	</termination>
 
 	<constructionHeuristic>

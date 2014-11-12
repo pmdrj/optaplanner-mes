@@ -1,6 +1,6 @@
 ************************************************************************
 file with basedata            :
-initial value random generator: 2768305695
+initial value random generator: 3044594494
 ************************************************************************
 projects                      : 1
 jobs (incl. supersource/sink ): 7
@@ -119,3 +119,11 @@ resNumber              machineId     machineNr
        25                     15     Linia_11
        26                    236     Linia_12
 ************************************************************************
+
+
+SCOREHIERARCHY:
+scoreCode scoreType scoreName scoreDescription scoreLevel
+------------------------------------------------------------------------
+************************************************************************
+
+

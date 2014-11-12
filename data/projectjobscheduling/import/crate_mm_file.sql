@@ -20,16 +20,16 @@ END;
 prompt Creating file q-&c_scheduling_id..mm...
 set termout off;
 spool ./q-&c_scheduling_id..mm;
-select info from qmes_info where group_nr = 0 order by info_nr;
+select info from qmes_opta_info where group_nr = 0 order by info_nr;
 spool off;
 set termout on;
 
 prompt Creating file q-&c_scheduling_id..txt...
 set termout off;
 spool ./q-&c_scheduling_id..txt;
-select info from qmes_info where group_nr = 1 order by info_nr;
+select info from qmes_opta_info where group_nr = 1 order by info_nr;
 prompt q-&c_scheduling_id..mm
-select info from qmes_info where group_nr = 2 order by info_nr;
+select info from qmes_opta_info where group_nr = 2 order by info_nr;
 
 spool off;
 set termout on;

@@ -52,31 +52,38 @@ public class ProjectJobSchedulingIncrementalScoreCalculator extends AbstractIncr
 		List<Project> projectList = schedule.getProjectList();
 		projectEndDateMap = new HashMap<Project, Integer>(projectList.size());
 		maximumProjectEndDate = 0;
+		int minimumReleaseDate = Integer.MAX_VALUE;
+		for (Project p : projectList) {
+			minimumReleaseDate = Math.min(p.getReleaseDate(), minimumReleaseDate);
+		}
 
 		for (ScoreDefCode code : scoreDefMap.keySet()) {
 			scoreDefMap.get(code).setValue(0);
 		}
 
-		int minimumReleaseDate = Integer.MAX_VALUE;
-		for (Project p : projectList) {
-			minimumReleaseDate = Math.min(p.getReleaseDate(), minimumReleaseDate);
+		if (scoreDefMap.containsKey(ScoreDefCode.SPAN)) {
+			scoreDefMap.get(ScoreDefCode.SPAN).add(minimumReleaseDate);
 		}
-		scoreDefMap.get(ScoreDefCode.SPAN).add(minimumReleaseDate);
+
 		for (Allocation allocation : schedule.getAllocationList()) {
 			insert(allocation);
 		}
 
-		for (Resource resource : resourceList) {
-			ResourceGapTracker gapTracker = resourceGapTrackerMap.get(resource);
-			scoreDefMap.get(ScoreDefCode.GAP).subtruct(gapTracker.getGap());
-			logger.trace("Allocation list on resource {}: {}", resource.toString(),
-					getAllocationListOnResource(resource));
-			logger.trace("Sum gap on mesMachineNr {}: {}", resource.getMesMachineNr(), gapTracker.getGap());
+		if (scoreDefMap.containsKey(ScoreDefCode.GAP)) {
+			for (Resource resource : resourceList) {
+				ResourceGapTracker gapTracker = resourceGapTrackerMap.get(resource);
+				scoreDefMap.get(ScoreDefCode.GAP).subtruct(gapTracker.getGap());
+				logger.trace("Allocation list on resource {}: {}", resource.toString(),
+						getAllocationListOnResource(resource));
+				logger.trace("Sum gap on mesMachineNr {}: {}", resource.getMesMachineNr(), gapTracker.getGap());
+			}
 		}
 
-		for (Allocation allocation : schedule.getAllocationList()) {
-			if (allocation.getJob().getJobType() == JobType.STANDARD) {
-				scoreDefMap.get(ScoreDefCode.DELAY).subtruct(allocation.getDelay());
+		if (scoreDefMap.containsKey(ScoreDefCode.DELAY)) {
+			for (Allocation allocation : schedule.getAllocationList()) {
+				if (allocation.getJob().getJobType() == JobType.STANDARD) {
+					scoreDefMap.get(ScoreDefCode.DELAY).subtruct(allocation.getDelay());
+				}
 			}
 		}
 	}
@@ -126,16 +133,24 @@ public class ProjectJobSchedulingIncrementalScoreCalculator extends AbstractIncr
 		if (executionMode != null && allocation.getJob().getJobType() == JobType.STANDARD) {
 			for (ResourceRequirement resourceRequirement : executionMode.getResourceRequirementList()) {
 				Resource resource = resourceRequirement.getResource();
-				ResourceCapacityTracker tracker = resourceCapacityTrackerMap.get(resource);
-				scoreDefMap.get(ScoreDefCode.RESOURCE).subtruct(tracker.getHardScore());
-				tracker.insert(resourceRequirement, allocation);
-				scoreDefMap.get(ScoreDefCode.RESOURCE).add(tracker.getHardScore());
-				ResourceGapTracker gapTracker = resourceGapTrackerMap.get(resource);
-				scoreDefMap.get(ScoreDefCode.GAP).add(gapTracker.getGap());
-				putAlocationOnResource(allocation, resource);
-				scoreDefMap.get(ScoreDefCode.GAP).subtruct(gapTracker.getGap());
+
+				if (scoreDefMap.containsKey(ScoreDefCode.RESOURCE)) {
+					ResourceCapacityTracker tracker = resourceCapacityTrackerMap.get(resource);
+					scoreDefMap.get(ScoreDefCode.RESOURCE).subtruct(tracker.getHardScore());
+					tracker.insert(resourceRequirement, allocation);
+					scoreDefMap.get(ScoreDefCode.RESOURCE).add(tracker.getHardScore());
+				}
+
+				if (scoreDefMap.containsKey(ScoreDefCode.GAP)) {
+					ResourceGapTracker gapTracker = resourceGapTrackerMap.get(resource);
+					scoreDefMap.get(ScoreDefCode.GAP).add(gapTracker.getGap());
+					putAlocationOnResource(allocation, resource);
+					scoreDefMap.get(ScoreDefCode.GAP).subtruct(gapTracker.getGap());
+				}
 			}
-			scoreDefMap.get(ScoreDefCode.DELAY).subtruct(allocation.getDelay());
+			if (scoreDefMap.containsKey(ScoreDefCode.DELAY)) {
+				scoreDefMap.get(ScoreDefCode.DELAY).subtruct(allocation.getDelay());
+			}
 		}
 
 		// Total project delay and total make span
@@ -146,11 +161,15 @@ public class ProjectJobSchedulingIncrementalScoreCalculator extends AbstractIncr
 				projectEndDateMap.put(project, endDate);
 
 				// Total project delay
-				scoreDefMap.get(ScoreDefCode.FREE_SPACE).subtruct(endDate - project.getCriticalPathEndDate());
+				if (scoreDefMap.containsKey(ScoreDefCode.FREE_SPACE)) {
+					scoreDefMap.get(ScoreDefCode.FREE_SPACE).subtruct(endDate - project.getCriticalPathEndDate());
+				}
 
 				// Total make span
 				if (endDate > maximumProjectEndDate) {
-					scoreDefMap.get(ScoreDefCode.SPAN).subtruct(endDate - maximumProjectEndDate);
+					if (scoreDefMap.containsKey(ScoreDefCode.SPAN)) {
+						scoreDefMap.get(ScoreDefCode.SPAN).subtruct(endDate - maximumProjectEndDate);
+					}
 					maximumProjectEndDate = endDate;
 				}
 			}
@@ -164,19 +183,23 @@ public class ProjectJobSchedulingIncrementalScoreCalculator extends AbstractIncr
 		if (executionMode != null && allocation.getJob().getJobType() == JobType.STANDARD) {
 			for (ResourceRequirement resourceRequirement : executionMode.getResourceRequirementList()) {
 				Resource resource = resourceRequirement.getResource();
-				ResourceCapacityTracker tracker = resourceCapacityTrackerMap.get(resource);
-				scoreDefMap.get(ScoreDefCode.RESOURCE).subtruct(tracker.getHardScore());
-				tracker.retract(resourceRequirement, allocation);
-				scoreDefMap.get(ScoreDefCode.RESOURCE).add(tracker.getHardScore());
 
-				ResourceGapTracker gapTracker = resourceGapTrackerMap.get(resource);
-				scoreDefMap.get(ScoreDefCode.GAP).add(gapTracker.getGap());
-				while (resource.getAllocationList().remove(allocation)) {
+				if (scoreDefMap.containsKey(ScoreDefCode.RESOURCE)) {
+					ResourceCapacityTracker tracker = resourceCapacityTrackerMap.get(resource);
+					scoreDefMap.get(ScoreDefCode.RESOURCE).subtruct(tracker.getHardScore());
+					tracker.retract(resourceRequirement, allocation);
+					scoreDefMap.get(ScoreDefCode.RESOURCE).add(tracker.getHardScore());
 				}
-				scoreDefMap.get(ScoreDefCode.GAP).subtruct(gapTracker.getGap());
+
+				if (scoreDefMap.containsKey(ScoreDefCode.GAP)) {
+					ResourceGapTracker gapTracker = resourceGapTrackerMap.get(resource);
+					scoreDefMap.get(ScoreDefCode.GAP).add(gapTracker.getGap());
+					while (resource.getAllocationList().remove(allocation)) {
+					}
+					scoreDefMap.get(ScoreDefCode.GAP).subtruct(gapTracker.getGap());
+				}
 			}
-		}
-		// scoreDefMap.get(ScoreDefCode.DELAY).add(allocation.getDelay());
+		}		
 
 		// Total project delay and total make span
 		if (allocation.getJob().getJobType() == JobType.SINK) {
@@ -186,12 +209,16 @@ public class ProjectJobSchedulingIncrementalScoreCalculator extends AbstractIncr
 				projectEndDateMap.remove(project);
 
 				// Total project delay
-				scoreDefMap.get(ScoreDefCode.FREE_SPACE).add(endDate - project.getCriticalPathEndDate());
+				if (scoreDefMap.containsKey(ScoreDefCode.FREE_SPACE)) {
+					scoreDefMap.get(ScoreDefCode.FREE_SPACE).add(endDate - project.getCriticalPathEndDate());
+				}
 
 				// Total make span
 				if (endDate == maximumProjectEndDate) {
 					updateMaximumProjectEndDate();
-					scoreDefMap.get(ScoreDefCode.SPAN).add(endDate - maximumProjectEndDate);
+					if (scoreDefMap.containsKey(ScoreDefCode.SPAN)) {
+						scoreDefMap.get(ScoreDefCode.SPAN).add(endDate - maximumProjectEndDate);
+					}
 				}
 			}
 		}

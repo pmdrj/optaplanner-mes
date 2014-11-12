@@ -144,11 +144,12 @@ public class SolverAndPersistenceFrame extends JFrame {
 				}
 				String scoreName = schedule.getHardScoreDefArray()[i].getName();
 				String scoreDescription = schedule.getHardScoreDefArray()[i].getDescription();
+				if (scoreDescription != "") {
+					scoreDescription = " (" + scoreDescription.toLowerCase() + ")";
+				}
 				String bestValueString = scoreLevelNumbers[scoreLevelNr++].toString();
-				scoreString += "H" + (i + 1) + ". " + scoreName + " (" + scoreDescription.toLowerCase() + ")"
-						+ "\n       = " + bestValueString;
+				scoreString += "H" + (i + 1) + ". " + scoreName + scoreDescription + "\n       = " + bestValueString;
 			}
-			scoreString += "\n";			
 
 			for (int i = 0; i != schedule.getSoftScoreDefArray().length; i++) {
 				if (scoreString != "") {
@@ -156,9 +157,11 @@ public class SolverAndPersistenceFrame extends JFrame {
 				}
 				String scoreName = schedule.getSoftScoreDefArray()[i].getName();
 				String scoreDescription = schedule.getSoftScoreDefArray()[i].getDescription();
+				if (scoreDescription != "") {
+					scoreDescription = " (" + scoreDescription.toLowerCase() + ")";
+				}
 				String bestValueString = scoreLevelNumbers[scoreLevelNr++].toString();
-				scoreString += "S" + (i + 1) + ". " + scoreName + " (" + scoreDescription.toLowerCase() + ")"
-						+ "\n       = " + bestValueString;
+				scoreString += "S" + (i + 1) + ". " + scoreName + scoreDescription + "\n       = " + bestValueString;
 			}
 			scoreTextArea.setText(scoreString);
 			scoreFieldTitlePanel.setBorder(BorderFactory.createCompoundBorder(

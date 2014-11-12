@@ -28,10 +28,7 @@ import org.optaplanner.core.api.domain.solution.Solution;
 import org.optaplanner.core.api.score.buildin.bendable.BendableScore;
 import org.optaplanner.mes.common.domain.AbstractPersistable;
 import org.optaplanner.mes.projectjobscheduling.domain.resource.Resource;
-import org.optaplanner.persistence.xstream.impl.score.XStreamBendableScoreConverter;
-
 import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.thoughtworks.xstream.annotations.XStreamConverter;
 
 @SuppressWarnings("serial")
 @PlanningSolution
@@ -54,19 +51,18 @@ public class Schedule extends AbstractPersistable implements Solution<BendableSc
 
 	public Schedule() {
 		super();
-		createScoreHierarchy();
+		if (!readFromDb) {
+			scoreDefMap = new HashMap<ScoreDefCode, ScoreDef>();
+			scoreDefMap.put(ScoreDefCode.RESOURCE, new ScoreDef(ScoreDefType.HARD, 0, "Resource capacity", ""));
+			scoreDefMap.put(ScoreDefCode.SPAN, new ScoreDef(ScoreDefType.SOFT, 2, "Make span", ""));
+			scoreDefMap.put(ScoreDefCode.DELAY, new ScoreDef(ScoreDefType.SOFT, 4, "Project delay", ""));
+			createScoreHierarchy(scoreDefMap);
+		}
+
 	}
 
-	private void createScoreHierarchy() {
-		scoreDefMap = new HashMap<ScoreDefCode, ScoreDef>();
-		scoreDefMap.put(ScoreDefCode.RESOURCE, new ScoreDef(ScoreDefType.HARD, 0, "Zasoby", "Niedobór zasobów"));
-		scoreDefMap.put(ScoreDefCode.FREE_SPACE, new ScoreDef(ScoreDefType.SOFT, 1, "Wolna przestrzeń",
-				"Niezagospodarowany czas do końca sesji"));
-		scoreDefMap.put(ScoreDefCode.SPAN, new ScoreDef(ScoreDefType.SOFT, 2, "Rozpiętość",
-				"Czas od początku pierwszej do końca ostatniej operacji"));
-		scoreDefMap.put(ScoreDefCode.GAP, new ScoreDef(ScoreDefType.SOFT, 3, "Przerwy", "Suma przerw na maszynach"));
-		scoreDefMap.put(ScoreDefCode.DELAY, new ScoreDef(ScoreDefType.SOFT, 4, "Opóźnienia",
-				"Suma opóźnień między powiązanymi operacjami"));
+	public void createScoreHierarchy(Map<ScoreDefCode, ScoreDef> scoreDefMap) {
+		this.scoreDefMap = scoreDefMap;
 
 		List<ScoreDef> scoreDefList = new ArrayList<ScoreDef>(scoreDefMap.values());
 		scoreDefList.sort(ScoreDef.ScoreLevelComparator);
@@ -93,7 +89,6 @@ public class Schedule extends AbstractPersistable implements Solution<BendableSc
 		}
 	}
 
-	@XStreamConverter(value = XStreamBendableScoreConverter.class, ints = { 1, 4 })
 	private BendableScore score;
 
 	public List<Project> getProjectList() {
@@ -180,7 +175,7 @@ public class Schedule extends AbstractPersistable implements Solution<BendableSc
 	public ScoreDef[] getSoftScoreDefArray() {
 		return softScoreDefArray;
 	}
-	
+
 	public boolean isReadFromDb() {
 		return readFromDb;
 	}
@@ -212,7 +207,5 @@ public class Schedule extends AbstractPersistable implements Solution<BendableSc
 		// be done automatically
 		return facts;
 	}
-
-
 
 }
